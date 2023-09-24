@@ -13,22 +13,28 @@
            ">
             <a href="#">
                 <i class="fa fa-pie-chart"></i>
-                <span>Products</span>
+                <span>Settings</span>
                 <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
             </a>
             <ul class="treeview-menu">
                 <li class="">
-                    <a href="">
+                    <a href="{{route('general-settings.index')}}">
                         <i class="fa fa-circle-o"></i>
-                        Category
+                        General
                     </a>
                 </li>
                 <li class="">
                     <a href="">
                         <i class="fa fa-circle-o"></i>
-                        Products
+                        About Us
+                    </a>
+                </li>
+                <li class="">
+                    <a href="">
+                        <i class="fa fa-circle-o"></i>
+                        Social Media Link
                     </a>
                 </li>
             </ul>
