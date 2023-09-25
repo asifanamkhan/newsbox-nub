@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\SocialMedia;
 use App\Models\SocialLink;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SocialLinkController extends Controller
 {
@@ -12,7 +14,12 @@ class SocialLinkController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            $social_links = SocialMedia::getName();
+            return view('back-end.settings.social-link.index', compact('social_links'));
+        } catch (\Exception $exception) {
+            return back()->with($exception->getMessage());
+        }
     }
 
     /**
@@ -28,7 +35,7 @@ class SocialLinkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd(788);
     }
 
     /**

@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('social_links', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('link');
+            $table->string('link')->nullable();
             $table->string('num_of_follower')->nullable();
+            $table->string('created_by');
             $table->string('updated_by')->nullable();
             $table->timestamps();
             $table->softDeletes();

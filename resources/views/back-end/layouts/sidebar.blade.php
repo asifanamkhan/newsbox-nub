@@ -9,7 +9,7 @@
             </a>
         </li>
 
-        <li class="treeview
+        <li id="side-settings" class="treeview
            ">
             <a href="#">
                 <i class="fa fa-pie-chart"></i>
@@ -19,20 +19,20 @@
             </span>
             </a>
             <ul class="treeview-menu">
-                <li class="">
+                <li id="side-general" class="">
                     <a href="{{route('general-settings.index')}}">
                         <i class="fa fa-circle-o"></i>
                         General
                     </a>
                 </li>
-                <li class="">
-                    <a href="">
+                <li id="side-about-us" class="">
+                    <a href="{{route('about-us.index')}}">
                         <i class="fa fa-circle-o"></i>
                         About Us
                     </a>
                 </li>
                 <li class="">
-                    <a href="">
+                    <a id="side-social-link" href="{{route('social-link.index')}}">
                         <i class="fa fa-circle-o"></i>
                         Social Media Link
                     </a>

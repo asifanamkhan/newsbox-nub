@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('auth_id');
             $table->string('comment');
             $table->string('updated_by')->nullable();
+            $table->string('created_by');
             $table->timestamps();
             $table->softDeletes();
         });

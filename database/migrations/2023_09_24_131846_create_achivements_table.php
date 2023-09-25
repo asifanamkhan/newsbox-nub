@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('image')->nullable();
             $table->string('status')->default(0);
+            $table->string('created_by');
             $table->string('updated_by')->nullable();
             $table->timestamps();
             $table->softDeletes();

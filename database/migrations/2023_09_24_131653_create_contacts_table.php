@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('subject');
             $table->string('message');
             $table->string('phone');
+            $table->string('created_by');
             $table->string('updated_by')->nullable();
             $table->timestamps();
             $table->softDeletes();

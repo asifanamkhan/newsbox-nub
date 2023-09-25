@@ -3,63 +3,51 @@
 namespace App\Http\Controllers;
 
 use App\Models\About;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AboutController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        try {
+            $abouts = DB::table('abouts')->first();
+            return view('back-end.settings.about-us.index', compact('abouts'));
+        } catch (\Exception $exception) {
+            return back()->with($exception->getMessage());
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'about' => 'required',
+        ], []);
+        try {
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(About $about)
-    {
-        //
-    }
+            $abouts = DB::table('abouts')
+                ->count();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(About $about)
-    {
-        //
-    }
+            if ($abouts > 0) {
+                $value = 'update';
+            } else {
+                $value = 'insert';
+            }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, About $about)
-    {
-        //
-    }
+            DB::table('abouts')->$value([
+                'about' => $request->about,
+                'status' => 1,
+                'created_by' => Auth::id(),
+                'created_at' => Carbon::now(),
+            ]);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(About $about)
-    {
-        //
+            return redirect()->route('about-us.index')
+                ->with('success', 'Added Successfully');
+        } catch (\Exception $exception) {
+
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
     }
 }
