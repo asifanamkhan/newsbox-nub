@@ -48,4 +48,8 @@
     .error {
         color: red;
     }
+
+    .active-sidebar{
+        background: #428BCA;
+    }
 </style>

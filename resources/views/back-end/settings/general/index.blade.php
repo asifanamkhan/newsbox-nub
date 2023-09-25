@@ -49,6 +49,7 @@
         $(document).ready(function () {
             $("#side-settings").addClass('active');
             $("#side-general").addClass('active');
+            $("#side-general").addClass('active-sidebar');
         });
     </script>
     <script>

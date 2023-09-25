@@ -62,6 +62,7 @@
         $(document).ready(function () {
             $("#side-settings").addClass('active');
             $("#side-about-us").addClass('active');
+            $("#side-about-us").addClass('active-sidebar');
         });
     </script>
 

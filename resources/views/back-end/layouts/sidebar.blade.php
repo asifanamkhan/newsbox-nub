@@ -1,4 +1,4 @@
-<section class="sidebar">
+<section class="sidebar" >
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu" data-widget="tree">
         <li class="">
@@ -31,8 +31,8 @@
                         About Us
                     </a>
                 </li>
-                <li class="">
-                    <a id="side-social-link" href="{{route('social-link.index')}}">
+                <li id="side-social-link" class="">
+                    <a  href="{{route('social-link.index')}}">
                         <i class="fa fa-circle-o"></i>
                         Social Media Link
                     </a>
