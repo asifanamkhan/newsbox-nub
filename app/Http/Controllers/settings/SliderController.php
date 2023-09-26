@@ -28,19 +28,31 @@ class SliderController extends Controller
                 return DataTables::of($data)
                     ->addIndexColumn()
                     ->addColumn('title', function ($data) {
-                       return $data->title;
+                        return $data->title;
 
                     })
                     ->addColumn('image', function ($data) {
-                        return '<a target="_blank" href="'.asset($data->image).'">
-                                   <img class="image" style="width:60px; height: 40px" src="'.asset($data->image).'"/>
+                        return '<a target="_blank" href="' . asset($data->image) . '">
+                                   <img class="image" style="width:60px; height: 40px" src="' . asset($data->image) . '"/>
                                 </a>';
                     })
                     ->addColumn('news', function ($data) {
                         return $data->news_id;
                     })
                     ->addColumn('status', function ($data) {
-                        return $data->status;
+                        if ($data->status == 1) {
+                            return "<select id='status-$data->id' onchange='statusChange([$data->id])' class='form-control'>
+                                            <option selected  value='1' >Active</option>
+                                            <option  value='0'>In active</option>
+                                        </select>";
+                        } else {
+                            return "<select id='status-$data->id' onchange='statusChange([$data->id])' class='form-control'>
+                                            <option  value='1' >Active</option>
+                                            <option selected  value='0'>In active</option>
+                                        </select>";
+                        }
+
+
                     })
                     ->addColumn('action', function ($data) {
                         return '<div class="" role="group">
@@ -57,7 +69,7 @@ class SliderController extends Controller
                                     </a>
                                 </div>';
                     })
-                    ->rawColumns(['image', 'title', 'news','status','action'])
+                    ->rawColumns(['image', 'title', 'news', 'status', 'action'])
                     ->make(true);
             }
             return view('back-end.settings.slide.index');
@@ -89,19 +101,18 @@ class SliderController extends Controller
         ], []);
         try {
 
-            if($request->image){
-                $position = strpos($request->image,';');
-                $sub = substr($request->image,0,$position);
-                $ext = explode('/',$sub)[1];
-                $image = time().'.'.$ext;
+            if ($request->image) {
+                $position = strpos($request->image, ';');
+                $sub = substr($request->image, 0, $position);
+                $ext = explode('/', $sub)[1];
+                $image = time() . '.' . $ext;
                 $img = Image::make($request->image);
                 $upload_path = 'public/images/slides';
-                $image_url = $upload_path.$image;
-                $img->resize(800,500);
+                $image_url = $upload_path . $image;
+                $img->resize(800, 500);
                 $img->save($image_url);
-            }
-            else{
-                $image_url='public/image/no_image.jpg';
+            } else {
+                $image_url = 'public/image/no_image.jpg';
             }
 
             DB::table('sliders')->insert([
@@ -153,5 +164,37 @@ class SliderController extends Controller
     public function destroy(Slider $slider)
     {
         //
+    }
+
+    public function slide_status_change(Request $request)
+    {
+        $request->validate([
+            'id' => 'required',
+            'status' => 'required',
+        ], []);
+
+        try {
+            if ($request->status == 1) {
+                $slides = DB::table('sliders')
+                    ->where('status', 1)
+                    ->count();
+
+                if ($slides >= 3) {
+                    return 0;
+                }
+            }
+
+            DB::table('sliders')
+                ->where('id', $request->id)
+                ->update([
+                    'status' => $request->status
+                ]);
+
+            return 1;
+
+
+        } catch (\Exception $exception) {
+            return back()->with($exception->getMessage());
+        }
     }
 }

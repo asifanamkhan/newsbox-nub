@@ -10,3 +10,6 @@ Route::resource('general-settings',GeneralSettingController::class);
 Route::resource('about-us',AboutController::class);
 Route::resource('social-link',SocialLinkController::class);
 Route::resource('slides',SliderController::class);
+
+
+Route::get('slide-status-change',[SliderController::class,'slide_status_change'])->name('slide-status-change');

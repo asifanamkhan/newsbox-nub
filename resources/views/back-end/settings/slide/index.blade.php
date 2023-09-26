@@ -40,6 +40,7 @@
             $("#side-slide").addClass('active');
             $("#side-slide").addClass('active-sidebar');
         });
+
     </script>
     <script>
         var datatable = $('.data-table').DataTable({
@@ -73,5 +74,32 @@
 
             ],
         });
+
+
+        function statusChange(id){
+            let status = $('#status-'+id).find(":selected").val()
+            if (confirm("Are you sure") == true) {
+                    $.ajax({
+                        type:'GET',
+                        url:"{{ route('slide-status-change') }}",
+                        data:{
+                            id:id,
+                            status:status
+                        },
+                        success:function(data){
+                            if(data == 0){
+                                toastr.warning("You can active more then 3 slide");
+                            }else{
+                                toastr.success("Status Change successfully");
+                            }
+                        }
+                    });
+
+
+
+            } else {
+
+            }
+        }
     </script>
 @endsection

@@ -37,6 +37,10 @@
 
 
 <script>
+    $.ajaxSetup({
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+    });
+
     $.widget.bridge('uibutton', $.ui.button);
     $('.select2').select2();
 
