@@ -4,12 +4,17 @@ use App\Http\Controllers\settings\AboutController;
 use App\Http\Controllers\settings\GeneralSettingController;
 use App\Http\Controllers\settings\SocialLinkController;
 use App\Http\Controllers\settings\SliderController;
+use App\Http\Controllers\settings\ImportantLinkController;
 use Illuminate\Support\Facades\Route;
 
 Route::resource('general-settings',GeneralSettingController::class);
 Route::resource('about-us',AboutController::class);
 Route::resource('social-link',SocialLinkController::class);
 Route::resource('slides',SliderController::class);
+Route::resource('important-links',ImportantLinkController::class);
 
 
 Route::get('slide-status-change',[SliderController::class,'slide_status_change'])->name('slide-status-change');
+
+
+
