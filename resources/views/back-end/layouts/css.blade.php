@@ -73,4 +73,8 @@
         left:45%;
         font-size: 70px;
     }
+    .table-header-background {
+        color: white;
+        background: linear-gradient(to right, #314755 -100%, #26a0da 100%, #314755 0%)
+    }
 </style>

@@ -37,13 +37,13 @@
                         Social Media Link
                     </a>
                 </li>
-                <li id="side-social-link" class="">
+                <li id="side-slide" class="">
                     <a  href="{{route('slides.index')}}">
                         <i class="fa fa-circle-o"></i>
                         Slide
                     </a>
                 </li>
-                <li id="side-social-link" class="">
+                <li id="side-important-link" class="">
                     <a  href="{{route('social-link.index')}}">
                         <i class="fa fa-circle-o"></i>
                         Important Links
