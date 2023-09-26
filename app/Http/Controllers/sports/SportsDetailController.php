@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\sports;
 
-use App\Models\NewsCategory;
+use App\Http\Controllers\Controller;
+use App\Models\SportsDetail;
 use Illuminate\Http\Request;
 
-class NewsCategoryController extends Controller
+class SportsDetailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +35,7 @@ class NewsCategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(NewsCategory $newsCategory)
+    public function show(SportsDetail $sportsDetail)
     {
         //
     }
@@ -42,7 +43,7 @@ class NewsCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(NewsCategory $newsCategory)
+    public function edit(SportsDetail $sportsDetail)
     {
         //
     }
@@ -50,7 +51,7 @@ class NewsCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, NewsCategory $newsCategory)
+    public function update(Request $request, SportsDetail $sportsDetail)
     {
         //
     }
@@ -58,7 +59,7 @@ class NewsCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(NewsCategory $newsCategory)
+    public function destroy(SportsDetail $sportsDetail)
     {
         //
     }

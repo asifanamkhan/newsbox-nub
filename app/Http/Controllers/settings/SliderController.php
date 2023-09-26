@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\settings;
 
-use App\Models\Sport;
+use App\Http\Controllers\Controller;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 
-class SportController extends Controller
+class SliderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +35,7 @@ class SportController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Sport $sport)
+    public function show(Slider $slider)
     {
         //
     }
@@ -42,7 +43,7 @@ class SportController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Sport $sport)
+    public function edit(Slider $slider)
     {
         //
     }
@@ -50,7 +51,7 @@ class SportController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Sport $sport)
+    public function update(Request $request, Slider $slider)
     {
         //
     }
@@ -58,7 +59,7 @@ class SportController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Sport $sport)
+    public function destroy(Slider $slider)
     {
         //
     }

@@ -50,6 +50,6 @@
     }
 
     .active-sidebar{
-        background: #428BCA;
+        background: linear-gradient(to right, #314755 -100%, #26a0da 100%, #314755 0%);
     }
 </style>

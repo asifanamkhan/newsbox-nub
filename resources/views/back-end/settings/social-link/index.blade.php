@@ -42,7 +42,7 @@
                                 <input name="num_of_follower" type="number" class="form-control" value="">
                             </td>
                             <td>
-                                <button class="btn btn-sm btn-primary">
+                                <button class="btn btn-sm btn-primary" style="background: #5E5DF0">
                                     <i class="fa fa-check"></i> update
                                 </button>
                             </td>
