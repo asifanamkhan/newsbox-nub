@@ -56,4 +56,25 @@
     .btn-primary{
         background: #5E5DF0 !important;
     }
+
+    .loading {
+        z-index: 20;
+        position: absolute;
+        top: 0;
+        left:-5px;
+        width: 100%;
+        height: 100%;
+    }
+    .loading-content {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        top: 50%;
+        left:45%;
+        font-size: 70px;
+    }
+    .table-header-background {
+        color: white;
+        background: linear-gradient(to right, #314755 -100%, #26a0da 100%, #314755 0%)
+    }
 </style>
