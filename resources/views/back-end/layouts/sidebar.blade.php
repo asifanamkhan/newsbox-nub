@@ -44,7 +44,7 @@
                     </a>
                 </li>
                 <li id="side-important-link" class="">
-                    <a  href="{{route('social-link.index')}}">
+                    <a  href="{{route('important-links.index')}}">
                         <i class="fa fa-circle-o"></i>
                         Important Links
                     </a>
