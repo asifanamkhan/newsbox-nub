@@ -21,7 +21,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function(){
-    Route::get('admin', [HomeController::class, 'index'])
-        ->name('home');
+    Route::get('admin', [HomeController::class, 'index'])->name('home');
 });
 
