@@ -23,6 +23,16 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{asset('front-end/css/style.css')}}" rel="stylesheet">
+    <style>
+     .dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+}
+    </style>
 </head>
 
 <body>
@@ -100,14 +110,49 @@
                 <a href="index.html" class="nav-item nav-link active">Home</a>
                 <a href="category.html" class="nav-item nav-link">Category</a>
                 <a href="single.html" class="nav-item nav-link">Single News</a>
-                <div class="nav-item dropdown">
+                <!-- <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Dropdown</a>
                     <div class="dropdown-menu rounded-0 m-0">
                         <a href="#" class="dropdown-item">Menu item 1</a>
                         <a href="#" class="dropdown-item">Menu item 2</a>
                         <a href="#" class="dropdown-item">Menu item 3</a>
                     </div>
-                </div>
+                </div> -->
+                <li class="nav-item dropdown">
+   <a href="#" id="menu" 
+      data-toggle="dropdown" class="nav-link dropdown-toggle"
+      data-display="static">Dropdown</a>
+   <ul id="parentUL" class="dropdown-menu">
+      <li id="subMenu1" class="dropdown-item dropdown-submenu">
+         <a id="subMenu1link" href="#" data-toggle="dropdown" class="dropdown-toggle">Submenu-1</a>
+         <ul id="dropdownmenu1" class="dropdown-menu subUL">
+            <li class="dropdown-item">
+               <a href="#">Item-1</a>
+            </li>
+            <li class="dropdown-item">
+               <a href="#">Item-2</a>
+            </li>
+            <li class="dropdown-item">
+               <a href="#">Item-3</a>
+            </li>
+         </ul>
+      </li>
+      <li id="subMenu2" class="dropdown-item dropdown-submenu">
+         <a href="#" data-toggle="dropdown" class="dropdown-toggle">Submenu-2</a>
+         <ul id="dropdownmenu2" class="dropdown-menu subUL">
+            <li class="dropdown-item">
+               <a href="#">Item-1</a>
+            </li>
+            <li class="dropdown-item">
+               <a href="#">Item-2</a>
+            </li>
+            <li class="dropdown-item">
+               <a href="#">Item-3</a>
+            </li>
+         </ul>
+      </li>
+   </ul>
+</li>
                 <a href="contact.html" class="nav-item nav-link">Contact</a>
             </div>
             <div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
@@ -811,6 +856,25 @@
 
 <!-- Template Javascript -->
 <script src="{{asset('front-end/js/main.js')}}"></script>
+<script>
+$('.dropdown-submenu > a').on("click", function(e) {
+        var submenu = $(this);
+        var parentLI = submenu.parent().attr('id');
+        var currentlyShowing = $('.subUL.show').parent().attr('id');
+        if(parentLI == currentlyShowing){
+            $('.dropdown-submenu .dropdown-menu').removeClass('show');
+        } else {
+            $('.dropdown-submenu .dropdown-menu').removeClass('show');
+            submenu.next('.dropdown-menu').addClass('show');
+        }
+        e.stopPropagation();
+    });
+
+    $('.dropdown').on("hidden.bs.dropdown", function() {
+        // hide any open menus when parent closes
+        $('.dropdown-menu.show').removeClass('show');
+    });
+</script>
 </body>
 
 </html>
