@@ -52,7 +52,7 @@
             </ul>
         </li>
 
-        <li id="side-settings" class="treeview
+        <li id="side-news" class="treeview
            ">
             <a href="#">
                 <i class="fa fa-newspaper-o"></i>
@@ -62,8 +62,8 @@
             </span>
             </a>
             <ul class="treeview-menu">
-                <li id="side-general" class="">
-                    <a href="{{route('general-settings.index')}}">
+                <li id="side-category" class="">
+                    <a href="{{route('category.index')}}">
                         <i class="fa fa-circle-o"></i>
                         Category
                     </a>
@@ -76,15 +76,15 @@
                 </li>
             </ul>
         </li>
-        <li class="">
-            <a href="">
+        <li class="" id="side-events">
+            <a href="{{route('events.index')}}">
                 <i class="fa fa-calendar"></i> <span>Events</span>
                 <span class="pull-right-container">
             </span>
             </a>
         </li>
-        <li class="">
-            <a href="">
+        <li class="" id="side-achivements">
+            <a href="{{route('achivements.index')}}">
                 <i class="fa fa-trophy"></i> <span>Achievements</span>
                 <span class="pull-right-container">
             </span>
