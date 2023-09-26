@@ -64,15 +64,16 @@
             maxFilesize: 5,
             maxFiles: 1,
             init: function () {
-
                 this.on("addedfile", (file) => {
-                    var reader = new FileReader();
-                    reader.readAsDataURL(file);
-                    var imh = '';
-                    reader.onload = event => {
-                        $('#image').val(event.target.result)
+                    if (this.files[1] != null) {
+                        this.removeFile(this.files[0]);
+                    } else {
+                        var reader = new FileReader();
+                        reader.readAsDataURL(file);
+                        reader.onload = event => {
+                            $('#image').val(event.target.result)
+                        }
                     }
-
                 });
 
                 this.on('removedfile', function (file) {
