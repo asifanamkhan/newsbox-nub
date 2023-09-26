@@ -42,7 +42,7 @@
                                 <input name="num_of_follower" type="number" class="form-control" value="">
                             </td>
                             <td>
-                                <button class="btn btn-sm btn-primary">
+                                <button class="btn btn-sm btn-primary" >
                                     <i class="fa fa-check"></i> update
                                 </button>
                             </td>
@@ -60,6 +60,7 @@
         $(document).ready(function () {
             $("#side-settings").addClass('active');
             $("#side-social-link").addClass('active');
+            $("#side-social-link").addClass('active-sidebar');
         });
     </script>
 

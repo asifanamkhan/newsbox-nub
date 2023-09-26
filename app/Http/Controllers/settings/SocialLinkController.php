@@ -1,18 +1,25 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\settings;
 
-use App\Models\SportsDetail;
+use App\Helper\SocialMedia;
+use App\Http\Controllers\Controller;
+use App\Models\SocialLink;
 use Illuminate\Http\Request;
 
-class SportsDetailController extends Controller
+class SocialLinkController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        try {
+            $social_links = SocialMedia::getName();
+            return view('back-end.settings.social-link.index', compact('social_links'));
+        } catch (\Exception $exception) {
+            return back()->with($exception->getMessage());
+        }
     }
 
     /**
@@ -28,13 +35,13 @@ class SportsDetailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd(788);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(SportsDetail $sportsDetail)
+    public function show(SocialLink $socialLink)
     {
         //
     }
@@ -42,7 +49,7 @@ class SportsDetailController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(SportsDetail $sportsDetail)
+    public function edit(SocialLink $socialLink)
     {
         //
     }
@@ -50,7 +57,7 @@ class SportsDetailController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, SportsDetail $sportsDetail)
+    public function update(Request $request, SocialLink $socialLink)
     {
         //
     }
@@ -58,7 +65,7 @@ class SportsDetailController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SportsDetail $sportsDetail)
+    public function destroy(SocialLink $socialLink)
     {
         //
     }

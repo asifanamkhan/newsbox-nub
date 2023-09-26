@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\news;
 
-use App\Models\Slider;
+use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
-class SliderController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +35,7 @@ class SliderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Slider $slider)
+    public function show(Comment $comment)
     {
         //
     }
@@ -42,7 +43,7 @@ class SliderController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Slider $slider)
+    public function edit(Comment $comment)
     {
         //
     }
@@ -50,7 +51,7 @@ class SliderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Slider $slider)
+    public function update(Request $request, Comment $comment)
     {
         //
     }
@@ -58,7 +59,7 @@ class SliderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Slider $slider)
+    public function destroy(Comment $comment)
     {
         //
     }

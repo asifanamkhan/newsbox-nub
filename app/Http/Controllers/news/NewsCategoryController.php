@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\news;
 
-use App\Models\ImportantLink;
+use App\Http\Controllers\Controller;
+use App\Models\NewsCategory;
 use Illuminate\Http\Request;
 
-class ImportantLinkController extends Controller
+class NewsCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +35,7 @@ class ImportantLinkController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ImportantLink $importantLink)
+    public function show(NewsCategory $newsCategory)
     {
         //
     }
@@ -42,7 +43,7 @@ class ImportantLinkController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ImportantLink $importantLink)
+    public function edit(NewsCategory $newsCategory)
     {
         //
     }
@@ -50,7 +51,7 @@ class ImportantLinkController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ImportantLink $importantLink)
+    public function update(Request $request, NewsCategory $newsCategory)
     {
         //
     }
@@ -58,7 +59,7 @@ class ImportantLinkController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ImportantLink $importantLink)
+    public function destroy(NewsCategory $newsCategory)
     {
         //
     }

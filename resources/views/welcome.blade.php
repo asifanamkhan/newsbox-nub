@@ -9,7 +9,7 @@
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="{{asset('front-end/img/favicon.ico')}}" rel="icon">
+    <link href="{{asset('public/front-end/img/favicon.ico')}}" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -19,20 +19,24 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="{{asset('front-end/lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
+    <link href="{{asset('public/front-end/lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
+
     <link href="{{asset('front-end/css/style.css')}}" rel="stylesheet">
     <style>
-     .dropdown-submenu {
-  position: relative;
-}
+       .dropdown-submenu {
+        position: relative;
+      }
 
-.dropdown-submenu>.dropdown-menu {
-  top: 0;
-  left: 100%;
-}
+      .dropdown-submenu>.dropdown-menu {
+        top: 0;
+        left: 100%;
+      }
     </style>
+
+    <link href="{{asset('public/front-end/css/style.css')}}" rel="stylesheet">
+
 </head>
 
 <body>
@@ -89,7 +93,7 @@
             </a>
         </div>
         <div class="col-lg-8 text-center text-lg-right">
-            <a href="https://htmlcodex.com"><img class="img-fluid" src="{{asset('front-end/img/ads-728x90.png')}}" alt=""></a>
+            <a href="https://htmlcodex.com"><img class="img-fluid" src="{{asset('public/front-end/img/ads-728x90.png')}}" alt=""></a>
         </div>
     </div>
 </div>
@@ -174,7 +178,7 @@
         <div class="col-lg-7 px-0">
             <div class="owl-carousel main-carousel position-relative">
                 <div class="position-relative overflow-hidden" style="height: 500px;">
-                    <img class="img-fluid h-100" src="{{asset('front-end/img/news-800x500-1.jpg')}}" style="object-fit: cover;">
+                    <img class="img-fluid h-100" src="{{asset('public/front-end/img/news-800x500-1.jpg')}}" style="object-fit: cover;">
                     <div class="overlay">
                         <div class="mb-2">
                             <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
@@ -185,7 +189,7 @@
                     </div>
                 </div>
                 <div class="position-relative overflow-hidden" style="height: 500px;">
-                    <img class="img-fluid h-100" src="{{asset('front-end/img/news-800x500-2.jpg')}}" style="object-fit: cover;">
+                    <img class="img-fluid h-100" src="{{asset('public/front-end/img/news-800x500-2.jpg')}}" style="object-fit: cover;">
                     <div class="overlay">
                         <div class="mb-2">
                             <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
@@ -196,7 +200,7 @@
                     </div>
                 </div>
                 <div class="position-relative overflow-hidden" style="height: 500px;">
-                    <img class="img-fluid h-100" src="{{asset('front-end/img/news-800x500-3.jpg')}}" style="object-fit: cover;">
+                    <img class="img-fluid h-100" src="{{asset('public/front-end/img/news-800x500-3.jpg')}}" style="object-fit: cover;">
                     <div class="overlay">
                         <div class="mb-2">
                             <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
@@ -212,7 +216,7 @@
             <div class="row mx-0">
                 <div class="col-md-6 px-0">
                     <div class="position-relative overflow-hidden" style="height: 250px;">
-                        <img class="img-fluid w-100 h-100" src="{{asset('front-end/img/news-700x435-1.jpg')}}" style="object-fit: cover;">
+                        <img class="img-fluid w-100 h-100" src="{{asset('public/front-end/img/news-700x435-1.jpg')}}" style="object-fit: cover;">
                         <div class="overlay">
                             <div class="mb-2">
                                 <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
@@ -225,7 +229,7 @@
                 </div>
                 <div class="col-md-6 px-0">
                     <div class="position-relative overflow-hidden" style="height: 250px;">
-                        <img class="img-fluid w-100 h-100" src="{{asset('front-end/img/news-700x435-2.jpg')}}" style="object-fit: cover;">
+                        <img class="img-fluid w-100 h-100" src="{{asset('public/front-end/img/news-700x435-2.jpg')}}" style="object-fit: cover;">
                         <div class="overlay">
                             <div class="mb-2">
                                 <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
@@ -238,7 +242,7 @@
                 </div>
                 <div class="col-md-6 px-0">
                     <div class="position-relative overflow-hidden" style="height: 250px;">
-                        <img class="img-fluid w-100 h-100" src="{{asset('front-end/img/news-700x435-3.jpg')}}" style="object-fit: cover;">
+                        <img class="img-fluid w-100 h-100" src="{{asset('public/front-end/img/news-700x435-3.jpg')}}" style="object-fit: cover;">
                         <div class="overlay">
                             <div class="mb-2">
                                 <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
@@ -251,7 +255,7 @@
                 </div>
                 <div class="col-md-6 px-0">
                     <div class="position-relative overflow-hidden" style="height: 250px;">
-                        <img class="img-fluid w-100 h-100" src="{{asset('front-end/img/news-700x435-4.jpg')}}" style="object-fit: cover;">
+                        <img class="img-fluid w-100 h-100" src="{{asset('public/front-end/img/news-700x435-4.jpg')}}" style="object-fit: cover;">
                         <div class="overlay">
                             <div class="mb-2">
                                 <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
@@ -297,7 +301,7 @@
         </div>
         <div class="owl-carousel news-carousel carousel-item-4 position-relative">
             <div class="position-relative overflow-hidden" style="height: 300px;">
-                <img class="img-fluid h-100" src="{{asset('front-end/img/news-700x435-1.jpg')}}" style="object-fit: cover;">
+                <img class="img-fluid h-100" src="{{asset('public/front-end/img/news-700x435-1.jpg')}}" style="object-fit: cover;">
                 <div class="overlay">
                     <div class="mb-2">
                         <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
@@ -308,7 +312,7 @@
                 </div>
             </div>
             <div class="position-relative overflow-hidden" style="height: 300px;">
-                <img class="img-fluid h-100" src="{{asset('front-end/img/news-700x435-2.jpg')}}" style="object-fit: cover;">
+                <img class="img-fluid h-100" src="{{asset('public/front-end/img/news-700x435-2.jpg')}}" style="object-fit: cover;">
                 <div class="overlay">
                     <div class="mb-2">
                         <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
@@ -319,7 +323,7 @@
                 </div>
             </div>
             <div class="position-relative overflow-hidden" style="height: 300px;">
-                <img class="img-fluid h-100" src="{{asset('front-end/img/news-700x435-3.jpg')}}" style="object-fit: cover;">
+                <img class="img-fluid h-100" src="{{asset('public/front-end/img/news-700x435-3.jpg')}}" style="object-fit: cover;">
                 <div class="overlay">
                     <div class="mb-2">
                         <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
@@ -330,7 +334,7 @@
                 </div>
             </div>
             <div class="position-relative overflow-hidden" style="height: 300px;">
-                <img class="img-fluid h-100" src="{{asset('front-end/img/news-700x435-4.jpg')}}" style="object-fit: cover;">
+                <img class="img-fluid h-100" src="{{asset('public/front-end/img/news-700x435-4.jpg')}}" style="object-fit: cover;">
                 <div class="overlay">
                     <div class="mb-2">
                         <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
@@ -341,7 +345,7 @@
                 </div>
             </div>
             <div class="position-relative overflow-hidden" style="height: 300px;">
-                <img class="img-fluid h-100" src="{{asset('front-end/img/news-700x435-5.jpg')}}" style="object-fit: cover;">
+                <img class="img-fluid h-100" src="{{asset('public/front-end/img/news-700x435-5.jpg')}}" style="object-fit: cover;">
                 <div class="overlay">
                     <div class="mb-2">
                         <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
@@ -371,7 +375,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="position-relative mb-3">
-                            <img class="img-fluid w-100" src="{{asset('front-end/img/news-700x435-1.jpg')}}" style="object-fit: cover;">
+                            <img class="img-fluid w-100" src="{{asset('public/front-end/img/news-700x435-1.jpg')}}" style="object-fit: cover;">
                             <div class="bg-white border border-top-0 p-4">
                                 <div class="mb-2">
                                     <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
@@ -384,7 +388,7 @@
                             </div>
                             <div class="d-flex justify-content-between bg-white border border-top-0 p-4">
                                 <div class="d-flex align-items-center">
-                                    <img class="rounded-circle mr-2" src="{{asset('front-end/img/user.jpg')}}" width="25" height="25" alt="">
+                                    <img class="rounded-circle mr-2" src="{{asset('public/front-end/img/user.jpg')}}" width="25" height="25" alt="">
                                     <small>John Doe</small>
                                 </div>
                                 <div class="d-flex align-items-center">
@@ -396,7 +400,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="position-relative mb-3">
-                            <img class="img-fluid w-100" src="{{asset('front-end/img/news-700x435-2.jpg')}}" style="object-fit: cover;">
+                            <img class="img-fluid w-100" src="{{asset('public/front-end/img/news-700x435-2.jpg')}}" style="object-fit: cover;">
                             <div class="bg-white border border-top-0 p-4">
                                 <div class="mb-2">
                                     <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
@@ -409,7 +413,7 @@
                             </div>
                             <div class="d-flex justify-content-between bg-white border border-top-0 p-4">
                                 <div class="d-flex align-items-center">
-                                    <img class="rounded-circle mr-2" src="{{asset('front-end/img/user.jpg')}}" width="25" height="25" alt="">
+                                    <img class="rounded-circle mr-2" src="{{asset('public/front-end/img/user.jpg')}}" width="25" height="25" alt="">
                                     <small>John Doe</small>
                                 </div>
                                 <div class="d-flex align-items-center">
@@ -420,11 +424,11 @@
                         </div>
                     </div>
                     <div class="col-lg-12 mb-3">
-                        <a href=""><img class="img-fluid w-100" src="{{asset('front-end/img/ads-728x90.png')}}" alt=""></a>
+                        <a href=""><img class="img-fluid w-100" src="{{asset('public/front-end/img/ads-728x90.png')}}" alt=""></a>
                     </div>
                     <div class="col-lg-6">
                         <div class="position-relative mb-3">
-                            <img class="img-fluid w-100" src="{{asset('front-end/img/news-700x435-3.jpg')}}" style="object-fit: cover;">
+                            <img class="img-fluid w-100" src="{{asset('public/front-end/img/news-700x435-3.jpg')}}" style="object-fit: cover;">
                             <div class="bg-white border border-top-0 p-4">
                                 <div class="mb-2">
                                     <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
@@ -435,7 +439,7 @@
                             </div>
                             <div class="d-flex justify-content-between bg-white border border-top-0 p-4">
                                 <div class="d-flex align-items-center">
-                                    <img class="rounded-circle mr-2" src="{{asset('front-end/img/user.jpg')}}" width="25" height="25" alt="">
+                                    <img class="rounded-circle mr-2" src="{{asset('public/front-end/img/user.jpg')}}" width="25" height="25" alt="">
                                     <small>John Doe</small>
                                 </div>
                                 <div class="d-flex align-items-center">
@@ -447,7 +451,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="position-relative mb-3">
-                            <img class="img-fluid w-100" src="{{asset('front-end/img/news-700x435-4.jpg')}}" style="object-fit: cover;">
+                            <img class="img-fluid w-100" src="{{asset('public/front-end/img/news-700x435-4.jpg')}}" style="object-fit: cover;">
                             <div class="bg-white border border-top-0 p-4">
                                 <div class="mb-2">
                                     <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
@@ -458,7 +462,7 @@
                             </div>
                             <div class="d-flex justify-content-between bg-white border border-top-0 p-4">
                                 <div class="d-flex align-items-center">
-                                    <img class="rounded-circle mr-2" src="{{asset('front-end/img/user.jpg')}}" width="25" height="25" alt="">
+                                    <img class="rounded-circle mr-2" src="{{asset('public/front-end/img/user.jpg')}}" width="25" height="25" alt="">
                                     <small>John Doe</small>
                                 </div>
                                 <div class="d-flex align-items-center">
@@ -470,7 +474,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
-                            <img class="img-fluid" src="{{asset('front-end/img/news-110x110-1.jpg')}}" alt="">
+                            <img class="img-fluid" src="{{asset('public/front-end/img/news-110x110-1.jpg')}}" alt="">
                             <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
                                 <div class="mb-2">
                                     <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">Business</a>
@@ -480,7 +484,7 @@
                             </div>
                         </div>
                         <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
-                            <img class="img-fluid" src="{{asset('front-end/img/news-110x110-2.jpg')}}" alt="">
+                            <img class="img-fluid" src="{{asset('public/front-end/img/news-110x110-2.jpg')}}" alt="">
                             <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
                                 <div class="mb-2">
                                     <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">Business</a>
@@ -492,7 +496,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
-                            <img class="img-fluid" src="{{asset('front-end/img/news-110x110-3.jpg')}}" alt="">
+                            <img class="img-fluid" src="{{asset('public/front-end/img/news-110x110-3.jpg')}}" alt="">
                             <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
                                 <div class="mb-2">
                                     <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">Business</a>
@@ -502,7 +506,7 @@
                             </div>
                         </div>
                         <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
-                            <img class="img-fluid" src="{{asset('front-end/img/news-110x110-4.jpg')}}" alt="">
+                            <img class="img-fluid" src="{{asset('public/front-end/img/news-110x110-4.jpg')}}" alt="">
                             <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
                                 <div class="mb-2">
                                     <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">Business</a>
@@ -513,12 +517,12 @@
                         </div>
                     </div>
                     <div class="col-lg-12 mb-3">
-                        <a href=""><img class="img-fluid w-100" src="{{asset('front-end/img/ads-728x90.png')}}" alt=""></a>
+                        <a href=""><img class="img-fluid w-100" src="{{asset('public/front-end/img/ads-728x90.png')}}" alt=""></a>
                     </div>
                     <div class="col-lg-12">
                         <div class="row news-lg mx-0 mb-3">
                             <div class="col-md-6 h-100 px-0">
-                                <img class="img-fluid h-100" src="{{asset('front-end/img/news-700x435-5.jpg')}}" style="object-fit: cover;">
+                                <img class="img-fluid h-100" src="{{asset('public/front-end/img/news-700x435-5.jpg')}}" style="object-fit: cover;">
                             </div>
                             <div class="col-md-6 d-flex flex-column border bg-white h-100 px-0">
                                 <div class="mt-auto p-4">
@@ -533,7 +537,7 @@
                                 </div>
                                 <div class="d-flex justify-content-between bg-white border-top mt-auto p-4">
                                     <div class="d-flex align-items-center">
-                                        <img class="rounded-circle mr-2" src="{{asset('front-end/img/user.jpg')}}" width="25" height="25" alt="">
+                                        <img class="rounded-circle mr-2" src="{{asset('public/front-end/img/user.jpg')}}" width="25" height="25" alt="">
                                         <small>John Doe</small>
                                     </div>
                                     <div class="d-flex align-items-center">
@@ -546,7 +550,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
-                            <img class="img-fluid" src="{{asset('front-end/img/news-110x110-1.jpg')}}" alt="">
+                            <img class="img-fluid" src="{{asset('public/front-end/img/news-110x110-1.jpg')}}" alt="">
                             <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
                                 <div class="mb-2">
                                     <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">Business</a>
@@ -556,7 +560,7 @@
                             </div>
                         </div>
                         <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
-                            <img class="img-fluid" src="{{asset('front-end/img/news-110x110-2.jpg')}}" alt="">
+                            <img class="img-fluid" src="{{asset('public/front-end/img/news-110x110-2.jpg')}}" alt="">
                             <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
                                 <div class="mb-2">
                                     <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">Business</a>
@@ -568,7 +572,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
-                            <img class="img-fluid" src="{{asset('front-end/img/news-110x110-3.jpg')}}" alt="">
+                            <img class="img-fluid" src="{{asset('public/front-end/img/news-110x110-3.jpg')}}" alt="">
                             <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
                                 <div class="mb-2">
                                     <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">Business</a>
@@ -578,7 +582,7 @@
                             </div>
                         </div>
                         <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
-                            <img class="img-fluid" src="{{asset('front-end/img/news-110x110-4.jpg')}}" alt="">
+                            <img class="img-fluid" src="{{asset('public/front-end/img/news-110x110-4.jpg')}}" alt="">
                             <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
                                 <div class="mb-2">
                                     <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">Business</a>
@@ -632,7 +636,7 @@
                         <h4 class="m-0 text-uppercase font-weight-bold">Advertisement</h4>
                     </div>
                     <div class="bg-white text-center border border-top-0 p-3">
-                        <a href=""><img class="img-fluid" src="{{asset('front-end/img/news-800x500-2.jpg')}}" alt=""></a>
+                        <a href=""><img class="img-fluid" src="{{asset('public/front-end/img/news-800x500-2.jpg')}}" alt=""></a>
                     </div>
                 </div>
                 <!-- Ads End -->
@@ -644,7 +648,7 @@
                     </div>
                     <div class="bg-white border border-top-0 p-3">
                         <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
-                            <img class="img-fluid" src="{{asset('front-end/img/news-110x110-1.jpg')}}" alt="">
+                            <img class="img-fluid" src="{{asset('public/front-end/img/news-110x110-1.jpg')}}" alt="">
                             <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
                                 <div class="mb-2">
                                     <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">Business</a>
@@ -654,7 +658,7 @@
                             </div>
                         </div>
                         <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
-                            <img class="img-fluid" src="{{asset('front-end/img/news-110x110-2.jpg')}}" alt="">
+                            <img class="img-fluid" src="{{asset('public/front-end/img/news-110x110-2.jpg')}}" alt="">
                             <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
                                 <div class="mb-2">
                                     <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">Business</a>
@@ -664,7 +668,7 @@
                             </div>
                         </div>
                         <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
-                            <img class="img-fluid" src="{{asset('front-end/img/news-110x110-3.jpg')}}" alt="">
+                            <img class="img-fluid" src="{{asset('public/front-end/img/news-110x110-3.jpg')}}" alt="">
                             <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
                                 <div class="mb-2">
                                     <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">Business</a>
@@ -674,7 +678,7 @@
                             </div>
                         </div>
                         <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
-                            <img class="img-fluid" src="{{asset('front-end/img/news-110x110-4.jpg')}}" alt="">
+                            <img class="img-fluid" src="{{asset('public/front-end/img/news-110x110-4.jpg')}}" alt="">
                             <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
                                 <div class="mb-2">
                                     <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">Business</a>
@@ -684,7 +688,7 @@
                             </div>
                         </div>
                         <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
-                            <img class="img-fluid" src="{{asset('front-end/img/news-110x110-5.jpg')}}" alt="">
+                            <img class="img-fluid" src="{{asset('public/front-end/img/news-110x110-5.jpg')}}" alt="">
                             <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
                                 <div class="mb-2">
                                     <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">Business</a>
@@ -814,22 +818,22 @@
             <h5 class="mb-4 text-white text-uppercase font-weight-bold">Flickr Photos</h5>
             <div class="row">
                 <div class="col-4 mb-3">
-                    <a href=""><img class="w-100" src="{{asset('front-end/img/news-110x110-1.jpg')}}" alt=""></a>
+                    <a href=""><img class="w-100" src="{{asset('public/front-end/img/news-110x110-1.jpg')}}" alt=""></a>
                 </div>
                 <div class="col-4 mb-3">
-                    <a href=""><img class="w-100" src="{{asset('front-end/img/news-110x110-2.jpg')}}" alt=""></a>
+                    <a href=""><img class="w-100" src="{{asset('public/front-end/img/news-110x110-2.jpg')}}" alt=""></a>
                 </div>
                 <div class="col-4 mb-3">
-                    <a href=""><img class="w-100" src="{{asset('front-end/img/news-110x110-3.jpg')}}" alt=""></a>
+                    <a href=""><img class="w-100" src="{{asset('public/front-end/img/news-110x110-3.jpg')}}" alt=""></a>
                 </div>
                 <div class="col-4 mb-3">
-                    <a href=""><img class="w-100" src="{{asset('front-end/img/news-110x110-4.jpg')}}" alt=""></a>
+                    <a href=""><img class="w-100" src="{{asset('public/front-end/img/news-110x110-4.jpg')}}" alt=""></a>
                 </div>
                 <div class="col-4 mb-3">
-                    <a href=""><img class="w-100" src="{{asset('front-end/img/news-110x110-5.jpg')}}" alt=""></a>
+                    <a href=""><img class="w-100" src="{{asset('public/front-end/img/news-110x110-5.jpg')}}" alt=""></a>
                 </div>
                 <div class="col-4 mb-3">
-                    <a href=""><img class="w-100" src="{{asset('front-end/img/news-110x110-1.jpg')}}" alt=""></a>
+                    <a href=""><img class="w-100" src="{{asset('public/front-end/img/news-110x110-1.jpg')}}" alt=""></a>
                 </div>
             </div>
         </div>
@@ -851,10 +855,11 @@
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script src="{{asset('front-end/lib/easing/easing.min.js')}}"></script>
-<script src="{{asset('front-end/lib/owlcarousel/owl.carousel.min.js')}}"></script>
+<script src="{{asset('public/front-end/lib/easing/easing.min.js')}}"></script>
+<script src="{{asset('public/front-end/lib/owlcarousel/owl.carousel.min.js')}}"></script>
 
 <!-- Template Javascript -->
+
 <script src="{{asset('front-end/js/main.js')}}"></script>
 <script>
 $('.dropdown-submenu > a').on("click", function(e) {
@@ -875,6 +880,8 @@ $('.dropdown-submenu > a').on("click", function(e) {
         $('.dropdown-menu.show').removeClass('show');
     });
 </script>
+
+<script src="{{asset('public/front-end/js/main.js')}}"></script>
 </body>
 
 </html>

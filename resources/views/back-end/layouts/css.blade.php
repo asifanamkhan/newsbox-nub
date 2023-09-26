@@ -48,4 +48,12 @@
     .error {
         color: red;
     }
+
+    .active-sidebar{
+        background: linear-gradient(to right, #314755 -100%, #26a0da 100%, #314755 0%);
+    }
+
+    .btn-primary{
+        background: #5E5DF0 !important;
+    }
 </style>
