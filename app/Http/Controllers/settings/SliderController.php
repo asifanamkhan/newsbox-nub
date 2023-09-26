@@ -5,6 +5,9 @@ namespace App\Http\Controllers\settings;
 use App\Http\Controllers\Controller;
 use App\Models\Slider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Image;
+
 
 class SliderController extends Controller
 {
@@ -13,7 +16,12 @@ class SliderController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            $slides = DB::table('sliders')->first();
+            return view('back-end.settings.slide.index', compact('slides'));
+        } catch (\Exception $exception) {
+            return back()->with($exception->getMessage());
+        }
     }
 
     /**
@@ -29,7 +37,22 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        if($request->slide){
+            $position = strpos($request->slide,';');
+            $sub = substr($request->slide,0,$position);
+            $ext = explode('/',$sub)[1];
+            $image = time().'.'.$ext;
+            $img = Image::make($request->slide);
+            $upload_path = 'public/images/';
+            $image_url = $upload_path.$image;
+            $img->resize(800,500);
+            $img->save($image_url);
+        }
+        else{
+            $image_url='image/no_image.png';
+        }
+
     }
 
     /**

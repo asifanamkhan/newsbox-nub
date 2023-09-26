@@ -4,7 +4,7 @@
     <span class="sr-only">Toggle navigation</span>
 </a>
 
-<a href="{{\Illuminate\Support\Facades\URL::asset('/')}}" style="position: relative; margin: 10px 0 0 10px" class="btn btn-sm btn-success">Website</a>
+<a target="_blank" href="{{\Illuminate\Support\Facades\URL::asset('/')}}" style="position: relative; margin: 10px 0 0 10px" class="btn btn-sm btn-success">Website</a>
 
 <div class="navbar-custom-menu">
 
@@ -22,7 +22,7 @@
                     <img src="{{asset('public/back-end/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
 
                     <p >
-                        Inventory - Sale Manager
+                        Admin
                         <small>Member since </small>
                     </p>
                 </li>

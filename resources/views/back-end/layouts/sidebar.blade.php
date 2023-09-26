@@ -38,7 +38,7 @@
                     </a>
                 </li>
                 <li id="side-social-link" class="">
-                    <a  href="{{route('social-link.index')}}">
+                    <a  href="{{route('slides.index')}}">
                         <i class="fa fa-circle-o"></i>
                         Slide
                     </a>
