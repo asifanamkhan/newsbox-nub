@@ -4,24 +4,65 @@ namespace App\Http\Controllers\news;
 
 use App\Http\Controllers\Controller;
 use App\Models\NewsCategory;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use DataTables;
 
 class NewsCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        try {
+            if ($request->ajax()) {
+                $data = DB::table('news_categories')
+                    ->orderBy('id', 'DESC')
+                    ->get();
+
+                return DataTables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('name', function ($data) {
+                       return $data->name;
+                    })
+                    ->addColumn('action', function ($data) {
+                        return '<div class="" role="group">
+                                    <a id=""
+                                        href="' . route('category.edit', $data->id) . '" class="btn btn-sm btn-success" style="cursor:pointer"
+                                        title="Edit">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    
+                                    <a class="btn btn-sm btn-danger" style="cursor:pointer" 
+                                       href="' . route('category.destroy', [$data->id]) . '" 
+                                       onclick=" return confirm(`Are You Sure ? You Cant revert it`)" title="Delete">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </div>';
+                    })
+                    ->rawColumns(['name','action'])
+                    ->make(true);
+            }
+            return view('back-end.news.category.index');
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
     }
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        try {
+            return view('back-end.news.category.create');
+        } catch (\Exception $exception) {
+            return back()->with($exception->getMessage());
+        }
     }
 
     /**
@@ -29,7 +70,24 @@ class NewsCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ], []);
+        try {
+            DB::table('news_categories')->insert([
+                'name' => $request->name,
+                'created_by' => Auth::id(),
+                'created_at' => Carbon::now(),
+            ]);
+
+            return redirect()->route('category.index')
+                ->with('success', 'Added Successfully');
+        } catch (\Exception $exception) {
+
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
+
+
     }
 
     /**
