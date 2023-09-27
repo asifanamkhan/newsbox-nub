@@ -34,6 +34,10 @@ class EventController extends Controller
                                    <img class="image" style="width:60px; height: 40px" src="' . asset($data->image) . '"/>
                                 </a>';
                     })
+                    ->addColumn('title', function ($data) {
+                        return $data->title;
+
+                    })
                     ->addColumn('status', function ($data) {
                         if ($data->status == 1) {
                             return "<select id='status-$data->id' onchange='statusChange([$data->id])' class='form-control'>
@@ -64,7 +68,7 @@ class EventController extends Controller
                                     </a>
                                 </div>';
                     })
-                    ->rawColumns(['image', 'description', 'status', 'action'])
+                    ->rawColumns(['image', 'description','title','status', 'action'])
                     ->make(true);
             }
             return view('back-end.events.index');
@@ -93,6 +97,7 @@ class EventController extends Controller
         $request->validate([
             'description' => 'required',
             'image' => 'required',
+            // 'title'=>'required'
         ], []);
         try {
 
@@ -102,7 +107,7 @@ class EventController extends Controller
                 $ext = explode('/', $sub)[1];
                 $image = time() . '.' . $ext;
                 $img = Image::make($request->image);
-                $upload_path = 'public/images/events';
+                $upload_path = 'public/images/events/';
                 $image_url = $upload_path . $image;
                 $img->resize(800, 500);
                 $img->save($image_url);
@@ -113,6 +118,7 @@ class EventController extends Controller
             DB::table('events')->insert([
                 'description' => $request->description,
                 'image' => $image_url,
+                'title'=>$request->title,
                 'status' => 0,
                 'created_by' => Auth::id(),
                 'created_at' => Carbon::now(),

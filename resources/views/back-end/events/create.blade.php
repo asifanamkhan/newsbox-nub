@@ -37,6 +37,10 @@
                             <input type="hidden" name="image" id="image">
                         </div>
                         <div class="form-group col-md-12">
+                            <label for="">Title</label></span>
+                            <input type="text" name="title" class="form-control">
+                        </div>
+                        <div class="form-group col-md-12">
                             <label for="">Description</label><span style="font-weight: bold; color: red"> *</span>
                             <input type="text" name="description" class="form-control">
                         </div>

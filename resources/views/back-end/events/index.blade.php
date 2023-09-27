@@ -22,7 +22,8 @@
                 <tr class="" style="text-align:center; ">
                     <th style="width: 7%">SL</th>
                     <th style="width: 15%">Image</th>
-                    <th style="width: 60%">Description</th>
+                    <th style="width: 20%">title</th>
+                    <th style="width: 40%">Description</th>
                     <th style="width: 8%">Status</th>
                     <th style="width: 10%">Action</th>
                 </tr>
@@ -63,6 +64,7 @@
             columns: [
                 {data: "DT_RowIndex", name: "DT_RowIndex", orderable: false,},
                 {data: 'image', name: 'image', orderable: true,},
+                {data: 'title', name: 'title', orderable: true,},
                 {data: 'description', name: 'description', orderable: true,},
                 {data: 'status', name: 'status', orderable: true},
                 {data: 'action', searchable: false, orderable: false}
