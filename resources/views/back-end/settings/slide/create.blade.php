@@ -31,7 +31,7 @@
             {{--            </section>--}}
             <div class="row">
                 <div class="col-md-7 ima">
-                    <form action="{{route('slides.store')}}" method="post">
+                    <form id="create_form" action="{{route('slides.store')}}" method="post">
                         @csrf
                         <div id="img-body">
                             <input type="hidden" name="image" id="image">
@@ -73,6 +73,14 @@
             $("#side-settings").addClass('active');
             $("#side-slide").addClass('active');
             $("#side-slide").addClass('active-sidebar');
+
+            $("#create_form").validate({
+                rules: {
+                    title: {
+                        required: true,
+                    },
+                },
+            });
         });
     </script>
     <script type="text/javascript">

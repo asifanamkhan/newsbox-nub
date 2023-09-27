@@ -34,9 +34,9 @@
 @section('js')
     <script>
         $(document).ready(function () {
-            $("#important-links-settings").addClass('active');
-            $("#important-links-slide").addClass('active');
-            $("#important-links-slide").addClass('active-important-links');
+            $("#side-settings").addClass('active');
+            $("#side-important-link").addClass('active');
+            $("#side-important-link").addClass('active-sidebar');
         });
     </script>
     <script>

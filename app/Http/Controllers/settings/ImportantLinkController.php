@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use DataTables;
 
 class ImportantLinkController extends Controller
 {
@@ -74,13 +75,12 @@ class ImportantLinkController extends Controller
     {
         $request->validate([
             'link' => 'required',
-            'description' => 'required',
         ], []);
         try {
             DB::table('important_links')->insert([
                 'link' => $request->link,
-                'description' => $request->description,
-                'status' => 0,
+                'description' => $request->description ?? '',
+                'status' => 1,
                 'created_by' => Auth::id(),
                 'created_at' => Carbon::now(),
             ]);

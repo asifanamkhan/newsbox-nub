@@ -26,7 +26,7 @@
             @endif
             <div class="row">
                 <div class="col-md-12 ima">
-                    <form action="{{route('important-links.store')}}" method="post">
+                    <form id="create_form" action="{{route('important-links.store')}}" method="post">
                         @csrf
                         <div class="form-group col-md-12">
                             <label for="">Link</label><span style="font-weight: bold; color: red"> *</span>
@@ -34,8 +34,8 @@
                         </div>
 
                         <div class="form-group col-md-12">
-                            <label for="">Description</label><span style="font-weight: bold; color: red"> *</span>
-                            <textarea class="form-control"  name="description"></textarea>
+                            <label for="">Description</label>
+                            <textarea class="form-control" name="description"></textarea>
                         </div>
                         <div class="form-group col-md-12">
                             <button class="btn btn-primary">Save</button>
@@ -49,43 +49,21 @@
 
 @endsection
 @section('js')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>
+
     <script>
         $(document).ready(function () {
             $("#side-settings").addClass('active');
-            $("#side-slide").addClass('active');
-            $("#side-slide").addClass('active-sidebar');
+            $("#side-important-link").addClass('active');
+            $("#side-important-link").addClass('active-sidebar');
+
+            $("#create_form").validate({
+                rules: {
+                    link: {
+                        required: true,
+                    },
+                },
+            });
         });
-    </script>
-    <script type="text/javascript">
-
-        Dropzone.options.dropzoneForm = {
-            autoProcessQueue: false,
-            acceptedFiles: ".png,.jpg,.gif,.bmp,.jpeg",
-            addRemoveLinks: true,
-            parallelUploads: 1,
-            maxFilesize: 5,
-            maxFiles: 1,
-            init: function () {
-                this.on("addedfile", (file) => {
-                    if (this.files[1] != null) {
-                        this.removeFile(this.files[0]);
-                    } else {
-                        var reader = new FileReader();
-                        reader.readAsDataURL(file);
-                        reader.onload = event => {
-                            $('#image').val(event.target.result)
-                        }
-                    }
-                });
-
-                this.on('removedfile', function (file) {
-                    $('#image').val(' ');
-                });
-
-            },
-
-        };
 
     </script>
 @endsection
