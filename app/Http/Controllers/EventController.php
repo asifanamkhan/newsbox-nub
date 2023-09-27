@@ -112,7 +112,6 @@ class EventController extends Controller
 
             DB::table('events')->insert([
                 'description' => $request->description,
-
                 'image' => $image_url,
                 'status' => 0,
                 'created_by' => Auth::id(),
@@ -121,8 +120,8 @@ class EventController extends Controller
 
             return redirect()->route('events.index')
                 ->with('success', 'Added Successfully');
-        } catch (\Exception $exception) {
 
+        } catch (\Exception $exception) {
             return redirect()->back()->with('error', $exception->getMessage());
         }
 

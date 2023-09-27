@@ -83,8 +83,8 @@
             </span>
             </a>
         </li>
-        <li class="" id="side-achivements">
-            <a href="{{route('achivements.index')}}">
+        <li class="" id="side-achievements">
+            <a href="{{route('achievements.index')}}">
                 <i class="fa fa-trophy"></i> <span>Achievements</span>
                 <span class="pull-right-container">
             </span>

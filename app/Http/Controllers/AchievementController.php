@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Achivement;
+use App\Models\Achievement;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Image;
 use DataTables;
 
-class AchivementController extends Controller
+class AchievementController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +19,7 @@ class AchivementController extends Controller
     {
         try {
             if ($request->ajax()) {
-                $data = DB::table('achivements')
+                $data = DB::table('achievements')
                     ->orderBy('id', 'DESC')
                     ->get();
 
@@ -70,7 +70,7 @@ class AchivementController extends Controller
                     ->rawColumns(['image','title', 'description', 'status', 'action'])
                     ->make(true);
             }
-            return view('back-end.achivements.index');
+            return view('back-end.achievements.index');
         } catch (\Exception $exception) {
             return redirect()->back()->with('error', $exception->getMessage());
         }
@@ -82,7 +82,7 @@ class AchivementController extends Controller
     public function create()
     {
         try {
-            return view('back-end.achivements.create');
+            return view('back-end.achievements.create');
         } catch (\Exception $exception) {
             return back()->with($exception->getMessage());
         }
@@ -106,7 +106,7 @@ class AchivementController extends Controller
                 $ext = explode('/', $sub)[1];
                 $image = time() . '.' . $ext;
                 $img = Image::make($request->image);
-                $upload_path = 'public/images/achivementsents';
+                $upload_path = 'public/images/achievementsents';
                 $image_url = $upload_path . $image;
                 $img->resize(800, 500);
                 $img->save($image_url);
@@ -114,7 +114,7 @@ class AchivementController extends Controller
                 $image_url = 'public/image/no_image.jpg';
             }
 
-            DB::table('achivementsents')->insert([
+            DB::table('achievements')->insert([
                 'title'=>$request->title,
                 'description' => $request->description,
                 'image' => $image_url,
@@ -123,7 +123,7 @@ class AchivementController extends Controller
                 'created_at' => Carbon::now(),
             ]);
 
-            return redirect()->route('achivements.index')
+            return redirect()->route('achievements.index')
                 ->with('success', 'Added Successfully');
         } catch (\Exception $exception) {
 

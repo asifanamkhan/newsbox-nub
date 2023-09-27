@@ -56,7 +56,7 @@
             pagingType: "full_numbers",
 
             ajax: {
-                url: "{{route('slides.index')}}",
+                url: "{{route('events.index')}}",
                 type: "get",
             },
 
