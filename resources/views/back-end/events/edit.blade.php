@@ -38,31 +38,41 @@
             {{--                </div>--}}
             {{--            </section>--}}
             <div class="row">
-                <div class="col-md-7 ima">
-                    <form id="create_form" action="{{route('events.store')}}" method="post">
+                <div class="col-md-7">
+                    <form id="create_form" action="{{route('events.update', $event->id)}}" method="post">
                         @csrf
+                        @method('PUT')
                         <div id="img-body">
                             <input type="hidden" name="image" id="image">
                         </div>
                         <div class="form-group col-md-12">
                             <label for="">Title</label><span style="font-weight: bold; color: red"> *</span>
-                            <input type="text" name="title" class="form-control">
+                            <input type="text" value="{{$event->title}}" name="title" class="form-control">
                         </div>
                         <div class="form-group col-md-12">
                             <label for="">Description</label><span style="font-weight: bold; color: red"> *</span>
-                            <textarea name="description" id="" cols="30" class="form-control tinymce-editor" rows="10"></textarea>
+                            <textarea name="description" id="" cols="30" class="form-control tinymce-editor" rows="10">{!! $event->description !!}</textarea>
                         </div>
                         <div class="form-group col-md-12">
                             <button class="btn btn-primary">Save</button>
                         </div>
                     </form>
                 </div>
-                <div class=" col-md-5">
-                    <label for="">Image</label><span style="font-weight: bold; color: red"> *</span>
-                    <form id="dropzoneForm" class="dropzone" action="{{ route('slides.store') }}">
-                        @csrf
-                    </form>
+                <div class="col-md-5">
+                   <div>
+                       <label for="">Image</label>
+                       <img  src="{{asset($event->image)}}" alt="" class="img-fluid rounded img-thumbnail">
+                       <input type="hidden" name="old_image" id="" value="{{$event->image}}">
+                   </div>
+                    <div class="mt-5">
+                        <label for="">New Image</label>
+                        <form id="dropzoneForm" class="dropzone" action="{{ route('slides.store') }}">
+                            @csrf
+                        </form>
+
+                    </div>
                 </div>
+
 
             </div>
 
@@ -87,6 +97,7 @@
             });
 
         })
+
 
         tinymce.init({
             selector: '.tinymce-editor',

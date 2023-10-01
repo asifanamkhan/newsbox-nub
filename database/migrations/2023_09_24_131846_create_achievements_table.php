@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('achievements', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('description');
+            $table->longText('description');
             $table->string('image')->nullable();
             $table->string('status')->default(0);
             $table->string('created_by');

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('news_id');
             $table->string('auth_id');
-            $table->string('comment');
+            $table->longText('comment');
             $table->string('updated_by')->nullable();
             $table->string('created_by');
             $table->timestamps();
