@@ -7,7 +7,7 @@
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-pie-chart"></i> Dashboard</a></li>
-        <li class="active">slide</li>
+        <li class="active">events</li>
     </ol>
 @endsection
 @section('content')

@@ -13,6 +13,9 @@
         .tox-notifications-container{
             display: none; !important;
         }
+        .tox .tox-statusbar__text-container {
+            display: none;
+        }
     </style>
     <div class="box">
         <div class="box-body">

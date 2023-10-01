@@ -19,7 +19,7 @@ class AchievementController extends Controller
     {
         try {
             if ($request->ajax()) {
-                $data = DB::table('achievements')
+                $data = DB::table('achivements')
                     ->orderBy('id', 'DESC')
                     ->get();
 
@@ -59,9 +59,9 @@ class AchievementController extends Controller
                                         title="Edit">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    
-                                    <a class="btn btn-sm btn-danger" style="cursor:pointer" 
-                                       href="' . route('events.destroy', [$data->id]) . '" 
+
+                                    <a class="btn btn-sm btn-danger" style="cursor:pointer"
+                                       href="' . route('events.destroy', [$data->id]) . '"
                                        onclick=" return confirm(Are You Sure ? You Cant revert it)" title="Delete">
                                         <i class="fa fa-trash"></i>
                                     </a>
@@ -106,7 +106,7 @@ class AchievementController extends Controller
                 $ext = explode('/', $sub)[1];
                 $image = time() . '.' . $ext;
                 $img = Image::make($request->image);
-                $upload_path = 'public/images/achievementsents';
+                $upload_path = 'public/images/achivements';
                 $image_url = $upload_path . $image;
                 $img->resize(800, 500);
                 $img->save($image_url);
@@ -114,7 +114,7 @@ class AchievementController extends Controller
                 $image_url = 'public/image/no_image.jpg';
             }
 
-            DB::table('achievements')->insert([
+            DB::table('achivements')->insert([
                 'title'=>$request->title,
                 'description' => $request->description,
                 'image' => $image_url,

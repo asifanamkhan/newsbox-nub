@@ -11,6 +11,14 @@
     </ol>
 @endsection
 @section('content')
+    <style>
+        .tox-notifications-container{
+            display: none; !important;
+        }
+        .tox .tox-statusbar__text-container {
+            display: none;
+        }
+    </style>
     <div class="box">
         <div class="box-body">
             @if ($errors->any())
@@ -31,18 +39,18 @@
             {{--            </section>--}}
             <div class="row">
                 <div class="col-md-7 ima">
-                    <form action="{{route('events.store')}}" method="post">
+                    <form id="create_form" action="{{route('events.store')}}" method="post">
                         @csrf
                         <div id="img-body">
                             <input type="hidden" name="image" id="image">
                         </div>
                         <div class="form-group col-md-12">
-                            <label for="">Title</label></span>
+                            <label for="">Title</label><span style="font-weight: bold; color: red"> *</span>
                             <input type="text" name="title" class="form-control">
                         </div>
                         <div class="form-group col-md-12">
                             <label for="">Description</label><span style="font-weight: bold; color: red"> *</span>
-                            <input type="text" name="description" class="form-control">
+                            <textarea name="description" id="" cols="30" class="form-control tinymce-editor" rows="10"></textarea>
                         </div>
                         <div class="form-group col-md-12">
                             <button class="btn btn-primary">Save</button>
@@ -64,6 +72,31 @@
 @endsection
 @section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        $().ready(function () {
+            $("#create_form").validate({
+                rules: {
+                    title: {
+                        required: true,
+                    },
+                    description: {
+                        required: true,
+                    },
+                },
+            });
+
+        })
+
+
+        tinymce.init({
+            selector: '.tinymce-editor',
+            height: 300,
+        });
+    </script>
+
+
+
     <script>
         $(document).ready(function () {
             $("#side-events").addClass('active');

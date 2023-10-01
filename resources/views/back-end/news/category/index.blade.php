@@ -1,18 +1,18 @@
 @extends('back-end.layouts.master')
 @section('content-header')
     <h1 style="font-family: 'Arial Narrow';">
-        Category
+       News Category
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-pie-chart"></i>News</a></li>
-        <li class="active">category</li>
+        <li class="active">news category</li>
     </ol>
 @endsection
 @section('content')
     <div class="box">
         <div class="box-header with-border">
-            <h5 class="box-title"><b>category List</b></h5>
-            <a href="{{route('category.create')}}" id="add_new" style="float: right" class="btn btn-sm btn-grad">Add New Category</a>
+            <h5 class="box-title"><b>News Category List</b></h5>
+            <a href="{{route('category.create')}}" id="add_new" style="float: right" class="btn btn-sm btn-grad">Add News Category</a>
         </div>
         <div class="box-body">
             <table style="width: 100%" class="table table-responsive table-striped data-table" id="table">
