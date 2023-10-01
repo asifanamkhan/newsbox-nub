@@ -3,11 +3,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.css">
 
     <h1 style="font-family: 'Arial Narrow';">
-        Create Important Links
+        Edit Important Links
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-pie-chart"></i> Settings</a></li>
-        <li class="active">Create Important Link</li>
+        <li class="active">edit important link</li>
     </ol>
 @endsection
 @section('content')
@@ -25,16 +25,17 @@
                 </div>
             @endif
             <div class="row">
-                <div class="col-md-12 ima">
-                    <form id="create_form" action="{{route('important-links.store')}}" method="post">
+                <div class="col-md-12">
+                    <form id="create_form" action="{{route('important-links.update', $important_link->id)}}" method="post">
                         @csrf
+                        @method('PUT')
                         <div class="form-group col-md-12">
                             <label for="">Title</label><span style="font-weight: bold; color: red"> *</span>
-                            <input type="text" name="title" class="form-control">
+                            <input type="text" value="{{$important_link->title}}" name="title" class="form-control">
                         </div>
                         <div class="form-group col-md-12">
                             <label for="">Link</label><span style="font-weight: bold; color: red"> *</span>
-                            <input type="text" name="link" class="form-control">
+                            <input type="text" value="{{$important_link->link}}" name="link" class="form-control">
                         </div>
 
                         <div class="form-group col-md-12">

@@ -25,11 +25,11 @@ class ImportantLinkController extends Controller
 
                 return DataTables::of($data)
                     ->addIndexColumn()
+                    ->addColumn('title', function ($data) {
+                        return $data->title;
+                    })
                     ->addColumn('link', function ($data) {
                        return $data->link;
-                    })
-                    ->addColumn('description', function ($data) {
-                        return $data->description;
                     })
                     ->addColumn('action', function ($data) {
                         return '<div class="" role="group">
@@ -41,7 +41,7 @@ class ImportantLinkController extends Controller
                                     
                                     <a class="btn btn-sm btn-danger" style="cursor:pointer" 
                                        href="' . route('important-links.destroy', [$data->id]) . '" 
-                                       onclick=" return confirm(`Are You Sure ? You Cant revert it`)" title="Delete">
+                                       onclick="showDeleteConfirm(' . $data->id . ')" title="Delete">
                                         <i class="fa fa-trash"></i>
                                     </a>
                                 </div>';
@@ -75,11 +75,12 @@ class ImportantLinkController extends Controller
     {
         $request->validate([
             'link' => 'required',
+            'title' => 'required',
         ], []);
         try {
             DB::table('important_links')->insert([
                 'link' => $request->link,
-                'description' => $request->description ?? '',
+                'title' => $request->title,
                 'status' => 1,
                 'created_by' => Auth::id(),
                 'created_at' => Carbon::now(),
@@ -95,20 +96,21 @@ class ImportantLinkController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(ImportantLink $importantLink)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ImportantLink $importantLink)
+    public function edit($id)
     {
-        //
+        $important_link = DB::table('important_links')
+            ->where('id', $id)
+            ->first();
+        try {
+            return view('back-end.settings.important-links.edit', compact('important_link'));
+        } catch (\Exception $exception) {
+            return back()->with($exception->getMessage());
+        }
     }
 
     /**
@@ -116,14 +118,42 @@ class ImportantLinkController extends Controller
      */
     public function update(Request $request, ImportantLink $importantLink)
     {
-        //
+        $request->validate([
+            'link' => 'required',
+            'title' => 'required',
+        ], []);
+        try {
+            DB::table('important_links')->update([
+                'link' => $request->link,
+                'title' => $request->title,
+                'updated_by' => Auth::id(),
+                'updated_at' => Carbon::now(),
+            ]);
+
+            return redirect()->route('important-links.index')
+                ->with('success', 'Updated Successfully');
+        } catch (\Exception $exception) {
+
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ImportantLink $importantLink)
+    public function destroy($id)
     {
-        //
+        try {
+            $important_link = DB::table('important_links')
+                ->where('id', $id)
+                ->delete();
+
+            return redirect()->route('important-links.index')
+                ->with('error', 'Deleted Successfully');
+
+        } catch (\Exception $exception) {
+            return back()->with($exception->getMessage());
+        }
     }
 }

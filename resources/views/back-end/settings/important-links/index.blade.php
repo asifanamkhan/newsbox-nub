@@ -7,7 +7,7 @@
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-pie-chart"></i> Settings</a></li>
-        <li class="active">Important Links</li>
+        <li class="active">important links</li>
     </ol>
 @endsection
 @section('content')
@@ -21,9 +21,9 @@
                 <thead class="table-header-background" style=";">
                 <tr class="" style="text-align:center; ">
                     <th style="width: 8%">SL</th>
-                    <th style="width: 30%">Link</th>
-                    <th style="width: 52%">description</th>
-                    <th style="width: 10%">Action</th>
+                    <th style="width: 35%">Title</th>
+                    <th style="width: 45%">Link</th>
+                    <th style="width: 12%">Action</th>
                 </tr>
                 </thead>
             </table>
@@ -32,6 +32,7 @@
 
 @endsection
 @section('js')
+
     <script>
         $(document).ready(function () {
             $("#side-settings").addClass('active');
@@ -61,13 +62,55 @@
 
             columns: [
                 {data: "DT_RowIndex", name: "DT_RowIndex", orderable: false,},
+                {data: 'title', name: 'title', orderable: true,},
                 {data: 'link', name: 'link', orderable: true,},
-                {data: 'description', name: 'description', orderable: true,},
                 {data: 'action', searchable: false, orderable: false}
 
                 //only those have manage_user permission will get access
 
             ],
         });
+
+
+        // delete Confirm
+        function showDeleteConfirm(id) {
+            event.preventDefault();
+            swal({
+                title: `Are you sure you want to delete this record?`,
+                text: "If you delete this, it will be gone forever.",
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    deleteItem(id);
+                }
+            });
+        };
+
+        // Delete Button
+        function deleteItem(id) {
+
+            var url = '{{ route("important-links.destroy",":id") }}';
+            $.ajax({
+                type: "DELETE",
+                url: url.replace(':id', id),
+                success: function (resp) {
+                    console.log(resp);
+                    // Reloade DataTable
+                    $('#table').DataTable().ajax.reload();
+                    if (resp.success === true) {
+                        // show toast message
+                        toastr.success(resp.message);
+                    } else if (resp.errors) {
+                        toastr.error(resp.errors[0]);
+                    } else {
+                        toastr.error(resp.message);
+                    }
+                }, // success end
+                error: function (error) {
+                    location.reload();
+                } // Error
+            })
+        }
     </script>
 @endsection

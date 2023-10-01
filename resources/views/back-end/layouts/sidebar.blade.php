@@ -76,6 +76,73 @@
                 </li>
             </ul>
         </li>
+        <li id="side-news" class="treeview
+           ">
+            <a href="#">
+                <i class="fa fa-user-circle-o"></i>
+                <span>Administrators</span>
+                <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+            </a>
+            <ul class="treeview-menu">
+                <li id="side-category" class="">
+                    <a href="{{route('category.index')}}">
+                        <i class="fa fa-circle-o"></i>
+                        Admins
+                    </a>
+                </li>
+                <li id="side-about-us" class="">
+                    <a href="{{route('about-us.index')}}">
+                        <i class="fa fa-circle-o"></i>
+                        Role
+                    </a>
+                </li>
+                <li id="side-about-us" class="">
+                    <a href="{{route('about-us.index')}}">
+                        <i class="fa fa-circle-o"></i>
+                        Permission
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li id="side-news" class="treeview
+           ">
+            <a href="#">
+                <i class="fa fa-users"></i>
+                <span>Users</span>
+                <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+            </a>
+            <ul class="treeview-menu">
+                <li id="side-category" class="">
+                    <a href="{{route('category.index')}}">
+                        <i class="fa fa-circle-o"></i>
+                        Contact Us
+                    </a>
+                </li>
+                <li id="side-about-us" class="">
+                    <a href="{{route('about-us.index')}}">
+                        <i class="fa fa-circle-o"></i>
+                        Newsletter
+                    </a>
+                </li>
+                <li id="side-about-us" class="">
+                    <a href="{{route('about-us.index')}}">
+                        <i class="fa fa-circle-o"></i>
+                        Customers
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="" id="side-achievements">
+            <a href="{{route('achievements.index')}}">
+                <i class="fa fa-image"></i> <span>Gallary</span>
+                <span class="pull-right-container">
+            </span>
+            </a>
+        </li>
         <li class="" id="side-events">
             <a href="{{route('events.index')}}">
                 <i class="fa fa-calendar"></i> <span>Events</span>
@@ -90,6 +157,5 @@
             </span>
             </a>
         </li>
-
     </ul>
 </section>
