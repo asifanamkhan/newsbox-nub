@@ -11,6 +11,14 @@
     </ol>
 @endsection
 @section('content')
+    <style>
+        .tox-notifications-container{
+            display: none; !important;
+        }
+        .tox .tox-statusbar__text-container {
+            display: none;
+        }
+    </style>
     <div class="box">
         <div class="box-body">
             @if ($errors->any())
@@ -43,7 +51,7 @@
 
                         <div class="form-group col-md-12">
                             <label for="">Description</label><span style="font-weight: bold; color: red"> *</span>
-                            <textarea name="description" class="form-control"></textarea>
+                            <textarea name="description" class="form-control tinymce-editor"></textarea>
                         </div>
 
                         <div class="form-group col-md-12">
@@ -66,6 +74,29 @@
 @endsection
 @section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        $().ready(function () {
+            $("#create_form").validate({
+                rules: {
+                    title: {
+                        required: true,
+                    },
+                    description: {
+                        required: true,
+                    },
+                },
+            });
+
+        })
+
+
+        tinymce.init({
+            selector: '.tinymce-editor',
+            height: 300,
+        });
+    </script>
+
     <script>
         $(document).ready(function () {
             $("#side-achivements").addClass('active');
