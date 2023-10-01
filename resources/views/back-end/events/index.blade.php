@@ -78,7 +78,7 @@
             if (confirm("Are you sure") == true) {
                     $.ajax({
                         type:'GET',
-                        url:"{{ route('slide-status-change') }}",
+                        url:"{{ route('events-status-change') }}",
                         data:{
                             id:id,
                             status:status

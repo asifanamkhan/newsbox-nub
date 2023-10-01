@@ -60,9 +60,9 @@ class EventController extends Controller
                                         title="Edit">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    
-                                    <a class="btn btn-sm btn-danger" style="cursor:pointer" 
-                                       href="' . route('events.destroy', [$data->id]) . '" 
+
+                                    <a class="btn btn-sm btn-danger" style="cursor:pointer"
+                                       href="' . route('events.destroy', [$data->id]) . '"
                                        onclick="showDeleteConfirm(' . $data->id . ')" title="Delete">
                                         <i class="fa fa-trash"></i>
                                     </a>
@@ -223,6 +223,38 @@ class EventController extends Controller
 
             return redirect()->route('events.index')
                 ->with('error', 'Deleted Successfully');
+
+        } catch (\Exception $exception) {
+            return back()->with($exception->getMessage());
+        }
+    }
+
+    public function events_status_change(Request $request)
+    {
+        $request->validate([
+            'id' => 'required',
+            'status' => 'required',
+        ], []);
+
+        try {
+            if ($request->status == 1) {
+                $slides = DB::table('events')
+                    ->where('status', 1)
+                    ->count();
+
+                if ($slides >= 3) {
+                    return 0;
+                }
+            }
+
+            DB::table('events')
+                ->where('id', $request->id)
+                ->update([
+                    'status' => $request->status
+                ]);
+
+            return 1;
+
 
         } catch (\Exception $exception) {
             return back()->with($exception->getMessage());

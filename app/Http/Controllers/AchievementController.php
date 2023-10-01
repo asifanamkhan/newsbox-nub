@@ -50,19 +50,23 @@ class AchievementController extends Controller
                                         </select>";
                         }
 
-
                     })
                     ->addColumn('action', function ($data) {
                         return '<div class="" role="group">
                                     <a id=""
-                                        href="' . route('events.edit', $data->id) . '" class="btn btn-sm btn-success" style="cursor:pointer"
+                                        href="' . route('achievements.show', $data->id) . '" class="btn btn-sm btn-primary" style="cursor:pointer"
+                                        title="View">
+                                        <i class="fa fa-info-circle"></i>
+                                    </a>
+                                    <a id=""
+                                        href="' . route('achievements.edit', $data->id) . '" class="btn btn-sm btn-success" style="cursor:pointer"
                                         title="Edit">
                                         <i class="fa fa-edit"></i>
                                     </a>
 
                                     <a class="btn btn-sm btn-danger" style="cursor:pointer"
-                                       href="' . route('events.destroy', [$data->id]) . '"
-                                        title="Delete">
+                                       href="' . route('achievements.destroy', [$data->id]) . '"
+                                       onclick="showDeleteConfirm(' . $data->id . ')" title="Delete">
                                         <i class="fa fa-trash"></i>
                                     </a>
                                 </div>';
@@ -106,7 +110,7 @@ class AchievementController extends Controller
                 $ext = explode('/', $sub)[1];
                 $image = time() . '.' . $ext;
                 $img = Image::make($request->image);
-                $upload_path = 'public/images/achivements';
+                $upload_path = 'public/images/achievements/';
                 $image_url = $upload_path . $image;
                 $img->resize(800, 500);
                 $img->save($image_url);
@@ -137,32 +141,126 @@ class AchievementController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Achievement $achivement)
+    public function show($id)
     {
-        //
+        try {
+            $achievements = DB::table('achievements')
+                ->where('id', $id)
+                ->first();
+
+            return view('back-end.achievements.show', compact('achievements'));
+        } catch (\Exception $exception) {
+            return back()->with($exception->getMessage());
+        }
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Achievement $achivement)
+    public function edit($id)
     {
-        //
+        try {
+            $achievements = DB::table('achievements')
+                ->where('id', $id)
+                ->first();
+
+            return view('back-end.achievements.edit', compact('achievements'));
+        } catch (\Exception $exception) {
+            return back()->with($exception->getMessage());
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Achievement $achivement)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'description' => 'required',
+        ], []);
+        try {
+
+            if ($request->image) {
+                $position = strpos($request->image, ';');
+                $sub = substr($request->image, 0, $position);
+                $ext = explode('/', $sub)[1];
+                $image = time() . '.' . $ext;
+                $img = Image::make($request->image);
+                $upload_path = 'public/images/achievements/';
+                $image_url = $upload_path . $image;
+                $img->resize(700, 435);
+                $img->save($image_url);
+            } else {
+                $image_url = $request->old_image;
+            }
+
+            DB::table('achievements')
+                ->where('id', $id)
+                ->update([
+                    'description' => $request->description,
+                    'image' => $image_url,
+                    'title' => $request->title,
+                    'status' => 0,
+                    'created_by' => Auth::id(),
+                    'created_at' => Carbon::now(),
+                ]);
+
+            return redirect()->route('achievements.index')
+                ->with('success', 'Updated Successfully');
+
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Achievement $achivement)
+    public function destroy($id)
     {
+        try {
+            DB::table('achievements')
+                ->where('id', $id)
+                ->delete();
 
+            return redirect()->route('achievements.index')
+                ->with('error', 'Deleted Successfully');
+
+        } catch (\Exception $exception) {
+            return back()->with($exception->getMessage());
+        }
+    }
+
+    public function achievements_status_change(Request $request)
+    {
+        $request->validate([
+            'id' => 'required',
+            'status' => 'required',
+        ], []);
+
+        try {
+            if ($request->status == 1) {
+                $slides = DB::table('achievements')
+                    ->where('status', 1)
+                    ->count();
+
+                if ($slides >= 3) {
+                    return 0;
+                }
+            }
+
+            DB::table('achievements')
+                ->where('id', $request->id)
+                ->update([
+                    'status' => $request->status
+                ]);
+
+            return 1;
+
+
+        } catch (\Exception $exception) {
+            return back()->with($exception->getMessage());
+        }
     }
 }

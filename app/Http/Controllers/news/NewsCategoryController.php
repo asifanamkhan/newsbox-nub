@@ -108,13 +108,15 @@ class NewsCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, NewsCategory $category)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'name' => 'required',
         ], []);
         try {
-            DB::table('news_categories')->update([
+            DB::table('news_categories')
+                ->where('id', $id)
+                ->update([
                 'name' => $request->name,
                 'updated_by' => Auth::id(),
                 'updated_at' => Carbon::now(),
