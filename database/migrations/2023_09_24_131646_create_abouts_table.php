@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('abouts', function (Blueprint $table) {
             $table->id();
-            $table->string('about');
+            $table->longText('about');
             $table->string('status')->default(0);
             $table->string('created_by');
             $table->string('updated_by')->nullable();

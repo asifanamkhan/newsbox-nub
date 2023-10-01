@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('date');
             $table->string('title');
             $table->string('type');
-            $table->string('description');
+            $table->longText('description');
             $table->string('image')->nullable();
             $table->string('views_count')->nullable();
             $table->string('status')->default(1);

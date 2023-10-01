@@ -29,7 +29,7 @@ class ImportantLinkController extends Controller
                         return $data->title;
                     })
                     ->addColumn('link', function ($data) {
-                       return $data->link;
+                        return $data->link;
                     })
                     ->addColumn('action', function ($data) {
                         return '<div class="" role="group">
@@ -46,7 +46,7 @@ class ImportantLinkController extends Controller
                                     </a>
                                 </div>';
                     })
-                    ->rawColumns(['image', 'title', 'news','status','action'])
+                    ->rawColumns(['image', 'title', 'news', 'status', 'action'])
                     ->make(true);
             }
             return view('back-end.settings.important-links.index');
@@ -97,7 +97,6 @@ class ImportantLinkController extends Controller
     }
 
 
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -116,19 +115,21 @@ class ImportantLinkController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ImportantLink $importantLink)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'link' => 'required',
             'title' => 'required',
         ], []);
         try {
-            DB::table('important_links')->update([
-                'link' => $request->link,
-                'title' => $request->title,
-                'updated_by' => Auth::id(),
-                'updated_at' => Carbon::now(),
-            ]);
+            DB::table('important_links')
+                ->where('id', $id)
+                ->update([
+                    'link' => $request->link,
+                    'title' => $request->title,
+                    'updated_by' => Auth::id(),
+                    'updated_at' => Carbon::now(),
+                ]);
 
             return redirect()->route('important-links.index')
                 ->with('success', 'Updated Successfully');
@@ -145,7 +146,7 @@ class ImportantLinkController extends Controller
     public function destroy($id)
     {
         try {
-            $important_link = DB::table('important_links')
+            DB::table('important_links')
                 ->where('id', $id)
                 ->delete();
 
