@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('important_links', function (Blueprint $table) {
             $table->id();
             $table->string('link');
-            $table->string('description')->nullable();
+            $table->string('title');
             $table->string('status')->default(0);
             $table->string('created_by');
             $table->string('updated_by')->nullable();
