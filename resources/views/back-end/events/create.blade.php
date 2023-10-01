@@ -59,7 +59,7 @@
                 </div>
                 <div class=" col-md-5">
                     <label for="">Image</label><span style="font-weight: bold; color: red"> *</span>
-                    <form id="dropzoneForm" class="dropzone" action="{{ route('slides.store') }}">
+                    <form id="dropzoneForm" class="dropzone" action="{{ route('events.store') }}">
                         @csrf
                     </form>
                 </div>

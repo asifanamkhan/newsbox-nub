@@ -66,7 +66,7 @@
                    </div>
                     <div class="mt-5">
                         <label for="">New Image</label>
-                        <form id="dropzoneForm" class="dropzone" action="{{ route('slides.store') }}">
+                        <form id="dropzoneForm" class="dropzone" action="{{ route('events.store') }}">
                             @csrf
                         </form>
 
