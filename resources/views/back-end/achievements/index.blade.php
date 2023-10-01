@@ -3,18 +3,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.css">
 
     <h1 style="font-family: 'Arial Narrow';">
-        Achivements
+        Achievements
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-pie-chart"></i> Dashboard</a></li>
-        <li class="active">achivements</li>
+        <li class="active">achievements</li>
     </ol>
 @endsection
 @section('content')
     <div class="box">
         <div class="box-header with-border">
-            <h5 class="box-title"><b>Achivements List</b></h5>
-            <a href="{{route('achivements.create')}}" id="add_new" style="float: right" class="btn btn-sm btn-grad">Add achivements</a>
+            <h5 class="box-title"><b>Achievements List</b></h5>
+            <a href="{{route('achievements.create')}}" id="add_new" style="float: right" class="btn btn-sm btn-grad">Add
+                achivements</a>
         </div>
         <div class="box-body">
             <table style="width: 100%" class="table table-responsive table-striped data-table" id="table">
@@ -36,8 +37,8 @@
 @section('js')
     <script>
         $(document).ready(function () {
-            $("#side-achivements").addClass('active');
-            $("#side-achivements").addClass('active-sidebar');
+            $("#side-achievements").addClass('active');
+            $("#side-achievements").addClass('active-sidebar');
         });
 
     </script>
@@ -57,7 +58,7 @@
             pagingType: "full_numbers",
 
             ajax: {
-                url: "{{route('achivements.index')}}",
+                url: "{{route('achievements.index')}}",
                 type: "get",
             },
 
@@ -75,26 +76,24 @@
         });
 
 
-        function statusChange(id){
-            let status = $('#status-'+id).find(":selected").val()
+        function statusChange(id) {
+            let status = $('#status-' + id).find(":selected").val()
             if (confirm("Are you sure") == true) {
-                    $.ajax({
-                        type:'GET',
-                        url:"{{ route('slide-status-change') }}",
-                        data:{
-                            id:id,
-                            status:status
-                        },
-                        success:function(data){
-                            if(data == 0){
-                                toastr.warning("You can active more then 3 slide");
-                            }else{
-                                toastr.success("Status Change successfully");
-                            }
+                $.ajax({
+                    type: 'GET',
+                    url: "{{ route('slide-status-change') }}",
+                    data: {
+                        id: id,
+                        status: status
+                    },
+                    success: function (data) {
+                        if (data == 0) {
+                            toastr.warning("You can active more then 3 slide");
+                        } else {
+                            toastr.success("Status Change successfully");
                         }
-                    });
-
-
+                    }
+                });
 
             } else {
 

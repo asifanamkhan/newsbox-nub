@@ -3,11 +3,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.css">
 
     <h1 style="font-family: 'Arial Narrow';">
-        Achivements
+        Achievements
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-pie-chart"></i> Dashboard</a></li>
-        <li class="active">achivements</li>
+        <li class="active">achievements</li>
     </ol>
 @endsection
 @section('content')
@@ -31,7 +31,7 @@
             {{--            </section>--}}
             <div class="row">
                 <div class="col-md-7 ima">
-                    <form action="{{route('achivements.store')}}" method="post">
+                    <form action="{{route('achievements.store')}}" method="post">
                         @csrf
                         <div id="img-body">
                             <input type="hidden" name="image" id="image">
