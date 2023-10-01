@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\settings;
 
+use App\Helper\ImageHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Slider;
 use Carbon\Carbon;
@@ -14,6 +15,7 @@ use DataTables;
 
 class SliderController extends Controller
 {
+    public $image_path = 'public/images/slides/';
     /**
      * Display a listing of the resource.
      */
@@ -102,15 +104,8 @@ class SliderController extends Controller
         try {
 
             if ($request->image) {
-                $position = strpos($request->image, ';');
-                $sub = substr($request->image, 0, $position);
-                $ext = explode('/', $sub)[1];
-                $image = time() . '.' . $ext;
-                $img = Image::make($request->image);
-                $upload_path = 'public/images/slides';
-                $image_url = $upload_path . $image;
-                $img->resize(800, 500);
-                $img->save($image_url);
+                $image_path = 'public/images/slides/';
+                $image_url = ImageHelper::saveBase64Image($request->image,$image_path,800,500);
             } else {
                 $image_url = 'public/image/no_image.jpg';
             }
@@ -146,14 +141,6 @@ class SliderController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Slider $slider)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Slider $slider)
     {
         //
     }
