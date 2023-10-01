@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\news;
 
 use App\Http\Controllers\Controller;
+use App\Models\ImportantLink;
 use App\Models\NewsCategory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -35,10 +36,10 @@ class NewsCategoryController extends Controller
                                         title="Edit">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    
-                                    <a class="btn btn-sm btn-danger" style="cursor:pointer" 
-                                       href="' . route('category.destroy', [$data->id]) . '" 
-                                       onclick=" return confirm(`Are You Sure ? You Cant revert it`)" title="Delete">
+
+                                    <a class="btn btn-sm btn-danger" style="cursor:pointer"
+                                       href="' . route('category.destroy', [$data->id]) . '"
+                                       onclick="showDeleteConfirm(' . $data->id . ')" title="Delete">
                                         <i class="fa fa-trash"></i>
                                     </a>
                                 </div>';
@@ -51,7 +52,6 @@ class NewsCategoryController extends Controller
             return redirect()->back()->with('error', $exception->getMessage());
         }
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -93,32 +93,57 @@ class NewsCategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(NewsCategory $newsCategory)
+    public function edit($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(NewsCategory $newsCategory)
-    {
-        //
+        $category = DB::table('news_categories')
+            ->where('id', $id)
+            ->first();
+        try {
+            return view('back-end.news.category.edit', compact('category'));
+        } catch (\Exception $exception) {
+            return back()->with($exception->getMessage());
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, NewsCategory $newsCategory)
+    public function update(Request $request, NewsCategory $category)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ], []);
+        try {
+            DB::table('news_categories')->update([
+                'name' => $request->name,
+                'updated_by' => Auth::id(),
+                'updated_at' => Carbon::now(),
+            ]);
+
+            return redirect()->route('category.index')
+                ->with('success', 'Updated Successfully');
+        } catch (\Exception $exception) {
+
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(NewsCategory $newsCategory)
+    public function destroy($id)
     {
-        //
+        try {
+            $important_link = DB::table('news_categories')
+                ->where('id', $id)
+                ->delete();
+
+            return redirect()->route('category.index')
+                ->with('error', 'Deleted Successfully');
+
+        } catch (\Exception $exception) {
+            return back()->with($exception->getMessage());
+        }
     }
 }
