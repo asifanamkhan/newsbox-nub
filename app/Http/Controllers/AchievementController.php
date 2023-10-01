@@ -19,7 +19,7 @@ class AchievementController extends Controller
     {
         try {
             if ($request->ajax()) {
-                $data = DB::table('achivements')
+                $data = DB::table('achievements')
                     ->orderBy('id', 'DESC')
                     ->get();
 
@@ -62,7 +62,7 @@ class AchievementController extends Controller
 
                                     <a class="btn btn-sm btn-danger" style="cursor:pointer"
                                        href="' . route('events.destroy', [$data->id]) . '"
-                                       onclick=" return confirm(Are You Sure ? You Cant revert it)" title="Delete">
+                                        title="Delete">
                                         <i class="fa fa-trash"></i>
                                     </a>
                                 </div>';
@@ -114,7 +114,7 @@ class AchievementController extends Controller
                 $image_url = 'public/image/no_image.jpg';
             }
 
-            DB::table('achivements')->insert([
+            DB::table('achievements')->insert([
                 'title'=>$request->title,
                 'description' => $request->description,
                 'image' => $image_url,
