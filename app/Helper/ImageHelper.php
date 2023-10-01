@@ -9,9 +9,9 @@ class ImageHelper{
         $ext = explode('/', $sub)[1];
         $image_name = time() . '.' . $ext;
         $img = Intervention::make($image);
-        $upload_path = 'public/images/slides/';
+        $upload_path = $path;
         $image_url = $upload_path . $image_name;
-        $img->resize(800, 500);
+        $img->resize($weight, $height);
         $img->save($image_url);
 
         return $image_url;
