@@ -15,7 +15,7 @@
         <div class="box-header with-border">
             <h5 class="box-title"><b>Achievements List</b></h5>
             <a href="{{route('achievements.create')}}" id="add_new" style="float: right" class="btn btn-sm btn-grad">Add
-                achivements</a>
+                achievements</a>
         </div>
         <div class="box-body">
             <table style="width: 100%" class="table table-responsive table-striped data-table" id="table">
