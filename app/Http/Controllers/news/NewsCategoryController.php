@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\news;
 
 use App\Http\Controllers\Controller;
-use App\Models\ImportantLink;
-use App\Models\NewsCategory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

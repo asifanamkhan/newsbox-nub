@@ -161,15 +161,6 @@ class SliderController extends Controller
         ], []);
 
         try {
-            if ($request->status == 1) {
-                $slides = DB::table('sliders')
-                    ->where('status', 1)
-                    ->count();
-
-                if ($slides >= 3) {
-                    return 0;
-                }
-            }
 
             DB::table('sliders')
                 ->where('id', $request->id)
@@ -178,7 +169,6 @@ class SliderController extends Controller
                 ]);
 
             return 1;
-
 
         } catch (\Exception $exception) {
             return back()->with($exception->getMessage());
