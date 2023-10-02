@@ -63,10 +63,9 @@ class SliderController extends Controller
                                         title="Edit">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    
-                                    <a class="btn btn-sm btn-danger" style="cursor:pointer" 
-                                       href="' . route('slides.destroy', [$data->id]) . '" 
-                                       onclick=" return confirm(`Are You Sure ? You Cant revert it`)" title="Delete">
+                                     <a class="btn btn-sm btn-danger" style="cursor:pointer"
+                                       href="' . route('slides.destroy', [$data->id]) . '"
+                                       onclick="showDeleteConfirm(' . $data->id . ')" title="Delete">
                                         <i class="fa fa-trash"></i>
                                     </a>
                                 </div>';
@@ -148,10 +147,21 @@ class SliderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Slider $slider)
+    public function destroy($id)
     {
-        //
+        try {
+            DB::table('sliders')
+                ->where('id', $id)
+                ->delete();
+
+            return redirect()->route('slides.index')
+                ->with('error', 'Deleted Successfully');
+
+        } catch (\Exception $exception) {
+            return back()->with($exception->getMessage());
+        }
     }
+
 
     public function slide_status_change(Request $request)
     {
