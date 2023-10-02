@@ -106,7 +106,7 @@
                 </li>
             </ul>
         </li>
-        <li id="side-news" class="treeview
+        <li id="side-users" class="treeview
            ">
             <a href="#">
                 <i class="fa fa-users"></i>
@@ -116,29 +116,29 @@
             </span>
             </a>
             <ul class="treeview-menu">
-                <li id="side-category" class="">
-                    <a href="{{route('category.index')}}">
+                <li id="side-contactus" class="">
+                    <a href="{{route('contactus.index')}}">
                         <i class="fa fa-circle-o"></i>
                         Contact Us
                     </a>
                 </li>
-                <li id="side-about-us" class="">
-                    <a href="{{route('about-us.index')}}">
+                <li id="side-newsletter" class="">
+                    <a href="{{route('newsletter.index')}}">
                         <i class="fa fa-circle-o"></i>
                         Newsletter
                     </a>
                 </li>
-                <li id="side-about-us" class="">
-                    <a href="{{route('about-us.index')}}">
+                <li id="side-customers" class="">
+                    <a href="{{route('newsletter.index')}}">
                         <i class="fa fa-circle-o"></i>
                         Customers
                     </a>
                 </li>
             </ul>
         </li>
-        <li class="" id="side-achievements">
-            <a href="{{route('achievements.index')}}">
-                <i class="fa fa-image"></i> <span>Gallary</span>
+        <li class="" id="side-gallery">
+            <a href="{{route('gallery.index')}}">
+                <i class="fa fa-image"></i> <span>Gallery</span>
                 <span class="pull-right-container">
             </span>
             </a>

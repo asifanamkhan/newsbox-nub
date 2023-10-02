@@ -12,7 +12,7 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        //
+        return view('back-end.gallery.index');
     }
 
     /**
@@ -20,7 +20,11 @@ class GalleryController extends Controller
      */
     public function create()
     {
-        //
+        try {
+            return view('back-end.gallery.create');
+        } catch (\Exception $exception) {
+            return back()->with($exception->getMessage());
+        }
     }
 
     /**
