@@ -7,7 +7,9 @@ use App\Http\Controllers\settings\SliderController;
 use App\Http\Controllers\settings\ImportantLinkController;
 use App\Http\Controllers\news\NewsCategoryController;
 use App\Http\Controllers\AchievementController ;
+use App\Http\Controllers\GalleryController ;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 Route::resource('general-settings',GeneralSettingController::class);
@@ -18,6 +20,13 @@ Route::resource('important-links',ImportantLinkController::class);
 Route::resource('category',NewsCategoryController::class);
 Route::resource('events',EventController::class);
 Route::resource('achievements',AchievementController::class);
+Route::resource('gallery',GalleryController::class);
+
+
+
+Route::get('contactus',[ContactController::class,'index'])->name('contactus.index');
+Route::get('newsletter',[\App\Http\Controllers\NewsletterController::class,'index'])->name('newsletter.index');
+
 
 
 Route::get('slide-status-change',[SliderController::class,'slide_status_change'])->name('slide-status-change');
