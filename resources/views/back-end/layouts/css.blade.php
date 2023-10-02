@@ -27,7 +27,7 @@
     }
 
     .box{
-        box-shadow: 2px 2px 5px rgb(128, 128, 128), -2px -2px 5px rgb(128, 128, 128) !important;
+        box-shadow: 1px 1px 3px rgb(128, 128, 128), -1px 1px 3px rgb(128, 128, 128) !important
     }
 
     #toast-container > div{

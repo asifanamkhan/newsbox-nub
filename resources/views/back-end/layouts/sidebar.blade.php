@@ -68,8 +68,8 @@
                         Category
                     </a>
                 </li>
-                <li id="side-about-us" class="">
-                    <a href="{{route('about-us.index')}}">
+                <li id="side-news-news" class="">
+                    <a href="{{route('news.index')}}">
                         <i class="fa fa-circle-o"></i>
                         News
                     </a>
