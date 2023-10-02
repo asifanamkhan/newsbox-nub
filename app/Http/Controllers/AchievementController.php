@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\ImageHelper;
 use App\Models\Achievement;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -105,15 +106,8 @@ class AchievementController extends Controller
         try {
 
             if ($request->image) {
-                $position = strpos($request->image, ';');
-                $sub = substr($request->image, 0, $position);
-                $ext = explode('/', $sub)[1];
-                $image = time() . '.' . $ext;
-                $img = Image::make($request->image);
-                $upload_path = 'public/images/achievements/';
-                $image_url = $upload_path . $image;
-                $img->resize(800, 500);
-                $img->save($image_url);
+                $image_path = 'public/images/achievements/';
+                $image_url = ImageHelper::saveBase64Image($request->image,$image_path,800,500);
             } else {
                 $image_url = 'public/image/no_image.jpg';
             }

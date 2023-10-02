@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\ImageHelper;
 use App\Models\Event;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -102,15 +103,8 @@ class EventController extends Controller
         try {
 
             if ($request->image) {
-                $position = strpos($request->image, ';');
-                $sub = substr($request->image, 0, $position);
-                $ext = explode('/', $sub)[1];
-                $image = time() . '.' . $ext;
-                $img = Image::make($request->image);
-                $upload_path = 'public/images/events/';
-                $image_url = $upload_path . $image;
-                $img->resize(700, 435);
-                $img->save($image_url);
+                $image_path = 'public/images/events/';
+                $image_url = ImageHelper::saveBase64Image($request->image,$image_path,800,500);
             } else {
                 $image_url = 'public/image/no_image.jpg';
             }

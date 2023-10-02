@@ -4,15 +4,32 @@ namespace App\Http\Controllers;
 
 use App\Models\Newsletter;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
+use DataTables;
 class NewsletterController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        try {
+            if ($request->ajax()) {
+                $data = DB::table('newsletters')
+                    ->orderBy('id', 'DESC')
+                    ->get();
+                return DataTables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('email', function ($data) {
+                        return $data->email;
+                    })
+                    ->rawColumns(['email'])
+                    ->make(true);
+            }
+            return view('back-end.users.newsletter');
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
     }
 
     /**
