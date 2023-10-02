@@ -3,11 +3,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.css">
 
     <h1 style="font-family: 'Arial Narrow';">
-        Events
+        Events Edit
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-pie-chart"></i> Dashboard</a></li>
-        <li class="active">events</li>
+        <li class="active">events edit</li>
     </ol>
 @endsection
 @section('content')

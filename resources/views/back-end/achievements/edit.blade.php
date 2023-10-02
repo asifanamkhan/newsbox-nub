@@ -3,11 +3,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.css">
 
     <h1 style="font-family: 'Arial Narrow';">
-        Achievements Create
+        Achievements Edit
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-pie-chart"></i> Dashboard</a></li>
-        <li class="active">achievements</li>
+        <li class="active">achievements edit</li>
     </ol>
 @endsection
 @section('content')
@@ -38,33 +38,41 @@
             {{--                </div>--}}
             {{--            </section>--}}
             <div class="row">
-                <div class="col-md-7 ima">
-                    <form action="{{route('achievements.store')}}" method="post">
+                <div class="col-md-7">
+                    <form id="create_form" action="{{route('achievements.update', $achievements->id)}}" method="post">
                         @csrf
+                        @method('PUT')
                         <div id="img-body">
                             <input type="hidden" name="image" id="image">
                         </div>
                         <div class="form-group col-md-12">
                             <label for="">Title</label><span style="font-weight: bold; color: red"> *</span>
-                            <input type="text" name="title" class="form-control">
+                            <input type="text" value="{{$achievements->title}}" name="title" class="form-control">
                         </div>
-
                         <div class="form-group col-md-12">
                             <label for="">Description</label><span style="font-weight: bold; color: red"> *</span>
-                            <textarea name="description" class="form-control tinymce-editor"></textarea>
+                            <textarea name="description" id="" cols="30" class="form-control tinymce-editor" rows="10">{!! $achievements->description !!}</textarea>
                         </div>
-
                         <div class="form-group col-md-12">
                             <button class="btn btn-primary">Save</button>
                         </div>
                     </form>
                 </div>
-                <div class=" col-md-5">
-                    <label for="">Slide</label><span style="font-weight: bold; color: red"> *</span>
-                    <form id="dropzoneForm" class="dropzone" action="{{ route('slides.store') }}">
-                        @csrf
-                    </form>
+                <div class="col-md-5">
+                   <div>
+                       <label for="">Image</label>
+                       <img  src="{{asset($achievements->image)}}" alt="" class="img-fluid rounded img-thumbnail">
+                       <input type="hidden" name="old_image" id="" value="{{$achievements->image}}">
+                   </div>
+                    <div class="mt-5">
+                        <label for="">New Image</label>
+                        <form id="dropzoneForm" class="dropzone" action="{{ route('slides.store') }}">
+                            @csrf
+                        </form>
+
+                    </div>
                 </div>
+
 
             </div>
 
@@ -97,10 +105,12 @@
         });
     </script>
 
+
+
     <script>
         $(document).ready(function () {
-            $("#side-achivements").addClass('active');
-            $("#side-achivements").addClass('active-sidebar');
+            $("#side-events").addClass('active');
+            $("#side-events").addClass('active-sidebar');
         });
     </script>
     <script type="text/javascript">

@@ -81,7 +81,7 @@
             if (confirm("Are you sure") == true) {
                 $.ajax({
                     type: 'GET',
-                    url: "{{ route('slide-status-change') }}",
+                    url: "{{ route('achievements-status-change') }}",
                     data: {
                         id: id,
                         status: status
@@ -98,6 +98,46 @@
             } else {
 
             }
+        }
+        // delete Confirm
+        function showDeleteConfirm(id) {
+            event.preventDefault();
+            swal({
+                title: `Are you sure you want to delete this record?`,
+                text: "If you delete this, it will be gone forever.",
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    deleteItem(id);
+                }
+            });
+        };
+
+        // Delete Button
+        function deleteItem(id) {
+
+            var url = '{{ route("achievements.destroy",":id") }}';
+            $.ajax({
+                type: "DELETE",
+                url: url.replace(':id', id),
+                success: function (resp) {
+                    console.log(resp);
+                    // Reloade DataTable
+                    $('#table').DataTable().ajax.reload();
+                    if (resp.success === true) {
+                        // show toast message
+                        toastr.success(resp.message);
+                    } else if (resp.errors) {
+                        toastr.error(resp.errors[0]);
+                    } else {
+                        toastr.error(resp.message);
+                    }
+                }, // success end
+                error: function (error) {
+                    location.reload();
+                } // Error
+            })
         }
     </script>
 @endsection

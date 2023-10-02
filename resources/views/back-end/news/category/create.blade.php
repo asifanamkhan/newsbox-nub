@@ -1,11 +1,11 @@
 @extends('back-end.layouts.master')
 @section('content-header')
     <h1 style="font-family: 'Arial Narrow';">
-        Category
+        Category Create
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-pie-chart"></i> News</a></li>
-        <li class="active">Category</li>
+        <li class="active">category</li>
     </ol>
 @endsection
 @section('content')
