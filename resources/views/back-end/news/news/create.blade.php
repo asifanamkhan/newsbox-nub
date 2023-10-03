@@ -46,24 +46,27 @@
                     <div class="col-md-7">
                         <div class="">
                             <label for="">Description</label><span style="font-weight: bold; color: red"> *</span>
-                            <textarea name="about" id="" class="form-control tinymce-editor" cols="30" rows="10"></textarea>
+                            <textarea name="description" id="" class="form-control tinymce-editor" cols="30" rows="10"></textarea>
                         </div>
                     </div>
                     <div class="col-md-5">
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="">Date</label><span style="font-weight: bold; color: red"> *</span>
-                                <input type="text" class="form-control  datepicker">
+                                <input type="text" name="date" class="form-control  datepicker" value="">
                             </div>
                             <div class="col-md-12">
                                 <label for="">Type</label><span style="font-weight: bold; color: red"> *</span>
-                                <select name="" id="" class="form-control select2">
-
+                                <select name="type" id="" class="form-control select2">
+                                    <option value="">Select</option>
+                                    @foreach($news_types as $news_type)
+                                        <option value="{{$news_type->id}}">{{$news_type->name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="col-md-12">
                                 <label for="">Category</label><span style="font-weight: bold; color: red"> *</span>
-                                <select name="" id="" class="form-control select2">
+                                <select name="category_id" id="" class="form-control select2">
                                     <option value="">Select</option>
                                     @foreach($categories as $category)
                                         <option value="{{$category->id}}">{{$category->name}}</option>
@@ -72,6 +75,7 @@
                             </div>
                             <div class="col-md-12">
                                 <label for="">Image</label><span style="font-weight: bold; color: red"> *</span>
+                                <input type="hidden" name="image" id="image">
                                 <div id="dropzoneForm" class="dropzone">
                                 </div>
                             </div>

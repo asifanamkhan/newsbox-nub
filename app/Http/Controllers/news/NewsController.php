@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\news;
 
+use App\Helper\ImageHelper;
 use App\Http\Controllers\Controller;
 use App\Models\News;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use DataTables;
 
@@ -18,9 +20,11 @@ class NewsController extends Controller
     {
         try {
             if ($request->ajax()) {
-                $data = DB::table('news')
-                    ->orderBy('id', 'DESC')
-                    ->get();
+                $data = DB::table('news as n')
+                    ->leftjoin('news_categories as c', 'n.category_id', '=', 'c.id')
+                    ->leftjoin('news_types as t', 'n.type', '=', 't.id')
+                    ->orderBy('n.id', 'DESC')
+                    ->get(['n.*','c.name as category_name','t.name as type_name']);
 
                 return DataTables::of($data)
                     ->addIndexColumn()
@@ -36,21 +40,26 @@ class NewsController extends Controller
                         return $data->title;
                     })
                     ->addColumn('category_id', function ($data) {
-                        return $data->category_id;
+                        return $data->category_name;
                     })
                     ->addColumn('type', function ($data) {
-                        return $data->type;
+                        return $data->type_name;
                     })
                     ->addColumn('action', function ($data) {
                         return '<div class="" role="group">
                                     <a id=""
-                                        href="' . route('category.edit', $data->id) . '" class="btn btn-sm btn-success" style="cursor:pointer"
+                                        href="' . route('news.show', $data->id) . '" class="btn btn-sm btn-primary" style="cursor:pointer"
+                                        title="View">
+                                        <i class="fa fa-info-circle"></i>
+                                    </a>
+                                    <a id=""
+                                        href="' . route('news.edit', $data->id) . '" class="btn btn-sm btn-success" style="cursor:pointer"
                                         title="Edit">
                                         <i class="fa fa-edit"></i>
                                     </a>
 
                                     <a class="btn btn-sm btn-danger" style="cursor:pointer"
-                                       href="' . route('category.destroy', [$data->id]) . '"
+                                       href="' . route('news.destroy', [$data->id]) . '"
                                        onclick="showDeleteConfirm(' . $data->id . ')" title="Delete">
                                         <i class="fa fa-trash"></i>
                                     </a>
@@ -75,7 +84,11 @@ class NewsController extends Controller
                 ->orderBy('id', 'DESC')
                 ->get();
 
-            return view('back-end.news.news.create',compact('categories'));
+            $news_types = DB::table('news_types')
+                ->orderBy('id', 'DESC')
+                ->get();
+
+            return view('back-end.news.news.create',compact('categories','news_types'));
         } catch (\Exception $exception) {
             return back()->with($exception->getMessage());
         }
@@ -86,15 +99,60 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'date' => 'required',
+            'type' => 'required',
+            'category_id' => 'required',
+            'description' => 'required',
+        ], []);
+        try {
+
+            if ($request->image) {
+                $image_path = 'public/images/news/';
+                $image_url = ImageHelper::saveBase64Image($request->image,$image_path,800,500);
+            } else {
+                $image_url = 'public/image/no_image.jpg';
+            }
+
+            DB::table('news')->insert([
+                'title' => $request->title,
+                'date' => $request->date,
+                'type' => $request->type,
+                'category_id' => $request->category_id,
+                'image' => $image_url,
+                'description' => $request->description,
+                'status' => 1,
+                'created_by' => Auth::id(),
+                'created_at' => Carbon::now(),
+            ]);
+
+            return redirect()->route('news.index')
+                ->with('success', 'Added Successfully');
+
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(News $news)
+    public function show($id)
     {
-        //
+        try {
+            $news = DB::table('news as n')
+                ->where('n.id', $id)
+                ->leftjoin('news_categories as c', 'n.category_id', '=', 'c.id')
+                ->leftjoin('news_types as t', 'n.type', '=', 't.id')
+                ->leftjoin('users as u', 'n.created_by', '=', 'u.id')
+                ->orderBy('n.id', 'DESC')
+                ->first(['n.*','c.name as category_name','t.name as type_name','u.name as created_user_name']);
+
+            return view('back-end.news.news.show', compact('news'));
+        } catch (\Exception $exception) {
+            return back()->with($exception->getMessage());
+        }
     }
 
     /**
