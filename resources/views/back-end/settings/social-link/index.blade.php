@@ -36,13 +36,13 @@
                                 <input name="name" type="text" readonly  class="form-control" value="{{$value['name']}}">
                             </td>
                             <td>
-                                <input required name="link" type="text" class="form-control" >
+                                <input required name="link" type="text" class="form-control">
                             </td>
                             <td>
                                 <input name="num_of_follower" type="number" class="form-control" value="">
                             </td>
                             <td>
-                                <button class="btn btn-sm btn-primary" >
+                                <button class="btn btn-sm btn-primary">
                                     <i class="fa fa-check"></i> update
                                 </button>
                             </td>
