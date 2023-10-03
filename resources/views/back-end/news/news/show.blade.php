@@ -17,8 +17,10 @@
                 <div class="col-md-4">
                     <div class="row">
                         <div class="col-md-12">
-                            <img class="img-fluid rounded img-thumbnail"
-                                 src="{{asset($news->image)}}" alt="User profile picture">
+                            <a target="_blank" href="{{asset($news->image)}}">
+                                <img class="img-fluid rounded img-thumbnail"
+                                     src="{{asset($news->image)}}" alt="User profile picture">
+                            </a>
                         </div>
                         <div class="col-md-12">
                             <table class="table table-bordered table-striped" style="margin-top: 12px">
