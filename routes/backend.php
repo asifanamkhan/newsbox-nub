@@ -34,7 +34,7 @@ Route::get('newsletter',[\App\Http\Controllers\NewsletterController::class,'inde
 Route::get('slide-status-change',[SliderController::class,'slide_status_change'])->name('slide-status-change');
 Route::get('events-status-change',[EventController::class,'events_status_change'])->name('events-status-change');
 Route::get('achievements-status-change',[AchievementController::class,'achievements_status_change'])->name('achievements-status-change');
-
+Route::get('slide-status-news',[NewsController::class,'news_status_change'])->name('news-status-change');
 
 
 

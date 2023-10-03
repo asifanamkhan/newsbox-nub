@@ -19,12 +19,13 @@
                 <thead class="table-header-background" style=";">
                 <tr class="" style="text-align:center; ">
                     <th style="width: 8%">SL</th>
-                    <th style="width: 13%">Image</th>
+                    <th style="width: 14%">Image</th>
                     <th style="width: 10%">Date</th>
-                    <th style="width: 25%">Title</th>
-                    <th style="width: 12%">Category</th>
-                    <th style="width: 12%">Type</th>
-                    <th style="width: 10%">Action</th>
+                    <th style="width: 26%">Title</th>
+                    <th style="width: 9%">Category</th>
+                    <th style="width: 9%">Type</th>
+                    <th style="width: 12%">Status</th>
+                    <th style="width: 12%">Action</th>
                 </tr>
                 </thead>
             </table>
@@ -68,12 +69,40 @@
                 {data: 'title', name: 'title', orderable: true},
                 {data: 'category_id', name: 'category_id', orderable: true},
                 {data: 'type', name: 'type', orderable: true},
+                {data: 'status', name: 'status', orderable: true},
                 {data: 'action', searchable: false, orderable: false}
 
                 //only those have manage_user permission will get access
 
             ],
         });
+
+        function statusChange(id){
+            let status = $('#status-'+id).find(":selected").val()
+            if (confirm("Are you sure") == true) {
+                $.ajax({
+                    type:'GET',
+                    url:"{{ route('news-status-change') }}",
+                    data:{
+                        id:id,
+                        status:status
+                    },
+                    success:function(data){
+                        if(data == 0){
+                            toastr.warning("You can active more then 3 slide");
+                        }else{
+                            toastr.success("Status Change successfully");
+                        }
+                    }
+                });
+
+
+
+            } else {
+
+            }
+        }
+
 
         // delete Confirm
         function showDeleteConfirm(id) {
@@ -93,7 +122,7 @@
         // Delete Button
         function deleteItem(id) {
 
-            var url = '{{ route("category.destroy",":id") }}';
+            var url = '{{ route("news.destroy",":id") }}';
             $.ajax({
                 type: "DELETE",
                 url: url.replace(':id', id),
