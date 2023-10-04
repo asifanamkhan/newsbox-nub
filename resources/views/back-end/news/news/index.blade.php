@@ -15,6 +15,37 @@
             <a href="{{route('news.create')}}" id="add_new" style="float: right" class="btn btn-sm btn-grad">Create News</a>
         </div>
         <div class="box-body">
+            <div class="row" style="margin-bottom: 5px">
+                <div class="col-md-3">
+                    <label for="">Date</label>
+                    <input type="text" id="date" class="form-control datepicker" placeholder="">
+                </div>
+                <div class="col-md-3">
+                    <label for="">Category</label>
+                    <select name="" id="category_id" class="form-control select2">
+                        <option value="">Select</option>
+                        @foreach($categories as $category)
+                            <option value="{{$category->id}}">{{$category->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="">Type</label>
+                    <select name="type" id="type" class="form-control select2">
+                        <option value="">Select</option>
+                        @foreach($news_types as $news_type)
+                            <option value="{{$news_type->id}}">{{$news_type->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="">Title</label>
+                    <input type="text" id="title" class="form-control" placeholder="">
+                </div>
+                <div class="col-md-12" style="margin-top: 5px">
+                    <button id="search-btn" style="float: right" class="btn btn-sm btn-grad">Search</button>
+                </div>
+            </div>
             <table style="width: 100%" class="table table-responsive table-striped data-table" id="table">
                 <thead class="table-header-background" style=";">
                 <tr class="" style="text-align:center; ">
@@ -49,6 +80,7 @@
             processing: true,
             responsive: true,
             serverSide: true,
+            searching: false,
             language: {
                 processing: '<i class="ace-icon fa fa-spinner fa-spin bigger-500" style="font-size:60px;"></i>'
             },
@@ -60,6 +92,12 @@
             ajax: {
                 url: "{{route('news.index')}}",
                 type: "get",
+                data: function (d) {
+                    d.date = $('#date').val(),
+                        d.category_id = $('#category_id').val(),
+                        d.type = $('#type').val(),
+                        d.title = $('#title').val()
+                }
             },
 
             columns: [
@@ -76,6 +114,7 @@
 
             ],
         });
+
 
         function statusChange(id){
             let status = $('#status-'+id).find(":selected").val()
@@ -103,6 +142,10 @@
             }
         }
 
+        $("#search-btn").on('click', function () {
+            datatable.clear().draw();
+
+        });
 
         // delete Confirm
         function showDeleteConfirm(id) {
