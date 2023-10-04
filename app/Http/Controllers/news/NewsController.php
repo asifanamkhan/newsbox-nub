@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use DataTables;
-
+use Image;
 class NewsController extends Controller
 {
     /**
@@ -69,6 +69,21 @@ class NewsController extends Controller
                     ->addColumn('type', function ($data) {
                         return $data->type_name;
                     })
+                    ->addColumn('status', function ($data) {
+                        if ($data->status == 1) {
+                            return "<select style='width: 80%' id='status-$data->id' onchange='statusChange([$data->id])' class='form-control'>
+                                            <option selected  value='1' >Active</option>
+                                            <option  value='0'>In active</option>
+                                        </select>";
+                        } else {
+                            return "<select style='width: 80%' id='status-$data->id' onchange='statusChange([$data->id])' class='form-control'>
+                                            <option  value='1' >Active</option>
+                                            <option selected  value='0'>In active</option>
+                                        </select>";
+                        }
+
+
+                    })
                     ->addColumn('action', function ($data) {
                         return '<div class="" role="group">
                                     <a id=""
@@ -89,7 +104,7 @@ class NewsController extends Controller
                                     </a>
                                 </div>';
                     })
-                    ->rawColumns(['image', 'date', 'title', 'category_id', 'type', 'action'])
+                    ->rawColumns(['image', 'date', 'title', 'category_id', 'type','status', 'action'])
                     ->make(true);
             }
             return view('back-end.news.news.index',compact('categories','news_types'));
@@ -182,24 +197,113 @@ class NewsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(News $news)
+    public function edit($id)
     {
-        //
+        $news = DB::table('news')
+            ->where('id', $id)
+            ->first();
+        $categories = DB::table('news_categories')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        $news_types = DB::table('news_types')
+            ->orderBy('id', 'DESC')
+            ->get();
+        try {
+            return view('back-end.news.news.edit', compact('news','categories','news_types'));
+        } catch (\Exception $exception) {
+            return back()->with($exception->getMessage());
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, News $news)
+    public function update(Request $request, $id)
     {
-        //
+        // dd($request);
+        $request->validate([
+            'title' => 'required',
+            'date' => 'required',
+            'type' => 'required',
+            'category_id' => 'required',
+            'description' => 'required',
+        ], []);
+        try {
+
+            if ($request->image) {
+                $position = strpos($request->image, ';');
+                $sub = substr($request->image, 0, $position);
+                $ext = explode('/', $sub)[1];
+                $image = time() . '.' . $ext;
+                $img = Image::make($request->image);
+                $upload_path = 'public/images/news/';
+                $image_url = $upload_path . $image;
+                $img->resize(700, 435);
+                $img->save($image_url);
+            } else {
+                $image_url = $request->old_image;
+            }
+
+            DB::table('news')
+                ->where('id', $id)
+                ->update([
+                    'title' => $request->title,
+                    'date' => $request->date,
+                    'type' => $request->type,
+                    'category_id' => $request->category_id,
+                    'image' => $image_url,
+                    'description' => $request->description,
+                    'status' => 1,
+                    'created_by' => Auth::id(),
+                    'created_at' => Carbon::now(),
+                ]);
+
+            return redirect()->route('news.index')
+                ->with('success', 'Updated Successfully');
+
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(News $news)
+    public function destroy($id)
     {
-        //
+        try {
+            DB::table('news')
+                ->where('id', $id)
+                ->delete();
+
+            return redirect()->route('news.index')
+                ->with('error', 'Deleted Successfully');
+
+        } catch (\Exception $exception) {
+            return back()->with($exception->getMessage());
+        }
+    }
+
+    public function news_status_change(Request $request)
+    {
+        $request->validate([
+            'id' => 'required',
+            'status' => 'required',
+        ], []);
+
+        try {
+
+            DB::table('news')
+                ->where('id', $request->id)
+                ->update([
+                    'status' => $request->status
+                ]);
+
+            return 1;
+
+        } catch (\Exception $exception) {
+            return back()->with($exception->getMessage());
+        }
     }
 }
