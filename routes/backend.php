@@ -10,8 +10,8 @@ use App\Http\Controllers\News\NewsTypeController;
 use App\Http\Controllers\settings\AboutController;
 use App\Http\Controllers\settings\GeneralSettingController;
 use App\Http\Controllers\settings\ImportantLinkController;
-use App\Http\Controllers\settings\SliderController;
 use App\Http\Controllers\settings\SocialLinkController;
+use App\Http\Controllers\SliderController;
 use Illuminate\Support\Facades\Route;
 
 Route::resource('general-settings',GeneralSettingController::class);
@@ -34,6 +34,9 @@ Route::get('newsletter',[\App\Http\Controllers\NewsletterController::class,'inde
 Route::get('slide-status-change',[SliderController::class,'slide_status_change'])->name('slide-status-change');
 Route::get('events-status-change',[EventController::class,'events_status_change'])->name('events-status-change');
 Route::get('achievements-status-change',[AchievementController::class,'achievements_status_change'])->name('achievements-status-change');
+
+
+Route::get('featured-slides',[SliderController::class,'featured_slides_index'])->name('featured-slides.index');
 
 
 

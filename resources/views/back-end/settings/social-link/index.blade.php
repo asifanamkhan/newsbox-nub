@@ -28,18 +28,19 @@
                         @csrf
                         <tr>
                             <td style="">
-                                <div style="background:{{$value['color']}} ; color: white; font-size: 20px; padding: 1px; border-radius: 2px; text-align: center">
-                                    <i class="{{$value['icon']}}"></i>
+                                <div style="background:{{$value->color}} ; color: white; font-size: 20px; padding: 1px; border-radius: 2px; text-align: center">
+                                    <i class="{{$value->icon}}"></i>
                                 </div>
                             </td>
                             <td>
-                                <input name="name" type="text" readonly  class="form-control" value="{{$value['name']}}">
+                                <input name="name" type="text" readonly  class="form-control" value="{{$value->name}}">
+                                <input name="id" type="hidden" readonly  class="form-control" value="{{$value->id}}">
                             </td>
                             <td>
-                                <input required name="link" type="text" class="form-control">
+                                <input required name="link" type="text" class="form-control" value="{{$value->link}}">
                             </td>
                             <td>
-                                <input name="num_of_follower" type="number" class="form-control" value="">
+                                <input name="num_of_follower" type="number" class="form-control" value="{{$value->num_of_follower}}">
                             </td>
                             <td>
                                 <button class="btn btn-sm btn-primary">

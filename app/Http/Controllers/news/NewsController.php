@@ -19,12 +19,36 @@ class NewsController extends Controller
     public function index(Request $request)
     {
         try {
+
+            $categories = DB::table('news_categories')
+                ->orderBy('id', 'DESC')
+                ->get();
+
+            $news_types = DB::table('news_types')
+                ->orderBy('id', 'DESC')
+                ->get();
+
             if ($request->ajax()) {
-                $data = DB::table('news as n')
+                $query = DB::table('news as n')
                     ->leftjoin('news_categories as c', 'n.category_id', '=', 'c.id')
                     ->leftjoin('news_types as t', 'n.type', '=', 't.id')
-                    ->orderBy('n.id', 'DESC')
-                    ->get(['n.*','c.name as category_name','t.name as type_name']);
+                    ->orderBy('n.id', 'DESC');
+
+                if ($request->date) {
+                    $query->where('date', $request->date);
+                }
+                if ($request->category_id) {
+                    $query->where('category_id', $request->category_id);
+                }
+                if ($request->type) {
+                    $query->where('type', $request->type);
+                }
+                if ($request->title) {
+                    $query->where('title', 'like', '%' . $request->title . '%');
+                }
+
+                $data = $query
+                    ->select(['n.*','c.name as category_name','t.name as type_name']);
 
                 return DataTables::of($data)
                     ->addIndexColumn()
@@ -68,7 +92,7 @@ class NewsController extends Controller
                     ->rawColumns(['image', 'date', 'title', 'category_id', 'type', 'action'])
                     ->make(true);
             }
-            return view('back-end.news.news.index');
+            return view('back-end.news.news.index',compact('categories','news_types'));
         } catch (\Exception $exception) {
             return redirect()->back()->with('error', $exception->getMessage());
         }
