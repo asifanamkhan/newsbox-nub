@@ -37,16 +37,37 @@
                         Social Media Link
                     </a>
                 </li>
-                <li id="side-slide" class="">
-                    <a  href="{{route('slides.index')}}">
-                        <i class="fa fa-circle-o"></i>
-                        Slide
-                    </a>
-                </li>
+
                 <li id="side-important-link" class="">
                     <a  href="{{route('important-links.index')}}">
                         <i class="fa fa-circle-o"></i>
                         Important Links
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+
+        <li id="side-slide" class="treeview
+           ">
+            <a href="#">
+                <i class="fa fa-image"></i>
+                <span>Slide</span>
+                <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+            </a>
+            <ul class="treeview-menu">
+                <li id="side-banner-slide" class="">
+                    <a href="{{route('slides.index')}}">
+                        <i class="fa fa-circle-o"></i>
+                        Banner Slide
+                    </a>
+                </li>
+                <li id="side-featured-slide" class="">
+                    <a href="{{route('featured-slides.index')}}">
+                        <i class="fa fa-circle-o"></i>
+                        Featured Slide
                     </a>
                 </li>
             </ul>
@@ -82,7 +103,7 @@
                 </li>
             </ul>
         </li>
-        <li id="side-news" class="treeview
+        <li id="admin-news" class="treeview
            ">
             <a href="#">
                 <i class="fa fa-user-circle-o"></i>
@@ -144,7 +165,7 @@
         </li>
         <li class="" id="side-gallery">
             <a href="{{route('gallery.index')}}">
-                <i class="fa fa-image"></i> <span>Gallery</span>
+                <i class="fa fa-folder-open"></i> <span>Gallery</span>
                 <span class="pull-right-container">
             </span>
             </a>

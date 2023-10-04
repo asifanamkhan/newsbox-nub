@@ -18,43 +18,32 @@ class SocialLinkController extends Controller
     public function index()
     {
         try {
-            $social_links = SocialMedia::getName();
-            $social_links_data = DB::table('news_categories')
-                ->orderBy('id', 'DESC')
+            $social_links = DB::table('social_links')
+                ->orderBy('id', 'ASC')
                 ->get();
-            return view('back-end.settings.social-link.index', compact('social_links','social_links_data'));
+
+            return view('back-end.settings.social-link.index', compact('social_links'));
         } catch (\Exception $exception) {
             return back()->with($exception->getMessage());
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-//        dd($request->name);
         $request->validate([
             'link' => 'required',
-            'num_of_follower' => 'required',
 
         ], []);
         try {
             DB::table('social_links')
-                ->where('name', $request->name)
+                ->where('id', $request->id)
                 ->update([
-                    'name' => $request->name,
                     'link' => $request->link,
-                    'num_of_follower' => $request->num_of_follower,
-                    'created_by'=> Auth::id(),
+                    'num_of_follower' => $request->num_of_follower ?? 0,
                     'updated_by' => Auth::id(),
                     'updated_at' => Carbon::now(),
                 ]);
@@ -67,36 +56,4 @@ class SocialLinkController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(SocialLink $socialLink)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(SocialLink $socialLink)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, SocialLink $socialLink)
-    {
-//        dd($request);
-//
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(SocialLink $socialLink)
-    {
-        //
-    }
 }

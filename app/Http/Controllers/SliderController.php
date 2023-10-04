@@ -1,21 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\settings;
+namespace App\Http\Controllers;
 
 use App\Helper\ImageHelper;
-use App\Http\Controllers\Controller;
 use App\Models\Slider;
 use Carbon\Carbon;
+use DataTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Image;
-use DataTables;
 
 
 class SliderController extends Controller
 {
-    public $image_path = 'public/images/slides/';
     /**
      * Display a listing of the resource.
      */
@@ -73,7 +71,7 @@ class SliderController extends Controller
                     ->rawColumns(['image', 'title', 'news', 'status', 'action'])
                     ->make(true);
             }
-            return view('back-end.settings.slide.index');
+            return view('back-end.slide.banner.index');
         } catch (\Exception $exception) {
             return redirect()->back()->with('error', $exception->getMessage());
         }
@@ -85,7 +83,7 @@ class SliderController extends Controller
     public function create()
     {
         try {
-            return view('back-end.settings.slide.create');
+            return view('back-end.slide.banner.create');
         } catch (\Exception $exception) {
             return back()->with($exception->getMessage());
         }
@@ -128,25 +126,7 @@ class SliderController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Slider $slider)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Slider $slider)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
         try {
@@ -182,6 +162,73 @@ class SliderController extends Controller
 
         } catch (\Exception $exception) {
             return back()->with($exception->getMessage());
+        }
+    }
+
+    public function featured_slides_index(Request $request){
+
+        $categories = DB::table('news_categories')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        $news_types = DB::table('news_types')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        try {
+            if ($request->ajax()) {
+                $query = DB::table('news as n')
+                    ->leftjoin('news_categories as c', 'n.category_id', '=', 'c.id')
+                    ->leftjoin('news_types as t', 'n.type', '=', 't.id')
+                    ->orderBy('n.id', 'DESC');
+
+
+                if ($request->date) {
+                    $query->where('date', $request->date);
+                }
+                if ($request->category_id) {
+                    $query->where('category_id', $request->category_id);
+                }
+                if ($request->type) {
+                    $query->where('type', $request->type);
+                }
+                if ($request->title) {
+                    $query->where('title', 'like', '%' . $request->title . '%');
+                }
+
+                $data = $query
+                    ->select(['n.*','c.name as category_name','t.name as type_name']);
+
+                return DataTables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('image', function ($data) {
+                        return '<a target="_blank" href="' . asset($data->image) . '">
+                                   <img class="image" style="width:60px; height: 40px" src="' . asset($data->image) . '"/>
+                                </a>';
+                    })
+                    ->addColumn('date', function ($data) {
+                        return Carbon::parse($data->date)->format('d-M-Y');
+                    })
+                    ->addColumn('title', function ($data) {
+                        return $data->title;
+                    })
+                    ->addColumn('category_id', function ($data) {
+                        return $data->category_name;
+                    })
+                    ->addColumn('type', function ($data) {
+                        return $data->type_name;
+                    })
+                    ->addColumn('action', function ($data) {
+                        return '<div class="" role="group">
+                                   
+                                </div>';
+                    })
+                    ->rawColumns(['image', 'date', 'title', 'category_id', 'type', 'action'])
+                    ->make(true);
+            }
+            return view('back-end.slide.featured.index',compact('news_types','categories'));
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', $exception->getMessage());
         }
     }
 }

@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('link')->nullable();
+            $table->string('color')->nullable();
+            $table->string('icon')->nullable();
             $table->string('num_of_follower')->nullable();
             $table->string('created_by');
             $table->string('updated_by')->nullable();
