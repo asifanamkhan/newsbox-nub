@@ -40,9 +40,7 @@
                 <form action="{{route('news.update', $news->id)}}" method="post">
                     @csrf
                     @method('PUT')
-                    <div id="img-body">
-                        <input type="hidden" name="image" id="image">
-                    </div>
+                   
                     <div class="form-group col-md-12">
                         <label for="">Title</label><span style="font-weight: bold; color: red"> *</span>
                         <input type="text" name="title" class="form-control" value="{{$news->title}}">
@@ -51,19 +49,19 @@
                     <div class="col-md-7">
                         <div class="mt-4">
                             <label for="">Type</label><span style="font-weight: bold; color: red"> *</span>
-                            <select name="type" id="" class="form-control select2">
+                            <select name="type" id="type" class="form-control select2">
                                 <option value="">Select</option>
                                 @foreach($news_types as $news_type)
-                                    <option value="{{$news_type->id}}">{{$news_type->name}}</option>
+                                    <option {{($news->type == $news_type->id) ? 'selected': ''}} value="{{$news_type->id}}" >{{$news_type->name}}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div>
                             <label for="">Category</label><span style="font-weight: bold; color: red"> *</span>
-                            <select name="category_id" id="" class="form-control select2">
+                            <select name="category_id" id="category_id" class="form-control select2">
                                 <option value="">Select</option>
                                 @foreach($categories as $category)
-                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                    <option {{($news->category_id == $category->id) ? 'selected': ''}}  value="{{$category->id}}">{{$category->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -82,12 +80,12 @@
 
                             <div class="col-md-12">
                                 <div>
-                                    <label for="">Image</label>
+                                    <label for="">Old Image</label>
                                     <img  src="{{asset($news->image)}}" alt="" class="img-fluid rounded img-thumbnail">
                                     <input type="hidden" name="old_image" id="" value="{{$news->image}}">
                                 </div>
 
-                                <label for="">Image</label><span style="font-weight: bold; color: red"> *</span>
+                                <label for="">New Image</label><span style="font-weight: bold; color: red"> *</span>
                                 <input type="hidden" name="image" id="image">
                                 <div id="dropzoneForm" class="dropzone">
                                 </div>
@@ -120,37 +118,35 @@
             height: 300,
         });
     </script>
-    <script type="text/javascript">
-
-        Dropzone.options.dropzoneForm = {
-            url: "no-path",
-            autoProcessQueue: false,
-            acceptedFiles: ".png,.jpg,.gif,.bmp,.jpeg",
-            addRemoveLinks: true,
-            parallelUploads: 1,
-            maxFilesize: 5,
-            maxFiles: 1,
-            init: function () {
-                this.on("addedfile", (file) => {
-                    if (this.files[1] != null) {
-                        this.removeFile(this.files[0]);
-                    } else {
-                        var reader = new FileReader();
-                        reader.readAsDataURL(file);
-                        reader.onload = event => {
-                            $('#image').val(event.target.result)
-                        }
+   <script type="text/javascript">
+    Dropzone.options.dropzoneForm = {
+        url: "no-path",
+        autoProcessQueue: false,
+        acceptedFiles: ".png,.jpg,.gif,.bmp,.jpeg",
+        addRemoveLinks: true,
+        parallelUploads: 1,
+        maxFilesize: 5,
+        maxFiles: 1,
+        init: function () {
+            this.on("addedfile", (file) => {
+                if (this.files[1] != null) {
+                    this.removeFile(this.files[0]);
+                } else {
+                    var reader = new FileReader();
+                    reader.readAsDataURL(file);
+                    reader.onload = event => {
+                        $('#image').val(event.target.result)
                     }
-                });
+                }
+            });
 
-                this.on('removedfile', function (file) {
-                    $('#image').val(' ');
-                });
+            this.on('removedfile', function (file) {
+                $('#image').val(' ');
+            });
 
-            },
+        },
 
-        };
+    };
 
-
-    </script>
+</script>
 @endsection

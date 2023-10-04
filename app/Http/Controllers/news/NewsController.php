@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use DataTables;
-
+use Image;
 class NewsController extends Controller
 {
     /**
@@ -197,7 +197,7 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request);
+        // dd($request);
         $request->validate([
             'title' => 'required',
             'date' => 'required',
@@ -230,7 +230,7 @@ class NewsController extends Controller
                     'category_id' => $request->category_id,
                     'image' => $image_url,
                     'description' => $request->description,
-                    'status' => 0,
+                    'status' => 1,
                     'created_by' => Auth::id(),
                     'created_at' => Carbon::now(),
                 ]);
