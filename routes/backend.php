@@ -12,6 +12,8 @@ use App\Http\Controllers\settings\GeneralSettingController;
 use App\Http\Controllers\settings\ImportantLinkController;
 use App\Http\Controllers\settings\SocialLinkController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\ReadersController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::resource('general-settings',GeneralSettingController::class);
@@ -25,6 +27,8 @@ Route::resource('events',EventController::class);
 Route::resource('achievements',AchievementController::class);
 Route::resource('news',NewsController::class);
 Route::resource('gallery',GalleryController::class);
+Route::resource('readers',ReadersController::class);
+
 
 
 Route::get('contactus',[ContactController::class,'index'])->name('contactus.index');

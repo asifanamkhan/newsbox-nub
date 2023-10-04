@@ -155,10 +155,10 @@
                         Newsletter
                     </a>
                 </li>
-                <li id="side-customers" class="">
-                    <a href="{{route('newsletter.index')}}">
+                <li id="side-readers" class="">
+                    <a href="{{route('readers.index')}}">
                         <i class="fa fa-circle-o"></i>
-                        Customers
+                        Readers
                     </a>
                 </li>
             </ul>
