@@ -45,6 +45,9 @@ Route::get('news-remove-from-featured-slide/{news_id}',[SliderController::class,
 
 Route::get('news-add-to-slide/{news_id}/{slide_id}',[SliderController::class,'news_add_to_slide'])->name('news-add-to-slide');
 
+Route::get('gallery-status-change',[GalleryController::class,'gallery_status_change'])->name('gallery-status-change');
+Route::post('add-new-image-gallery',[GalleryController::class,'add_new_image_gallery'])->name('add-new-image-gallery');
+
 
 
 

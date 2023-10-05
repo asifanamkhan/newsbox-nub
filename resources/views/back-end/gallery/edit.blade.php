@@ -39,19 +39,20 @@
             {{--            </section>--}}
             <div class="row">
                 <div class="col-md-7">
-                    <form id="create_form" action="{{route('events.update', $event->id)}}" method="post">
+                    <form id="create_form" action="{{route('gallery.update', $gallery->id)}}" method="post">
                         @csrf
                         @method('PUT')
                         <div id="img-body">
                             <input type="hidden" name="image" id="image">
+                            <input type="hidden" name="old_image" id="" value="{{$gallery->image}}">
                         </div>
                         <div class="form-group col-md-12">
                             <label for="">Title</label><span style="font-weight: bold; color: red"> *</span>
-                            <input type="text" value="{{$event->title}}" name="title" class="form-control">
+                            <input type="text" value="{{$gallery->title}}" name="title" class="form-control">
                         </div>
                         <div class="form-group col-md-12">
                             <label for="">Description</label><span style="font-weight: bold; color: red"> *</span>
-                            <textarea name="description" id="" cols="30" class="form-control tinymce-editor" rows="10">{!! $event->description !!}</textarea>
+                            <textarea name="description" id="" cols="30" class="form-control tinymce-editor" rows="10">{!! $gallery->description !!}</textarea>
                         </div>
                         <div class="form-group col-md-12">
                             <button class="btn btn-primary">Save</button>
@@ -59,14 +60,13 @@
                     </form>
                 </div>
                 <div class="col-md-5">
-                   <div>
-                       <label for="">Image</label>
-                       <img  src="{{asset($event->image)}}" alt="" class="img-fluid rounded img-thumbnail">
-                       <input type="hidden" name="old_image" id="" value="{{$event->image}}">
-                   </div>
+                    <div>
+                        <label for="">Image</label>
+                        <img  src="{{asset($gallery->image)}}" alt="" class="img-fluid rounded img-thumbnail">
+                    </div>
                     <div class="mt-5">
                         <label for="">New Image</label>
-                        <form id="dropzoneForm" class="dropzone" action="{{ route('events.store') }}">
+                        <form id="dropzoneForm" class="dropzone" action="{{ route('gallery.store') }}">
                             @csrf
                         </form>
 
@@ -109,8 +109,8 @@
 
     <script>
         $(document).ready(function () {
-            $("#side-gallery").addClass('active');
-            $("#side-gallery").addClass('active-sidebar');
+            $("#side-events").addClass('active');
+            $("#side-events").addClass('active-sidebar');
         });
     </script>
     <script type="text/javascript">

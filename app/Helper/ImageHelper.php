@@ -7,7 +7,7 @@ class ImageHelper{
         $position = strpos($image, ';');
         $sub = substr($image, 0, $position);
         $ext = explode('/', $sub)[1];
-        $image_name = time() . '.' . $ext;
+        $image_name = uniqid('img','true') . '.' . $ext;
         $img = Intervention::make($image);
         $upload_path = $path;
         $image_url = $upload_path . $image_name;
