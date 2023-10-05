@@ -70,9 +70,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>
     <script>
         $(document).ready(function () {
-            $("#side-settings").addClass('active');
             $("#side-slide").addClass('active');
-            $("#side-slide").addClass('active-sidebar');
+            $("#side-banner-slide").addClass('active');
+            $("#side-banner-slide").addClass('active-sidebar');
 
             $("#create_form").validate({
                 rules: {

@@ -20,11 +20,11 @@
             <table style="width: 100%" class="table table-responsive table-striped data-table" id="table">
                 <thead class="table-header-background" style=";">
                 <tr class="" style="text-align:center; ">
-                    <th style="width: 7%">SL</th>
-                    <th style="width: 15%">Image</th>
-                    <th style="width: 25%">Title</th>
-                    <th style="width: 35%">News</th>
-                    <th style="width: 8%">Status</th>
+                    <th style="width: 5%">SL</th>
+                    <th style="width: 10%">Image</th>
+                    <th style="width: 22%">Title</th>
+                    <th style="width: 40%">News</th>
+                    <th style="width: 13%">Status</th>
                     <th style="width: 10%">Action</th>
                 </tr>
                 </thead>
@@ -32,13 +32,22 @@
         </div>
     </div>
 
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+         aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="padding: 20px">
+
+            </div>
+        </div>
+    </div>
 @endsection
+
 @section('js')
     <script>
         $(document).ready(function () {
-            $("#side-settings").addClass('active');
             $("#side-slide").addClass('active');
-            $("#side-slide").addClass('active-sidebar');
+            $("#side-banner-slide").addClass('active');
+            $("#side-banner-slide").addClass('active-sidebar');
         });
 
     </script>
@@ -141,6 +150,22 @@
                     location.reload();
                 } // Error
             })
+        }
+
+        function addNews(id){
+            $.ajax({
+                type: "get",
+                url: "{{route('add-news-to-slides-modal')}}",
+                data:{
+                  id: id,
+                  type: 1,
+                },
+                success: function (resp) {
+                    $('.modal-content').html(resp)
+                    $('.bd-example-modal-lg').modal('show');
+                }
+            })
+
         }
     </script>
 @endsection

@@ -39,7 +39,7 @@
             {{--            </section>--}}
             <div class="row">
                 <div class="col-md-7 ima">
-                    <form id="create_form" action="{{route('events.store')}}" method="post">
+                    <form id="create_form" action="{{route('gallery.store')}}" method="post">
                         @csrf
                         <div id="img-body">
                             <input type="hidden" name="image" id="image">
@@ -58,7 +58,7 @@
                     </form>
                 </div>
                 <div class=" col-md-5">
-                    <label for="">Image</label><span style="font-weight: bold; color: red"> *</span>
+                    <label for="">Banner</label><span style="font-weight: bold; color: red"> *</span>
                     <form id="dropzoneForm" class="dropzone" action="{{ route('events.store') }}">
                         @csrf
                     </form>
@@ -127,9 +127,7 @@
                 this.on('removedfile', function (file) {
                     $('#image').val(' ');
                 });
-
             },
-
         };
 
     </script>

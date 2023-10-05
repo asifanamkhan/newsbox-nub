@@ -52,7 +52,7 @@
                             <select name="type" id="type" class="form-control select2">
                                 <option value="">Select</option>
                                 @foreach($news_types as $news_type)
-                                    <option {{($news->type == $news_type->id) ? 'selected': ''}} value="{{$news_type->id}}" >{{$news_type->name}}</option>
+                                    <option @if($news->type == $news_type->id) selected @endif value="{{$news_type->id}}" >{{$news_type->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -61,7 +61,7 @@
                             <select name="category_id" id="category_id" class="form-control select2">
                                 <option value="">Select</option>
                                 @foreach($categories as $category)
-                                    <option {{($news->category_id == $category->id) ? 'selected': ''}}  value="{{$category->id}}">{{$category->name}}</option>
+                                    <option @if($news->category_id == $category->id) selected @endif value="{{$category->id}}">{{$category->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -85,7 +85,7 @@
                                     <input type="hidden" name="old_image" id="" value="{{$news->image}}">
                                 </div>
 
-                                <label for="">New Image</label><span style="font-weight: bold; color: red"> *</span>
+                                <label for="">New Image</label>
                                 <input type="hidden" name="image" id="image">
                                 <div id="dropzoneForm" class="dropzone">
                                 </div>
@@ -110,8 +110,8 @@
     <script>
         $(document).ready(function () {
             $("#side-news").addClass('active');
-            $("#side-News").addClass('active');
-            $("#side-News").addClass('active-sidebar');
+            $("#side-news-news").addClass('active');
+            $("#side-news-news").addClass('active-sidebar');
         });
         tinymce.init({
             selector: '.tinymce-editor',

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use DataTables;
 use Image;
+
 class NewsController extends Controller
 {
     /**
@@ -48,7 +49,7 @@ class NewsController extends Controller
                 }
 
                 $data = $query
-                    ->select(['n.*','c.name as category_name','t.name as type_name']);
+                    ->select(['n.*', 'c.name as category_name', 't.name as type_name']);
 
                 return DataTables::of($data)
                     ->addIndexColumn()
@@ -104,10 +105,10 @@ class NewsController extends Controller
                                     </a>
                                 </div>';
                     })
-                    ->rawColumns(['image', 'date', 'title', 'category_id', 'type','status', 'action'])
+                    ->rawColumns(['image', 'date', 'title', 'category_id', 'type', 'status', 'action'])
                     ->make(true);
             }
-            return view('back-end.news.news.index',compact('categories','news_types'));
+            return view('back-end.news.news.index', compact('categories', 'news_types'));
         } catch (\Exception $exception) {
             return redirect()->back()->with('error', $exception->getMessage());
         }
@@ -127,7 +128,7 @@ class NewsController extends Controller
                 ->orderBy('id', 'DESC')
                 ->get();
 
-            return view('back-end.news.news.create',compact('categories','news_types'));
+            return view('back-end.news.news.create', compact('categories', 'news_types'));
         } catch (\Exception $exception) {
             return back()->with($exception->getMessage());
         }
@@ -149,7 +150,7 @@ class NewsController extends Controller
 
             if ($request->image) {
                 $image_path = 'public/images/news/';
-                $image_url = ImageHelper::saveBase64Image($request->image,$image_path,800,500);
+                $image_url = ImageHelper::saveBase64Image($request->image, $image_path, 800, 500);
             } else {
                 $image_url = 'public/image/no_image.jpg';
             }
@@ -186,7 +187,7 @@ class NewsController extends Controller
                 ->leftjoin('news_types as t', 'n.type', '=', 't.id')
                 ->leftjoin('users as u', 'n.created_by', '=', 'u.id')
                 ->orderBy('n.id', 'DESC')
-                ->first(['n.*','c.name as category_name','t.name as type_name','u.name as created_user_name']);
+                ->first(['n.*', 'c.name as category_name', 't.name as type_name', 'u.name as created_user_name']);
 
             return view('back-end.news.news.show', compact('news'));
         } catch (\Exception $exception) {
@@ -199,18 +200,19 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        $news = DB::table('news')
-            ->where('id', $id)
-            ->first();
-        $categories = DB::table('news_categories')
-            ->orderBy('id', 'DESC')
-            ->get();
-
-        $news_types = DB::table('news_types')
-            ->orderBy('id', 'DESC')
-            ->get();
         try {
-            return view('back-end.news.news.edit', compact('news','categories','news_types'));
+            $news = DB::table('news')
+                ->where('id', $id)
+                ->first();
+            $categories = DB::table('news_categories')
+                ->orderBy('id', 'DESC')
+                ->get();
+
+            $news_types = DB::table('news_types')
+                ->orderBy('id', 'DESC')
+                ->get();
+
+            return view('back-end.news.news.edit', compact('news', 'categories', 'news_types'));
         } catch (\Exception $exception) {
             return back()->with($exception->getMessage());
         }
@@ -221,7 +223,7 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request);
+
         $request->validate([
             'title' => 'required',
             'date' => 'required',
@@ -229,8 +231,8 @@ class NewsController extends Controller
             'category_id' => 'required',
             'description' => 'required',
         ], []);
-        try {
 
+        try {
             if ($request->image) {
                 $position = strpos($request->image, ';');
                 $sub = substr($request->image, 0, $position);
@@ -299,8 +301,6 @@ class NewsController extends Controller
                 ->update([
                     'status' => $request->status
                 ]);
-
-            return 1;
 
         } catch (\Exception $exception) {
             return back()->with($exception->getMessage());

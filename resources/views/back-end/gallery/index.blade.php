@@ -14,14 +14,15 @@
     <div class="box">
         <div class="box-header with-border">
             <h5 class="box-title"><b>Gallery List</b></h5>
-            <a href="{{route('events.create')}}" id="add_new" style="float: right" class="btn btn-sm btn-grad">Add New Gallery</a>
+            <a href="{{route('gallery.create')}}" id="add_new" style="float: right" class="btn btn-sm btn-grad">Add New
+                Gallery</a>
         </div>
         <div class="box-body">
             <table style="width: 100%" class="table table-responsive table-striped data-table" id="table">
                 <thead class="table-header-background" style=";">
                 <tr class="" style="text-align:center; ">
                     <th style="width: 8%">SL</th>
-                    <th style="width: 15%">Image</th>
+                    <th style="width: 15%">Banner</th>
                     <th style="width: 40%">title</th>
                     <th style="width: 22%">Status</th>
                     <th style="width: 15%">Action</th>
@@ -30,9 +31,30 @@
             </table>
         </div>
     </div>
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+         aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="padding: 20px">
+                <form method="post" action="{{route('add-new-image-gallery')}}">
+                    @csrf
+                    <div class="">
+                        <input type="hidden" name="gallery_id" id="gallery_id">
+                        <label for="">Image</label><span style="font-weight: bold; color: red"> *</span>
+                        <div id="dropzoneForm" class="dropzone">
+                            <div id="image-body">
 
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-sm btn-primary" style="margin-top: 10px">Upload</button>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 @section('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>
+
     <script>
         $(document).ready(function () {
             $("#side-gallery").addClass('active');
@@ -56,7 +78,7 @@
             pagingType: "full_numbers",
 
             ajax: {
-                url: "{{route('events.index')}}",
+                url: "{{route('gallery.index')}}",
                 type: "get",
             },
 
@@ -73,24 +95,20 @@
         });
 
 
-        function statusChange(id){
-            let status = $('#status-'+id).find(":selected").val()
+        function statusChange(id) {
+            let status = $('#status-' + id).find(":selected").val()
             if (confirm("Are you sure") == true) {
-                    $.ajax({
-                        type:'GET',
-                        url:"{{ route('events-status-change') }}",
-                        data:{
-                            id:id,
-                            status:status
-                        },
-                        success:function(data){
-                            if(data == 0){
-                                toastr.warning("You can active more then 3 slide");
-                            }else{
-                                toastr.success("Status Change successfully");
-                            }
-                        }
-                    });
+                $.ajax({
+                    type: 'GET',
+                    url: "{{ route('gallery-status-change') }}",
+                    data: {
+                        id: id,
+                        status: status
+                    },
+                    success: function (data) {
+                        toastr.success("Status Change successfully");
+                    }
+                });
 
             } else {
 
@@ -115,7 +133,7 @@
         // Delete Button
         function deleteItem(id) {
 
-            var url = '{{ route("events.destroy",":id") }}';
+            var url = '{{ route("gallery.destroy",":id") }}';
             $.ajax({
                 type: "DELETE",
                 url: url.replace(':id', id),
@@ -137,5 +155,35 @@
                 } // Error
             })
         }
+
+        function addImage(id) {
+            $('#gallery_id').val(id)
+            $('.bd-example-modal-lg').modal('show');
+        }
     </script>
+    <script type="text/javascript">
+
+        Dropzone.options.dropzoneForm = {
+            url: "no-path",
+            autoProcessQueue: false,
+            acceptedFiles: ".png,.jpg,.gif,.bmp,.jpeg",
+            addRemoveLinks: true,
+            parallelUploads: 10,
+            maxFilesize: 10,
+            maxFiles: 2,
+            init: function () {
+                this.on("addedfile", (file) => {
+                    var reader = new FileReader();
+                    reader.readAsDataURL(file);
+                    reader.onload = event => {
+                        $('#image-body').append(`<input type="hidden" name="image[]" value="${event.target.result}" id="image">`)
+                    }
+                });
+
+            },
+
+        };
+
+    </script>
+
 @endsection

@@ -44,6 +44,7 @@
                         @method('PUT')
                         <div id="img-body">
                             <input type="hidden" name="image" id="image">
+                            <input type="hidden" name="old_image" id="" value="{{$event->image}}">
                         </div>
                         <div class="form-group col-md-12">
                             <label for="">Title</label><span style="font-weight: bold; color: red"> *</span>
@@ -62,7 +63,7 @@
                    <div>
                        <label for="">Image</label>
                        <img  src="{{asset($event->image)}}" alt="" class="img-fluid rounded img-thumbnail">
-                       <input type="hidden" name="old_image" id="" value="{{$event->image}}">
+
                    </div>
                     <div class="mt-5">
                         <label for="">New Image</label>

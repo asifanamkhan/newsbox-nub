@@ -127,11 +127,7 @@
                         status:status
                     },
                     success:function(data){
-                        if(data == 0){
-                            toastr.warning("You can active more then 3 slide");
-                        }else{
-                            toastr.success("Status Change successfully");
-                        }
+                        toastr.success("Status Change successfully");
                     }
                 });
 

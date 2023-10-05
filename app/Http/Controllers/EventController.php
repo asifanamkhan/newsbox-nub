@@ -98,7 +98,6 @@ class EventController extends Controller
         $request->validate([
             'description' => 'required',
             'image' => 'required',
-            // 'title'=>'required'
         ], []);
         try {
 
@@ -166,6 +165,7 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $request->validate([
             'description' => 'required',
         ], []);
@@ -184,6 +184,7 @@ class EventController extends Controller
             } else {
                 $image_url = $request->old_image;
             }
+
 
             DB::table('events')
                 ->where('id', $id)
