@@ -1,18 +1,18 @@
 @extends('back-end.layouts.master')
 @section('content-header')
     <h1 style="font-family: 'Arial Narrow';">
-        Readers
+       Create Role
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-pie-chart"></i>User</a></li>
-        <li class="active">readers</li>
+        <li><a href="#"><i class="fa fa-pie-chart"></i>Administrator</a></li>
+        <li class="active">role</li>
     </ol>
 @endsection
 @section('content')
     <div class="box">
         <div class="box-header with-border">
-            <h5 class="box-title"><b>Readers List</b></h5>
-         <a href="{{route('readers.create')}}" id="add_new" style="float: right" class="btn btn-sm btn-grad">Add Readers</a>
+            <h5 class="box-title"><b>Role List</b></h5>
+         <a href="{{route('role.create')}}" id="add_new" style="float: right" class="btn btn-sm btn-grad">Add Readers</a>
         </div>
         <div class="box-body">
             <table style="width: 100%" class="table table-responsive table-striped data-table" id="table">
@@ -32,9 +32,9 @@
 @section('js')
     <script>
         $(document).ready(function () {
-            $("#side-users").addClass('active');
-            $("#side-readers").addClass('active');
-            $("#side-readers").addClass('active-sidebar');
+            $("#side-administrators").addClass('active');
+            $("#side-role").addClass('active');
+            $("#side-role").addClass('active-sidebar');
         });
 
     </script>

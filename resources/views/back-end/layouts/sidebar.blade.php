@@ -103,7 +103,7 @@
                 </li>
             </ul>
         </li>
-        <li id="admin-news" class="treeview
+        <li id="admin-administrators" class="treeview
            ">
             <a href="#">
                 <i class="fa fa-user-circle-o"></i>
@@ -119,7 +119,7 @@
                         Admins
                     </a>
                 </li>
-                <li id="side-about-us" class="">
+                <li id="side-role" class="">
                     <a href="{{route('about-us.index')}}">
                         <i class="fa fa-circle-o"></i>
                         Role
