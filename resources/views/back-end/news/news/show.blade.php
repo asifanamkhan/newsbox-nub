@@ -1,7 +1,5 @@
 @extends('back-end.layouts.master')
 @section('content-header')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.css">
-
     <h1 style="font-family: 'Arial Narrow';">
         News
     </h1>
@@ -85,8 +83,9 @@
 @section('js')
     <script>
         $(document).ready(function () {
-            $("#side-events").addClass('active');
-            $("#side-events").addClass('active-sidebar');
+            $("#side-news").addClass('active');
+            $("#side-news-news").addClass('active');
+            $("#side-news-news").addClass('active-sidebar');
         });
 
     </script>
