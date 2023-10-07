@@ -46,27 +46,27 @@ class SliderController extends Controller
                                 <tbody>
                                    <tr>
                                         <th style='width: 15%'>Date</th>
-                                        
+
                                         <td style='width: 85%'>$data->date</td>
                                     </tr>
                                     <tr>
                                         <th>Title</th>
-                                        
+
                                         <td>$data->title</td>
                                     </tr>
                                     <tr>
                                         <th>Cat</th>
-                                       
+
                                         <td>$data->news_cat_name</td>
                                     </tr>
                                     <tr>
                                         <th>Type</th>
-                                        
+
                                         <td>$data->news_type_name</td>
-                                    
+
                                     <tr>
                                         <th>Image</th>
-                                        
+
                                         <td>
                                             <a target='_blank' href=".asset($data->news_image).">
                                                <img class='image' style='width:60px; height: 40px' src=".asset($data->news_image)."/>
@@ -151,7 +151,7 @@ class SliderController extends Controller
 
             DB::table('sliders')->insert([
                 'title' => $request->title,
-                'news_id' => $request->news_id ?? 1,
+                'news_id' => $request->news_id ?? null,
                 'image' => $image_url,
                 'type' => 1,
                 'status' => 0,
@@ -258,6 +258,71 @@ class SliderController extends Controller
     }
 
 
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit($id)
+    {
+        try {
+            $sliders = DB::table('sliders')
+                ->where('id', $id)
+                ->first();
+
+            return view('back-end.slide.banner.edit', compact('sliders'));
+        } catch (\Exception $exception) {
+            return back()->with($exception->getMessage());
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'title' => 'required',
+            'image' => 'required',
+        ], []);
+
+        try {
+            if ($request->image) {
+                $position = strpos($request->image, ';');
+                $sub = substr($request->image, 0, $position);
+                $ext = explode('/', $sub)[1];
+                $image = time() . '.' . $ext;
+                $img = Image::make($request->image);
+                $upload_path = 'public/images/slides/';
+                $image_url = $upload_path . $image;
+                $img->resize(700, 435);
+                $img->save($image_url);
+            } else {
+                $image_url = $request->old_image;
+            }
+
+            DB::table('sliders')
+                ->where('id', $id)
+                ->update([
+                    'title' => $request->title,
+                    'news_id' => $request->news_id ?? null,
+                    'image' => $image_url,
+                    'type' => 1,
+                    'status' => 0,
+                    'created_by' => Auth::id(),
+                    'updated_at' => Carbon::now(),
+                ]);
+
+            return redirect()->route('slides.index')
+                ->with('success', 'Updated Successfully');
+
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+
     public function destroy($id)
     {
         try {
@@ -272,7 +337,6 @@ class SliderController extends Controller
             return back()->with($exception->getMessage());
         }
     }
-
 
     public function slide_status_change(Request $request)
     {

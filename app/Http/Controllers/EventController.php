@@ -194,7 +194,7 @@ class EventController extends Controller
                     'title' => $request->title,
                     'status' => 0,
                     'created_by' => Auth::id(),
-                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
                 ]);
 
             return redirect()->route('events.index')

@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.css">
 
     <h1 style="font-family: 'Arial Narrow';">
-        Slides
+        Slides Edit
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-pie-chart"></i> Settings</a></li>
@@ -31,18 +31,25 @@
             {{--            </section>--}}
             <div class="row">
                 <div class="col-md-12 ima">
-                    <form id="create_form" action="{{route('slides.store')}}" method="post">
+                    <form id="create_form" action="{{route('slides.update',$sliders->id)}}" method="post">
                         @csrf
+                        @method('PUT')
+                        <input type="hidden" name="news_id" id="news_id" value="{{$sliders->news_id}}">
                         <div class="form-group col-md-12">
                             <label for="">Title</label><span style="font-weight: bold; color: red"> *</span>
-                            <input type="text" name="title" class="form-control">
+                            <input type="text" name="title" class="form-control" value="{{$sliders->title}}">
                         </div>
                         <div class="col-md-12">
-                            <label for="">Image</label><span style="font-weight: bold; color: red"> *</span>
+                            <div>
+                                <label for="">Old Image</label>
+                                <img  src="{{asset($sliders->image)}}" alt="" class="img-fluid rounded img-thumbnail">
+                                <input type="hidden" name="old_image" id="" value="{{$sliders->image}}">
+                            </div>
+
+                            <label for="">New Image</label>
                             <input type="hidden" name="image" id="image">
                             <div id="dropzoneForm" class="dropzone">
                             </div>
-                        </div>
                         <div class="form-group col-md-12 " style="margin-top: 10px">
                             <button class="btn btn-primary">Save</button>
                         </div>
