@@ -337,7 +337,7 @@ class SliderController extends Controller
             return back()->with($exception->getMessage());
         }
     }
-    
+
     public function slide_status_change(Request $request)
     {
         $request->validate([

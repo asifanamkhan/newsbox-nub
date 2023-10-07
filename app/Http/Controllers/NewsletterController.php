@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Newsletter;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use DataTables;
 class NewsletterController extends Controller
@@ -45,8 +47,25 @@ class NewsletterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'email' => 'required',
+        ], []);
+        try {
+
+            DB::table('newsletters')->insert([
+                'email' => $request->email,
+                'created_at' => Carbon::now(),
+            ]);
+
+            return redirect()->route('/')
+                ->with('success', 'Added Successfully');
+        } catch (\Exception $exception) {
+
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
+
     }
+
 
     /**
      * Display the specified resource.

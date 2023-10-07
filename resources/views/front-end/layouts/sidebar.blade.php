@@ -110,12 +110,15 @@
     </div>
     <div class="bg-white text-center border border-top-0 p-3">
         <p>Aliqu justo et labore at eirmod justo sea erat diam dolor diam vero kasd</p>
-        <div class="input-group mb-2" style="width: 100%;">
-            <input type="text" class="form-control form-control-lg" placeholder="Your Email">
-            <div class="input-group-append">
-                <button class="btn btn-primary font-weight-bold px-3">Sign Up</button>
+        <form action="{{route('newsletter.store')}}" method="post">
+            @csrf
+            <div class="input-group mb-2" style="width: 100%;">
+                <input type="text" name="email" class="form-control form-control-lg" placeholder="Your Email">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary font-weight-bold px-3">Sign Up</button>
+                </div>
             </div>
-        </div>
+        </form>
         <small>Lorem ipsum dolor sit amet elit</small>
     </div>
 </div>
