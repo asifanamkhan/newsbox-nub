@@ -1,3 +1,7 @@
+@php
+$news_categories = \Illuminate\Support\Facades\DB::table('news_categories')->get();
+@endphp
+
 <div class="container-fluid p-0">
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-2 py-lg-0 px-lg-5">
         <a href="index.html" class="navbar-brand d-block d-lg-none">
@@ -9,51 +13,18 @@
         <div class="collapse navbar-collapse justify-content-between px-0 px-lg-3" id="navbarCollapse">
             <div class="navbar-nav mr-auto py-0">
                 <a href="index.html" class="nav-item nav-link active">Home</a>
-                <a href="category.html" class="nav-item nav-link">Category</a>
-                <a href="single.html" class="nav-item nav-link">Single News</a>
-                <!-- <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Dropdown</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">News</a>
                     <div class="dropdown-menu rounded-0 m-0">
-                        <a href="#" class="dropdown-item">Menu item 1</a>
-                        <a href="#" class="dropdown-item">Menu item 2</a>
-                        <a href="#" class="dropdown-item">Menu item 3</a>
+                        @foreach($news_categories as $news_category)
+                            <a href="#" class="dropdown-item">{{$news_category->name}}</a>
+                        @endforeach
                     </div>
-                </div> -->
-                <li class="nav-item dropdown">
-                    <a href="#" id="menu"
-                       data-toggle="dropdown" class="nav-link dropdown-toggle"
-                       data-display="static">Dropdown</a>
-                    <ul id="parentUL" class="dropdown-menu">
-                        <li id="subMenu1" class="dropdown-item dropdown-submenu">
-                            <a id="subMenu1link" href="#" data-toggle="dropdown" class="dropdown-toggle">Submenu-1</a>
-                            <ul id="dropdownmenu1" class="dropdown-menu subUL">
-                                <li class="dropdown-item">
-                                    <a href="#">Item-1</a>
-                                </li>
-                                <li class="dropdown-item">
-                                    <a href="#">Item-2</a>
-                                </li>
-                                <li class="dropdown-item">
-                                    <a href="#">Item-3</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li id="subMenu2" class="dropdown-item dropdown-submenu">
-                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Submenu-2</a>
-                            <ul id="dropdownmenu2" class="dropdown-menu subUL">
-                                <li class="dropdown-item">
-                                    <a href="#">Item-1</a>
-                                </li>
-                                <li class="dropdown-item">
-                                    <a href="#">Item-2</a>
-                                </li>
-                                <li class="dropdown-item">
-                                    <a href="#">Item-3</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
+                </div>
+                <a href="category.html" class="nav-item nav-link">About us</a>
+                <a href="contact.html" class="nav-item nav-link">Gallery</a>
+                <a href="contact.html" class="nav-item nav-link">Events</a>
+                <a href="contact.html" class="nav-item nav-link">Achievements</a>
                 <a href="contact.html" class="nav-item nav-link">Contact</a>
             </div>
             <div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
