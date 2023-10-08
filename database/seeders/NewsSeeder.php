@@ -25,6 +25,8 @@ class NewsSeeder extends Seeder
                 'title'=>$value['title'],
                 'type'=>$value['type'],
                 'description'=>$value['description'],
+                'sort_description'=>$value['sort_description'],
+                'writer_id'=>$value['writer_id'],
                 'image'=>$value['image'],
                 'status'=>$value['status'],
                 'created_by'=>$value['created_by'],
