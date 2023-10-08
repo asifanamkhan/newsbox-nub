@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('type');
             $table->longText('description');
-            $table->longText('sort_description');
+            $table->longText('short_description');
             $table->string('writer_id');
             $table->string('image')->nullable();
             $table->string('views_count')->nullable();

@@ -139,12 +139,14 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'title' => 'required',
             'date' => 'required',
             'type' => 'required',
             'category_id' => 'required',
             'description' => 'required',
+            'short_description' => 'required',
         ], []);
         try {
 
@@ -162,6 +164,8 @@ class NewsController extends Controller
                 'category_id' => $request->category_id,
                 'image' => $image_url,
                 'description' => $request->description,
+                'short_description' => $request->short_description,
+                'writer_id' => 1,
                 'status' => 1,
                 'created_by' => Auth::id(),
                 'created_at' => Carbon::now(),
@@ -256,6 +260,8 @@ class NewsController extends Controller
                     'category_id' => $request->category_id,
                     'image' => $image_url,
                     'description' => $request->description,
+                    'short_description' => $request->short_description,
+                    'writer_id' => 1,
                     'status' => 1,
                     'created_by' => Auth::id(),
                     'created_at' => Carbon::now(),
