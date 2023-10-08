@@ -68,6 +68,10 @@
                         <div class="">
                             <label for="">Description</label><span style="font-weight: bold; color: red"> *</span>
                             <textarea name="description" id="" class="form-control tinymce-editor" cols="30" rows="10">{{$news->description}}</textarea>
+                            <div class="col-md-12">
+                                <label for="" style="color: blue">Short Description for display home (N: B: Within 15 word is recommended)</label><span style="font-weight: bold; color: red"> *</span>
+                                <textarea name="short_description" id="" class="form-control" cols="30" rows="5">{{$news->short_description}}</textarea>
+                            </div>
                         </div>
 
                     </div>
