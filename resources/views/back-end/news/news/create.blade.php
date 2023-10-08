@@ -44,9 +44,15 @@
                         <input type="text" name="title" class="form-control">
                     </div>
                     <div class="col-md-7">
-                        <div class="">
-                            <label for="">Description</label><span style="font-weight: bold; color: red"> *</span>
-                            <textarea name="description" id="" class="form-control tinymce-editor" cols="30" rows="10"></textarea>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="">Description</label><span style="font-weight: bold; color: red"> *</span>
+                                <textarea name="description" id="" class="form-control tinymce-editor" cols="30" rows="15"></textarea>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="" style="color: blue">Short Description for display home (N: B: Within 15 word is recommended)</label><span style="font-weight: bold; color: red"> *</span>
+                                <textarea name="description" id="" class="form-control" cols="30" rows="5"></textarea>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-5">
