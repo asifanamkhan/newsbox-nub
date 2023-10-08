@@ -126,47 +126,41 @@
     @endif
 
     <div class="col-lg-6">
-        <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
-            <img class="img-fluid" src="{{asset('public/front-end/img/news-110x110-1.jpg')}}" alt="">
-            <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
-                <div class="mb-2">
-                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">Business</a>
-                    <a class="text-body" href=""><small>Jan 01, 2045</small></a>
+        @foreach($latest_news as $latest)
+            @if($loop->iteration > 8 && $loop->iteration <= 9)
+                <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
+                    <img class="img-fluid" style="height: 110px; width: 110px" src="{{asset($latest->image)}}" alt="">
+                    <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
+                        <div class="mb-2">
+                            <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">{{$latest->news_cat_name}}</a>
+                            <a class="text-body" href=""><small>{{\Carbon\Carbon::parse($latest->date)->format('M d, Y')}}</small></a>
+                        </div>
+                        @php
+                            $latest_title = substr($latest->title,0, 25);
+                        @endphp
+                        <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="">{{$latest_title}} ...</a>
+                    </div>
                 </div>
-                <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="">Lorem ipsum dolor sit amet elit...</a>
-            </div>
-        </div>
-        <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
-            <img class="img-fluid" src="{{asset('public/front-end/img/news-110x110-2.jpg')}}" alt="">
-            <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
-                <div class="mb-2">
-                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">Business</a>
-                    <a class="text-body" href=""><small>Jan 01, 2045</small></a>
-                </div>
-                <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="">Lorem ipsum dolor sit amet elit...</a>
-            </div>
-        </div>
+            @endif
+        @endforeach
     </div>
     <div class="col-lg-6">
-        <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
-            <img class="img-fluid" src="{{asset('public/front-end/img/news-110x110-3.jpg')}}" alt="">
-            <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
-                <div class="mb-2">
-                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">Business</a>
-                    <a class="text-body" href=""><small>Jan 01, 2045</small></a>
+        @foreach($latest_news as $latest)
+            @if($loop->iteration > 9 && $loop->iteration <= 11)
+                <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
+                    <img class="img-fluid" style="height: 110px; width: 110px" src="{{asset($latest->image)}}" alt="">
+                    <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
+                        <div class="mb-2">
+                            <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">{{$latest->news_cat_name}}</a>
+                            <a class="text-body" href=""><small>{{\Carbon\Carbon::parse($latest->date)->format('M d, Y')}}</small></a>
+                        </div>
+                        @php
+                            $latest_title = substr($latest->title,0, 25);
+                        @endphp
+                        <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="">{{$latest_title}} ...</a>
+                    </div>
                 </div>
-                <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="">Lorem ipsum dolor sit amet elit...</a>
-            </div>
-        </div>
-        <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
-            <img class="img-fluid" src="{{asset('public/front-end/img/news-110x110-4.jpg')}}" alt="">
-            <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
-                <div class="mb-2">
-                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">Business</a>
-                    <a class="text-body" href=""><small>Jan 01, 2045</small></a>
-                </div>
-                <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="">Lorem ipsum dolor sit amet elit...</a>
-            </div>
-        </div>
+            @endif
+        @endforeach
     </div>
 </div>
