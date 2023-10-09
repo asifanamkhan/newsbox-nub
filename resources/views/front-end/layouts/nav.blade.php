@@ -1,6 +1,4 @@
-@php
-$news_categories = \Illuminate\Support\Facades\DB::table('news_categories')->get();
-@endphp
+
 
 <div class="container-fluid p-0">
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-2 py-lg-0 px-lg-5">
@@ -25,7 +23,7 @@ $news_categories = \Illuminate\Support\Facades\DB::table('news_categories')->get
                 <a href="contact.html" class="nav-item nav-link">Gallery</a>
                 <a href="contact.html" class="nav-item nav-link">Events</a>
                 <a href="contact.html" class="nav-item nav-link">Achievements</a>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                <a href="{{route('front.contact.create')}}" class="nav-item nav-link">Contact</a>
             </div>
             <div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
                 <input type="text" class="form-control border-0" placeholder="Keyword">

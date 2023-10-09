@@ -127,7 +127,7 @@
 
     <div class="col-lg-6">
         @foreach($latest_news as $latest)
-            @if($loop->iteration > 8 && $loop->iteration <= 9)
+            @if($loop->iteration > 8 && $loop->iteration <= 10)
                 <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
                     <img class="img-fluid" style="height: 110px; width: 110px" src="{{asset($latest->image)}}" alt="">
                     <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
@@ -146,7 +146,7 @@
     </div>
     <div class="col-lg-6">
         @foreach($latest_news as $latest)
-            @if($loop->iteration > 9 && $loop->iteration <= 11)
+            @if($loop->iteration > 10 && $loop->iteration <= 12)
                 <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
                     <img class="img-fluid" style="height: 110px; width: 110px" src="{{asset($latest->image)}}" alt="">
                     <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">

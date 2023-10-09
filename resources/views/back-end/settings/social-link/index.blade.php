@@ -29,7 +29,7 @@
                         <tr>
                             <td style="">
                                 <div style="background:{{$value->color}} ; color: white; font-size: 20px; padding: 1px; border-radius: 2px; text-align: center">
-                                    <i class="{{$value->icon}}"></i>
+                                    <i class="fa {{$value->icon}}"></i>
                                 </div>
                             </td>
                             <td>

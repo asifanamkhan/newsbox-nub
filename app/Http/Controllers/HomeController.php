@@ -29,38 +29,5 @@ class HomeController extends Controller
     {
         return view('front-end.home');
     }
-    public function contact()
-    {
-//        return view('front-end.home');
-    }
 
-    public function about()
-    {
-//        return view('front-end.home');
-    }
-
-    public function gallery()
-    {
-//        return view('front-end.home');
-    }
-
-    public function events()
-    {
-//        return view('front-end.home');
-    }
-
-    public function achievement()
-    {
-//        return view('front-end.home');
-    }
-
-    public function allNews()
-    {
-//        return view('front-end.home');
-    }
-
-    public function singleNews()
-    {
-//        return view('front-end.home');
-    }
 }

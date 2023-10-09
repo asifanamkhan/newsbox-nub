@@ -4,30 +4,19 @@
         <h4 class="m-0 text-uppercase font-weight-bold">Follow Us</h4>
     </div>
     <div class="bg-white border border-top-0 p-3">
-        <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #39569E;">
-            <i class="fab fa-facebook-f text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
-            <span class="font-weight-medium">12,345 Fans</span>
-        </a>
-        <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #52AAF4;">
-            <i class="fab fa-twitter text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
-            <span class="font-weight-medium">12,345 Followers</span>
-        </a>
-        <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #0185AE;">
-            <i class="fab fa-linkedin-in text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
-            <span class="font-weight-medium">12,345 Connects</span>
-        </a>
-        <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #C8359D;">
-            <i class="fab fa-instagram text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
-            <span class="font-weight-medium">12,345 Followers</span>
-        </a>
-        <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #DC472E;">
-            <i class="fab fa-youtube text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
-            <span class="font-weight-medium">12,345 Subscribers</span>
-        </a>
-        <a href="" class="d-block w-100 text-white text-decoration-none" style="background: #055570;">
-            <i class="fab fa-vimeo-v text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
-            <span class="font-weight-medium">12,345 Followers</span>
-        </a>
+        @php
+            $social_links = \Illuminate\Support\Facades\DB::table('social_links')
+            ->get()
+        @endphp
+
+        @foreach($social_links as $social_link)
+            <a href="" class="d-block w-100 text-white text-decoration-none mb-3"
+               style="background: {{$social_link->color}};">
+                <i class="fab {{$social_link->icon}}@if($social_link->name == 'Facebook')-f @endif
+                 text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
+                <span class="font-weight-medium">12,345 Fans</span>
+            </a>
+        @endforeach
     </div>
 </div>
 <!-- Social Follow End -->
@@ -44,63 +33,46 @@
 <!-- Ads End -->
 
 <!-- Popular News Start -->
-<div class="mb-3">
-    <div class="section-title mb-0">
-        <h4 class="m-0 text-uppercase font-weight-bold">Tranding News</h4>
-    </div>
-    <div class="bg-white border border-top-0 p-3">
-        <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
-            <img class="img-fluid" src="{{asset('public/front-end/img/news-110x110-1.jpg')}}" alt="">
-            <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
-                <div class="mb-2">
-                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">Business</a>
-                    <a class="text-body" href=""><small>Jan 01, 2045</small></a>
-                </div>
-                <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="">Lorem ipsum dolor sit amet elit...</a>
-            </div>
+@php
+    $trending_news = \Illuminate\Support\Facades\DB::table('news')
+                ->where('news.type',1)
+                ->leftjoin('news_categories', 'news.category_id', '=', 'news_categories.id')
+                ->orderBy('news.id', 'DESC')
+                ->select(['news.*','news_categories.name as news_cat_name'])
+                ->take(5)->get();
+@endphp
+
+@if(\Request::route()->getName() == 'home')
+    <div class="mb-3">
+        <div class="section-title mb-0">
+            <h4 class="m-0 text-uppercase font-weight-bold">Trending News</h4>
         </div>
-        <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
-            <img class="img-fluid" src="{{asset('public/front-end/img/news-110x110-2.jpg')}}" alt="">
-            <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
-                <div class="mb-2">
-                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">Business</a>
-                    <a class="text-body" href=""><small>Jan 01, 2045</small></a>
+        <div class="bg-white border border-top-0 p-3">
+            @foreach($trending_news as $trending_new)
+                <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
+                    <img class="img-fluid" style="height: 110px; width: 110px" src="{{asset($trending_new->image)}}"
+                         alt="">
+                    <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
+                        <div class="mb-2">
+                            <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2"
+                               href="">{{$trending_new->news_cat_name}}</a>
+                            <a class="text-body"
+                               href=""><small>{{\Carbon\Carbon::parse($trending_new->date)->format('M d, Y')}}</small></a>
+                        </div>
+                        @php
+                            $latest_title = substr($trending_new->title,0, 25);
+                        @endphp
+                        <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="">{{$latest_title}}
+                            ...</a>
+                    </div>
                 </div>
-                <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="">Lorem ipsum dolor sit amet elit...</a>
-            </div>
-        </div>
-        <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
-            <img class="img-fluid" src="{{asset('public/front-end/img/news-110x110-3.jpg')}}" alt="">
-            <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
-                <div class="mb-2">
-                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">Business</a>
-                    <a class="text-body" href=""><small>Jan 01, 2045</small></a>
-                </div>
-                <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="">Lorem ipsum dolor sit amet elit...</a>
-            </div>
-        </div>
-        <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
-            <img class="img-fluid" src="{{asset('public/front-end/img/news-110x110-4.jpg')}}" alt="">
-            <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
-                <div class="mb-2">
-                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">Business</a>
-                    <a class="text-body" href=""><small>Jan 01, 2045</small></a>
-                </div>
-                <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="">Lorem ipsum dolor sit amet elit...</a>
-            </div>
-        </div>
-        <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
-            <img class="img-fluid" src="{{asset('public/front-end/img/news-110x110-5.jpg')}}" alt="">
-            <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
-                <div class="mb-2">
-                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">Business</a>
-                    <a class="text-body" href=""><small>Jan 01, 2045</small></a>
-                </div>
-                <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="">Lorem ipsum dolor sit amet elit...</a>
-            </div>
+            @endforeach
+
+
         </div>
     </div>
-</div>
+@endif
+
 <!-- Popular News End -->
 
 <!-- Newsletter Start -->
@@ -109,7 +81,7 @@
         <h4 class="m-0 text-uppercase font-weight-bold">Newsletter</h4>
     </div>
     <div class="bg-white text-center border border-top-0 p-3">
-        <p>Aliqu justo et labore at eirmod justo sea erat diam dolor diam vero kasd</p>
+        <p>Subscribe tog get latest news in email</p>
         <form action="{{route('newsletter.store')}}" method="post">
             @csrf
             <div class="input-group mb-2" style="width: 100%;">
@@ -119,29 +91,24 @@
                 </div>
             </div>
         </form>
-        <small>Lorem ipsum dolor sit amet elit</small>
     </div>
 </div>
 <!-- Newsletter End -->
 
 <!-- Tags Start -->
-<div class="mb-3">
-    <div class="section-title mb-0">
-        <h4 class="m-0 text-uppercase font-weight-bold">Tags</h4>
-    </div>
-    <div class="bg-white border border-top-0 p-3">
-        <div class="d-flex flex-wrap m-n1">
-            <a href="" class="btn btn-sm btn-outline-secondary m-1">Politics</a>
-            <a href="" class="btn btn-sm btn-outline-secondary m-1">Business</a>
-            <a href="" class="btn btn-sm btn-outline-secondary m-1">Corporate</a>
-            <a href="" class="btn btn-sm btn-outline-secondary m-1">Business</a>
-            <a href="" class="btn btn-sm btn-outline-secondary m-1">Health</a>
-            <a href="" class="btn btn-sm btn-outline-secondary m-1">Education</a>
-            <a href="" class="btn btn-sm btn-outline-secondary m-1">Science</a>
-            <a href="" class="btn btn-sm btn-outline-secondary m-1">Business</a>
-            <a href="" class="btn btn-sm btn-outline-secondary m-1">Foods</a>
-            <a href="" class="btn btn-sm btn-outline-secondary m-1">Travel</a>
+@if(\Request::route()->getName() == 'home')
+    <div class="mb-3">
+        <div class="section-title mb-0">
+            <h4 class="m-0 text-uppercase font-weight-bold">Tags</h4>
+        </div>
+        <div class="bg-white border border-top-0 p-3">
+            <div class="d-flex flex-wrap m-n1">
+                @foreach($news_categories as $news_category)
+                    <a href="" class="btn btn-sm btn-outline-secondary m-1">{{$news_category->name}}</a>
+                @endforeach
+
+            </div>
         </div>
     </div>
-</div>
+@endif
 <!-- Tags End -->
