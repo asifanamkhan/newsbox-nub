@@ -15,17 +15,17 @@
 @endphp
 @include('front-end.layouts.nav')
 <!-- Navbar End -->
-
-<!-- Main News Slider Start -->
-@include('front-end.home-news.slide')
-<!-- Main News Slider End -->
-
-<!-- Breaking News Start -->
-@include('front-end.home-news.breaking-news')
-<!-- Breaking News End -->
-
-<!-- Featured News Slider Start -->
 @if(\Request::route()->getName() == 'home')
+    <!-- Main News Slider Start -->
+    @include('front-end.home-news.slide')
+    <!-- Main News Slider End -->
+
+    <!-- Breaking News Start -->
+    @include('front-end.home-news.breaking-news')
+    <!-- Breaking News End -->
+
+    <!-- Featured News Slider Start -->
+
     @include('front-end.home-news.featured')
 @endif
 <!-- Featured News Slider End -->

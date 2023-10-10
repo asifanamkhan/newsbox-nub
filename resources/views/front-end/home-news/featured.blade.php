@@ -21,7 +21,12 @@
                                href="">{{$featured->news_cat_name}}</a>
                             <a class="text-white" href=""><small>{{\Carbon\Carbon::parse($featured->date)->format('M d, Y')}}</small></a>
                         </div>
-                        <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="">{{$featured->title}}</a>
+                        @php
+                            $featured_title = substr($featured->title,0, 25);
+                        @endphp
+                        <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="">
+                            {{$featured_title}}
+                        </a>
                     </div>
                 </div>
             @endforeach

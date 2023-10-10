@@ -1,5 +1,5 @@
 <!-- Social Follow Start -->
-<div class="mb-3">
+<div class="mb-3 @if(\Request::route()->getName() != 'home') mt-5 pt-3 @endif">
     <div class="section-title mb-0">
         <h4 class="m-0 text-uppercase font-weight-bold">Follow Us</h4>
     </div>
