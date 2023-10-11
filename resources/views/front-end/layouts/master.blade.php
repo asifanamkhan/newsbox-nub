@@ -10,19 +10,24 @@
 
 
 <!-- Navbar Start -->
+@php
+    $news_categories = \Illuminate\Support\Facades\DB::table('news_categories')->get();
+@endphp
 @include('front-end.layouts.nav')
 <!-- Navbar End -->
+@if(\Request::route()->getName() == 'home')
+    <!-- Main News Slider Start -->
+    @include('front-end.home-news.slide')
+    <!-- Main News Slider End -->
 
-<!-- Main News Slider Start -->
-@include('front-end.home-news.slide')
-<!-- Main News Slider End -->
+    <!-- Breaking News Start -->
+    @include('front-end.home-news.breaking-news')
+    <!-- Breaking News End -->
 
-<!-- Breaking News Start -->
-@include('front-end.home-news.breaking-news')
-<!-- Breaking News End -->
+    <!-- Featured News Slider Start -->
 
-<!-- Featured News Slider Start -->
-@include('front-end.home-news.featured')
+    @include('front-end.home-news.featured')
+@endif
 <!-- Featured News Slider End -->
 
 <!-- News With Sidebar Start -->

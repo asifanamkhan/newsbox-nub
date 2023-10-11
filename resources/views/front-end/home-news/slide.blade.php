@@ -52,8 +52,11 @@
                                         <a class="text-white"
                                            href="#"><small>{{\Carbon\Carbon::parse($slide->news_date)->format('M d, Y')}}</small></a>
                                     </div>
+                                    @php
+                                        $featured_slide_title = substr($slide->news_title,0, 25);
+                                    @endphp
                                     <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="">Lorem
-                                        {{$slide->news_title}}</a>
+                                        {{$featured_slide_title}} ...</a>
                                 </div>
                             </div>
                         </div>

@@ -92,4 +92,12 @@ class ContactController extends Controller
     {
         //
     }
+
+    public function front_contact_create(){
+        try {
+            return view('front-end.pages.contact.create');
+        } catch (\Exception $exception) {
+            return back()->with($exception->getMessage());
+        }
+    }
 }
