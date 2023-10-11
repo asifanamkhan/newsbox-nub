@@ -21,7 +21,7 @@
                 <a href="contact.html" class="nav-item nav-link">Gallery</a>
                 <a href="contact.html" class="nav-item nav-link">Events</a>
                 <a href="contact.html" class="nav-item nav-link">Achievements</a>
-{{--                <a href="{{route('front.contact.create')}}" class="nav-item nav-link">Contact</a>--}}
+{{--                <a href="{{route('contactUs')}}" class="nav-item nav-link">Contact</a>--}}
             </div>
             <div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
                 <input type="text" class="form-control border-0" placeholder="Keyword">

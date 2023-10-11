@@ -10,7 +10,7 @@
                         <a class="nav-link text-body small" href="#">Advertise</a>
                     </li>
                     <li class="nav-item border-right border-secondary">
-                        <a class="nav-link text-body small" href="{{route('front.contact.create')}}">
+                        <a class="nav-link text-body small" href="{{route('contactUs')}}">
                             Contact
                         </a>
                     </li>
