@@ -3,11 +3,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.css">
 
     <h1 style="font-family: 'Arial Narrow';">
-        Gallery Edit
+        Ads Create
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-pie-chart"></i> Dashboard</a></li>
-        <li class="active">gallery edit</li>
+        <li class="active">ads</li>
     </ol>
 @endsection
 @section('content')
@@ -38,41 +38,35 @@
             {{--                </div>--}}
             {{--            </section>--}}
             <div class="row">
-                <div class="col-md-7">
-                    <form id="create_form" action="{{route('gallery.update', $gallery->id)}}" method="post">
+                <div class="col-md-7 ima">
+                    <form id="create_form" action="{{route('ads.store')}}" method="post">
                         @csrf
-                        @method('PUT')
                         <div id="img-body">
                             <input type="hidden" name="image" id="image">
-                            <input type="hidden" name="old_image" id="" value="{{$gallery->image}}">
                         </div>
                         <div class="form-group col-md-12">
                             <label for="">Title</label><span style="font-weight: bold; color: red"> *</span>
-                            <input type="text" value="{{$gallery->title}}" name="title" class="form-control">
+                            <input type="text" name="title" class="form-control">
                         </div>
                         <div class="form-group col-md-12">
                             <label for="">Description</label><span style="font-weight: bold; color: red"> *</span>
-                            <textarea name="description" id="" cols="30" class="form-control tinymce-editor" rows="10">{!! $gallery->description !!}</textarea>
+                            <textarea name="description" id="" cols="30" class="form-control" rows="2"></textarea>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="">Link</label><span style="font-weight: bold; color: red"> *</span>
+                            <input type="text" name="link" class="form-control">
                         </div>
                         <div class="form-group col-md-12">
                             <button class="btn btn-primary">Save</button>
                         </div>
                     </form>
                 </div>
-                <div class="col-md-5">
-                    <div>
-                        <label for="">Image</label>
-                        <img  src="{{asset($gallery->image)}}" alt="" class="img-fluid rounded img-thumbnail">
-                    </div>
-                    <div class="mt-5">
-                        <label for="">New Image</label>
-                        <form id="dropzoneForm" class="dropzone" action="{{ route('gallery.store') }}">
-                            @csrf
-                        </form>
-
-                    </div>
+                <div class=" col-md-5">
+                    <label for="">Image</label><span style="font-weight: bold; color: red"> *</span>
+                    <form id="dropzoneForm" class="dropzone" action="{{ route('events.store') }}">
+                        @csrf
+                    </form>
                 </div>
-
 
             </div>
 
@@ -82,7 +76,6 @@
 @endsection
 @section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
         $().ready(function () {
             $("#create_form").validate({
@@ -97,20 +90,14 @@
             });
 
         })
-
-
-        tinymce.init({
-            selector: '.tinymce-editor',
-            height: 300,
-        });
     </script>
 
 
 
     <script>
         $(document).ready(function () {
-            $("#side-gallery").addClass('active');
-            $("#side-gallery").addClass('active-sidebar');
+            $("#side-ads").addClass('active');
+            $("#side-ads").addClass('active-sidebar');
         });
     </script>
     <script type="text/javascript">
@@ -138,9 +125,7 @@
                 this.on('removedfile', function (file) {
                     $('#image').val(' ');
                 });
-
             },
-
         };
 
     </script>

@@ -170,6 +170,13 @@
             </span>
             </a>
         </li>
+        <li class="" id="side-ads">
+            <a href="{{route('ads.index')}}">
+                <i class="fa fa-folder-open"></i> <span>Ads</span>
+                <span class="pull-right-container">
+            </span>
+            </a>
+        </li>
         <li class="" id="side-events">
             <a href="{{route('events.index')}}">
                 <i class="fa fa-calendar"></i> <span>Events</span>
