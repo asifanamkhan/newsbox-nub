@@ -14,7 +14,7 @@ class NewsTypeSeeder extends Seeder
     public function run(): void
     {
         $types = [
-          'Trending','Latest','Featured','Breaking'
+          'Trending','Latest','Featured','Breaking','Popular'
         ];
 
         foreach ($types as $value){

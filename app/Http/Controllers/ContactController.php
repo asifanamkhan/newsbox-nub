@@ -6,6 +6,7 @@ use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use DataTables;
+use Carbon\Carbon;
 class ContactController extends Controller
 {
     /**
@@ -50,7 +51,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -93,11 +94,38 @@ class ContactController extends Controller
         //
     }
 
-    public function front_contact_create(){
+    public function contactUs(){
         try {
             return view('front-end.pages.contact.create');
         } catch (\Exception $exception) {
             return back()->with($exception->getMessage());
         }
+    }
+
+    public function contactCreate(Request $request)
+    {
+        $request->validate([
+            'email' => 'required',
+            'name' => 'required',
+            'subject' => 'required',
+            'message' => 'required',
+        ], []);
+        try {
+
+            DB::table('contacts')->insert([
+                'name' => $request->name,
+                'email' => $request->email,
+                'subject' => $request->subject,
+                'message' => $request->message,
+                'created_at' => Carbon::now(),
+            ]);
+
+            return redirect()->route('/')
+                ->with('success', 'Successfully Submited');
+        } catch (\Exception $exception) {
+
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
+
     }
 }

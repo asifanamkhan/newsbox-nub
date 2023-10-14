@@ -13,6 +13,7 @@ use App\Http\Controllers\settings\ImportantLinkController;
 use App\Http\Controllers\settings\SocialLinkController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\ReadersController;
+use App\Http\Controllers\AdController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,7 @@ Route::resource('events',EventController::class);
 Route::resource('achievements',AchievementController::class);
 Route::resource('news',NewsController::class);
 Route::resource('gallery',GalleryController::class);
+Route::resource('ads',AdController::class);
 Route::resource('readers',ReadersController::class);
 
 
@@ -52,6 +54,7 @@ Route::get('news-add-to-slide/{news_id}/{slide_id}',[SliderController::class,'ne
 Route::get('gallery-status-change',[GalleryController::class,'gallery_status_change'])->name('gallery-status-change');
 Route::post('add-new-image-gallery',[GalleryController::class,'add_new_image_gallery'])->name('add-new-image-gallery');
 
+Route::get('ads-status-change',[AdController::class,'ads_status_change'])->name('ads-status-change');
 
 
 

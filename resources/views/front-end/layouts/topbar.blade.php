@@ -10,12 +10,12 @@
                         <a class="nav-link text-body small" href="#">Advertise</a>
                     </li>
                     <li class="nav-item border-right border-secondary">
-                        <a class="nav-link text-body small" href="{{route('front.contact.create')}}">
+                        <a class="nav-link text-body small" href="{{route('contactUs')}}">
                             Contact
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-body small" href="#">Login</a>
+                        <a class="nav-link text-body small" href="{{ route('login') }}">Login</a>
                     </li>
                 </ul>
             </nav>

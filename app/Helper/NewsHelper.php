@@ -379,6 +379,44 @@ class NewsHelper{
                 'status' => 1,
                 'created_by' => 1,
             ],
+
+
+            [
+                'category_id' => 11,
+                'date' => '09/25/2023',
+                'title' => 'Quader lies about ‘clandestine’ understating with US: Fakhrul',
+                'type' => 5,
+                'description' => '<p style="box-sizing: border-box; font-family: Shurjo, SolaimanLipi, `Siyam Rupali`, Roboto, Arial, Helvetica, monospace; padding: 0px; font-size: var(--fs-18); line-height: 1.7; white-space-collapse: break-spaces; color: #121212; margin: 0px 0px var(--space1_6) 0px;"><span style="box-sizing: border-box; vertical-align: inherit;"><span style="box-sizing: border-box; vertical-align: inherit;">Every month the foreign currency reserves are decreasing. </span><span style="box-sizing: border-box; vertical-align: inherit;">According to International Monetary Fund (IMF) BPM 6, reserves currently stand at $2,900 million (20.90 billion). </span><span style="box-sizing: border-box; vertical-align: inherit;">However, in the account that Bangladesh Bank gives to the IMF without disclosing to the public, the country`s real reserves are now about 1,700 crores or 17 billion dollars.</span></span></p><p style="box-sizing: border-box; font-family: Shurjo, SolaimanLipi, `Siyam Rupali`, Roboto, Arial, Helvetica, monospace; padding: 0px; font-size: var(--fs-18); line-height: 1.7; white-space-collapse: break-spaces; color: #121212; margin: 0px 0px var(--space1_6) 0px;"><span style="box-sizing: border-box; vertical-align: inherit;"><span style="box-sizing: border-box; vertical-align: inherit;">According to economists, reserves have decreased by $1 billion per month in the last 24 months or two years. </span><span style="box-sizing: border-box; vertical-align: inherit;">Since 2022, the flow of remittance or expatriate income to the country is also decreasing. </span><span style="box-sizing: border-box; vertical-align: inherit;">In the first three quarters of 2023, in the first three quarters of 2023, an average of 150 to 160 million dollars of expatriate income came to the country, while it was $ 200 million per month in 2022.</span></span></p>',
+                'short_description'=>'Every month the foreign currency reserves are decreasing. According to International Monetary Fund (IMF) BPM ',
+                'writer_id'=> 1,
+                'image' => 'public/images/news/n16.jpeg',
+                'status' => 1,
+                'created_by' => 1,
+            ],
+            [
+                'category_id' => 11,
+                'date' => '09/25/2023',
+                'title' => 'Quader lies about ‘clandestine’ understating with US: Fakhrul',
+                'type' => 5,
+                'description' => '<p style="box-sizing: border-box; font-family: Shurjo, SolaimanLipi, `Siyam Rupali`, Roboto, Arial, Helvetica, monospace; padding: 0px; font-size: var(--fs-18); line-height: 1.7; white-space-collapse: break-spaces; color: #121212; margin: 0px 0px var(--space1_6) 0px;"><span style="box-sizing: border-box; vertical-align: inherit;"><span style="box-sizing: border-box; vertical-align: inherit;">Every month the foreign currency reserves are decreasing. </span><span style="box-sizing: border-box; vertical-align: inherit;">According to International Monetary Fund (IMF) BPM 6, reserves currently stand at $2,900 million (20.90 billion). </span><span style="box-sizing: border-box; vertical-align: inherit;">However, in the account that Bangladesh Bank gives to the IMF without disclosing to the public, the country`s real reserves are now about 1,700 crores or 17 billion dollars.</span></span></p><p style="box-sizing: border-box; font-family: Shurjo, SolaimanLipi, `Siyam Rupali`, Roboto, Arial, Helvetica, monospace; padding: 0px; font-size: var(--fs-18); line-height: 1.7; white-space-collapse: break-spaces; color: #121212; margin: 0px 0px var(--space1_6) 0px;"><span style="box-sizing: border-box; vertical-align: inherit;"><span style="box-sizing: border-box; vertical-align: inherit;">According to economists, reserves have decreased by $1 billion per month in the last 24 months or two years. </span><span style="box-sizing: border-box; vertical-align: inherit;">Since 2022, the flow of remittance or expatriate income to the country is also decreasing. </span><span style="box-sizing: border-box; vertical-align: inherit;">In the first three quarters of 2023, in the first three quarters of 2023, an average of 150 to 160 million dollars of expatriate income came to the country, while it was $ 200 million per month in 2022.</span></span></p>',
+                'short_description'=>'Every month the foreign currency reserves are decreasing. According to International Monetary Fund (IMF) BPM ',
+                'writer_id'=> 1,
+                'image' => 'public/images/news/n16.jpeg',
+                'status' => 1,
+                'created_by' => 1,
+            ],
+            [
+                'category_id' => 11,
+                'date' => '09/25/2023',
+                'title' => 'Quader lies about ‘clandestine’ understating with US: Fakhrul',
+                'type' => 5,
+                'description' => '<p style="box-sizing: border-box; font-family: Shurjo, SolaimanLipi, `Siyam Rupali`, Roboto, Arial, Helvetica, monospace; padding: 0px; font-size: var(--fs-18); line-height: 1.7; white-space-collapse: break-spaces; color: #121212; margin: 0px 0px var(--space1_6) 0px;"><span style="box-sizing: border-box; vertical-align: inherit;"><span style="box-sizing: border-box; vertical-align: inherit;">Every month the foreign currency reserves are decreasing. </span><span style="box-sizing: border-box; vertical-align: inherit;">According to International Monetary Fund (IMF) BPM 6, reserves currently stand at $2,900 million (20.90 billion). </span><span style="box-sizing: border-box; vertical-align: inherit;">However, in the account that Bangladesh Bank gives to the IMF without disclosing to the public, the country`s real reserves are now about 1,700 crores or 17 billion dollars.</span></span></p><p style="box-sizing: border-box; font-family: Shurjo, SolaimanLipi, `Siyam Rupali`, Roboto, Arial, Helvetica, monospace; padding: 0px; font-size: var(--fs-18); line-height: 1.7; white-space-collapse: break-spaces; color: #121212; margin: 0px 0px var(--space1_6) 0px;"><span style="box-sizing: border-box; vertical-align: inherit;"><span style="box-sizing: border-box; vertical-align: inherit;">According to economists, reserves have decreased by $1 billion per month in the last 24 months or two years. </span><span style="box-sizing: border-box; vertical-align: inherit;">Since 2022, the flow of remittance or expatriate income to the country is also decreasing. </span><span style="box-sizing: border-box; vertical-align: inherit;">In the first three quarters of 2023, in the first three quarters of 2023, an average of 150 to 160 million dollars of expatriate income came to the country, while it was $ 200 million per month in 2022.</span></span></p>',
+                'short_description'=>'Every month the foreign currency reserves are decreasing. According to International Monetary Fund (IMF) BPM ',
+                'writer_id'=> 1,
+                'image' => 'public/images/news/n16.jpeg',
+                'status' => 1,
+                'created_by' => 1,
+            ],
         ];
     }
 }
