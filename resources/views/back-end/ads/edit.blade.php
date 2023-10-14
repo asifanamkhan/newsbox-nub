@@ -93,8 +93,8 @@
 
     <script>
         $(document).ready(function () {
-            $("#side-ads").addClass('active');
-            $("#side-ads").addClass('active-sidebar');
+            $("#side-ades").addClass('active');
+            $("#side-ades").addClass('active-sidebar');
         });
     </script>
             <script type="text/javascript">
