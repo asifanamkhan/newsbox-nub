@@ -36,29 +36,34 @@
                 </div>
                 <h6 class="text-uppercase font-weight-bold mb-3">Contact Us</h6>
                 <form action="{{route('contact.create')}}" method="post">
-                        @csrf
-                            <div class="form-row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" name="name" class="form-control p-4" placeholder="Your Name" required="required"/>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type="email" name="email" class="form-control p-4" placeholder="Your Email" required="required"/>
-                                    </div>
-                                </div>
-                            </div>
+                    @csrf
+                    <div class="form-row">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" name="subject" class="form-control p-4" placeholder="Subject" required="required"/>
+                                <input type="text" name="name" class="form-control p-4" placeholder="Your Name"
+                                       required="required"/>
                             </div>
+                        </div>
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <textarea class="form-control" name="message" rows="4" placeholder="Message" required="required"></textarea>
+                                <input type="email" name="email" class="form-control p-4" placeholder="Your Email"
+                                       required="required"/>
                             </div>
-                            <div>
-                                <button class="btn btn-primary font-weight-semi-bold px-4" style="height: 50px;"
-                                    type="submit">Send Message</button>
-                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="subject" class="form-control p-4" placeholder="Subject"
+                               required="required"/>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" name="message" rows="4" placeholder="Message"
+                                  required="required"></textarea>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary font-weight-semi-bold px-4" style="height: 50px;"
+                                type="submit">Send Message
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
