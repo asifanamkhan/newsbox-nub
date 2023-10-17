@@ -19,8 +19,8 @@
                 </div>
                 <a href="{{route('about-us')}}" class="nav-item nav-link">About us</a>
                 <a href="{{route('gallery')}}" class="nav-item nav-link">Gallery</a>
-                <a href="{{route('home')}}" class="nav-item nav-link">Events</a>
-                <a href="{{route('home')}}" class="nav-item nav-link">Achievements</a>
+                <a href="{{route('events')}}" class="nav-item nav-link">Events</a>
+                <a href="{{route('achievements')}}" class="nav-item nav-link">Achievements</a>
 {{--                <a href="{{route('contactUs')}}" class="nav-item nav-link">Contact</a>--}}
             </div>
             <div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">

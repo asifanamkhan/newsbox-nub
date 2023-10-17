@@ -255,4 +255,24 @@ class EventController extends Controller
             return back()->with($exception->getMessage());
         }
     }
+
+
+    public function events()
+    {
+      
+        return view('front-end.pages.events.index');
+    }
+
+    public function events_details($id)
+    {
+
+      try {
+            $events = DB::table('events')
+                ->where('id', $id)
+                ->first();
+            return view('front-end.pages.events.events-details', compact('events'));
+        } catch (\Exception $exception) {
+            return back()->with($exception->getMessage());
+        }
+    }
 }

@@ -257,4 +257,23 @@ class AchievementController extends Controller
             return back()->with($exception->getMessage());
         }
     }
+
+    public function achievements()
+    {
+      
+        return view('front-end.pages.achievements.index');
+    }
+
+    public function achievements_details($id)
+    {
+
+      try {
+            $achievements = DB::table('achievements')
+                ->where('id', $id)
+                ->first();
+            return view('front-end.pages.achievements.achievements-details', compact('achievements'));
+        } catch (\Exception $exception) {
+            return back()->with($exception->getMessage());
+        }
+    }
 }
