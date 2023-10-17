@@ -1,26 +1,27 @@
 @extends('back-end.layouts.master')
 @section('content-header')
     <h1 style="font-family: 'Arial Narrow';">
-       Create Role
+        Admin
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-pie-chart"></i>Administrator</a></li>
-        <li class="active">role</li>
+        <li class="active">Admin</li>
     </ol>
 @endsection
 @section('content')
     <div class="box">
         <div class="box-header with-border">
-            <h5 class="box-title"><b>Role List</b></h5>
-         <a href="{{route('roles.create')}}" id="add_new" style="float: right" class="btn btn-sm btn-grad">Add Role</a>
+            <h5 class="box-title"><b>Admin List</b></h5>
+            <a href="{{route('users.create')}}" id="add_new" style="float: right" class="btn btn-sm btn-grad">Add Admin</a>
         </div>
         <div class="box-body">
             <table style="width: 100%" class="table table-responsive table-striped data-table" id="table">
                 <thead class="table-header-background" style=";">
                 <tr class="" style="text-align:center; ">
-                    <th style="width: 6%">SL</th>
-                    <th style="width: 14%">Name</th>
-                    <th style="width: 70%">Permission</th>
+                    <th style="width: 5%">SL</th>
+                    <th style="width: 15%">Name</th>
+                    <th style="width: 15%">Email</th>
+                    <th style="width: 45%">Role</th>
                     <th style="width: 10%">Action</th>
                 </tr>
                 </thead>
@@ -33,8 +34,8 @@
     <script>
         $(document).ready(function () {
             $("#side-administrators").addClass('active');
-            $("#side-role").addClass('active');
-            $("#side-role").addClass('active-sidebar');
+            $("#side-admin").addClass('active');
+            $("#side-admin").addClass('active-sidebar');
         });
 
     </script>
@@ -54,14 +55,15 @@
             pagingType: "full_numbers",
 
             ajax: {
-                url: "{{route('roles.index')}}",
+                url: "{{route('users.index')}}",
                 type: "get",
             },
 
             columns: [
                 {data: "DT_RowIndex", name: "DT_RowIndex", orderable: false,},
                 {data: 'name', name: 'name', orderable: true,},
-                {data: 'permissions', name: 'permissions', orderable: true,},
+                {data: 'email', name: 'email', orderable: true,},
+                {data: 'roles', name: 'roles', orderable: false,},
                 {data: 'action', searchable: false, orderable: false}
                 //only those have manage_user permission will get access
             ],
