@@ -1,3 +1,6 @@
+@php
+    $general_settings = \Illuminate\Support\Facades\DB::table('general_settings')->first();
+@endphp
 @extends('front-end.layouts.master')
 @section('content')
     <div class="container-fluid mt-5 pt-3">
@@ -17,21 +20,21 @@
                             <i class="fa fa-map-marker-alt text-primary mr-2"></i>
                             <h6 class="font-weight-bold mb-0">Our Office</h6>
                         </div>
-                        <p class="m-0">123 Street, New York, USA</p>
+                        <p class="m-0">{{@$general_settings->address}}</p>
                     </div>
                     <div class="mb-3">
                         <div class="d-flex align-items-center mb-2">
                             <i class="fa fa-envelope-open text-primary mr-2"></i>
                             <h6 class="font-weight-bold mb-0">Email Us</h6>
                         </div>
-                        <p class="m-0">info@example.com</p>
+                        <p class="m-0">{{@$general_settings->email}}</p>
                     </div>
                     <div class="mb-3">
                         <div class="d-flex align-items-center mb-2">
                             <i class="fa fa-phone-alt text-primary mr-2"></i>
                             <h6 class="font-weight-bold mb-0">Call Us</h6>
                         </div>
-                        <p class="m-0">+012 345 6789</p>
+                        <p class="m-0">{{@$general_settings->phone}}</p>
                     </div>
                 </div>
                 <h6 class="text-uppercase font-weight-bold mb-3">Contact Us</h6>

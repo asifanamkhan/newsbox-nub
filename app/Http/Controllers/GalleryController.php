@@ -287,4 +287,29 @@ class GalleryController extends Controller
             return redirect()->back()->with('error', $exception->getMessage());
         }
     }
+
+    public function gallery()
+    {
+      
+        return view('front-end.pages.gallery.index');
+    }
+
+    public function gallery_details($id)
+    {
+
+      try {
+            $gallery = DB::table('galleries')
+                ->where('id', $id)
+                ->first();
+
+            $gallery_images = DB::table('gallery_images')
+                ->where('gallery_id', $id)
+                ->get();
+
+            return view('front-end.pages.gallery.gallery-details', compact('gallery','gallery_images'));
+        } catch (\Exception $exception) {
+            return back()->with($exception->getMessage());
+        }
+    }
+
 }
