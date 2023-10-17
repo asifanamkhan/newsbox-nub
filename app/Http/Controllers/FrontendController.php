@@ -49,4 +49,14 @@ class FrontendController extends Controller
     }
 
 
+    public function about_us()
+    {
+      
+        return view('front-end.pages.about-us.index');
+    }
+
+    
+    
+
+
 }
