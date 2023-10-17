@@ -23,19 +23,31 @@
                 </div>
             @endif
             <div class="row">
-                <form action="{{route('roles.store')}}" method="post">
+                <form action="{{route('users.store')}}" method="post">
                     @csrf
-                    <div class="form-group col-md-12">
+                    <div class="form-group col-md-6">
                         <label for="">Name</label><span style="font-weight: bold; color: red"> *</span>
                         <input type="text" name="name" class="form-control">
                     </div>
+                    <div class="form-group col-md-6">
+                        <label for="">Email</label><span style="font-weight: bold; color: red"> *</span>
+                        <input type="text" name="email" class="form-control">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="">Password</label><span style="font-weight: bold; color: red"> *</span>
+                        <input type="text" name="password" class="form-control">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="">Confirm password</label><span style="font-weight: bold; color: red"> *</span>
+                        <input type="text" name="password_confirmation" class="form-control">
+                    </div>
 
-                    <div class="form-group col-md-12">
-                        <label for="">Select permissions</label><span style="font-weight: bold; color: red"> *</span>
-                        <select multiple name="permissions[]" id="" class="form-control select2">
+                    <div class="form-group col-md-4">
+                        <label for="">Select role</label><span style="font-weight: bold; color: red"> *</span>
+                        <select name="role" id="" class="form-control select2">
                             <option value="">select</option>
-                            @foreach($permissions as $permission)
-                                <option value="{{$permission->name}}">{{$permission->name}}</option>
+                            @foreach($roles as $role)
+                                <option value="{{$role->name}}">{{$role->name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -54,8 +66,8 @@
     <script>
         $(document).ready(function () {
             $("#side-administrators").addClass('active');
-            $("#side-role").addClass('active');
-            $("#side-role").addClass('active-sidebar');
+            $("#side-admin").addClass('active');
+            $("#side-admin").addClass('active-sidebar');
         });
     </script>
 @endsection
