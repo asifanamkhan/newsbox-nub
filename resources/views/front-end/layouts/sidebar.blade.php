@@ -1,35 +1,35 @@
 <!-- Social Follow Start -->
-<div class="mb-3 @if(\Request::route()->getName() != 'home') mt-5 pt-3 @endif">
-    <div class="section-title mb-0">
-        <h4 class="m-0 text-uppercase font-weight-bold">Follow Us</h4>
-    </div>
-    <div class="bg-white border border-top-0 p-3">
-        @php
-            $social_links = \Illuminate\Support\Facades\DB::table('social_links')
-            ->get()
-        @endphp
+{{--<div class="mb-3 @if(\Request::route()->getName() != 'home') mt-5 pt-3 @endif">--}}
+{{--    <div class="section-title mb-0">--}}
+{{--        <h4 class="m-0 text-uppercase font-weight-bold">Follow Us</h4>--}}
+{{--    </div>--}}
+{{--    <div class="bg-white border border-top-0 p-3">--}}
+{{--        @php--}}
+{{--            $social_links = \Illuminate\Support\Facades\DB::table('social_links')--}}
+{{--            ->get()--}}
+{{--        @endphp--}}
 
-        @foreach($social_links as $social_link)
-            <a href="" class="d-block w-100 text-white text-decoration-none mb-3"
-               style="background: {{$social_link->color}};">
-                <i class="fab {{$social_link->icon}}@if($social_link->name == 'Facebook')-f @endif
-                 text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
-                <span class="font-weight-medium">12,345 Fans</span>
-            </a>
-        @endforeach
-    </div>
-</div>
+{{--        @foreach($social_links as $social_link)--}}
+{{--            <a href="" class="d-block w-100 text-white text-decoration-none mb-3"--}}
+{{--               style="background: {{$social_link->color}};">--}}
+{{--                <i class="fab {{$social_link->icon}}@if($social_link->name == 'Facebook')-f @endif--}}
+{{--                 text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>--}}
+{{--                <span class="font-weight-medium">12,345 Fans</span>--}}
+{{--            </a>--}}
+{{--        @endforeach--}}
+{{--    </div>--}}
+{{--</div>--}}
 <!-- Social Follow End -->
 
 <!-- Ads Start -->
-<div class="mb-3">
-    <div class="section-title mb-0">
-        <h4 class="m-0 text-uppercase font-weight-bold">Advertisement</h4>
-    </div>
-    <div class="bg-white text-center border border-top-0 p-3">
-        <a href=""><img class="img-fluid" src="{{asset('public/front-end/img/news-800x500-2.jpg')}}" alt=""></a>
-    </div>
-</div>
+{{--<div class="mb-3 ">--}}
+{{--    <div class="section-title mb-0">--}}
+{{--        <h4 class="m-0 text-uppercase font-weight-bold">Advertisement</h4>--}}
+{{--    </div>--}}
+{{--    <div class="bg-white text-center border border-top-0 p-3">--}}
+{{--        <a href=""><img class="img-fluid" src="{{asset('public/front-end/img/news-800x500-2.jpg')}}" alt=""></a>--}}
+{{--    </div>--}}
+{{--</div>--}}
 <!-- Ads End -->
 
 <!-- Popular News Start -->
@@ -76,7 +76,7 @@
 <!-- Popular News End -->
 
 <!-- Newsletter Start -->
-<div class="mb-3">
+<div class="mb-3 @if(\Request::route()->getName() != 'home') mt-5 pt-3 @endif" >
     <div class="section-title mb-0">
         <h4 class="m-0 text-uppercase font-weight-bold">Newsletter</h4>
     </div>

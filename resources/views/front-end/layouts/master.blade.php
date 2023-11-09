@@ -6,6 +6,7 @@
 <body>
 <!-- Topbar Start -->
 @include('front-end.layouts.topbar')
+@include('front-end.layouts.css')
 <!-- Topbar End -->
 
 
