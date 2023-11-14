@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
+use Spatie\Permission\Models\Role;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -87,11 +87,10 @@ class RoleController extends Controller
             $role->guard_name = 'web';
             $role->save();
 
-
-            $role->syncPermissions(['admin']);
+            $role->givePermissionTo($request->permissions);
 
             return redirect()->route('roles.index')
-                ->with('success', 'Successfully Submited');
+                ->with('success', 'Successfully Added');
         } catch (\Exception $exception) {
 
             return redirect()->back()->with('error', $exception->getMessage());

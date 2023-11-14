@@ -7,6 +7,7 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\news\NewsCategoryController;
 use App\Http\Controllers\News\NewsController;
 use App\Http\Controllers\News\NewsTypeController;
+use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\settings\AboutController;
 use App\Http\Controllers\settings\GeneralSettingController;
 use App\Http\Controllers\settings\ImportantLinkController;
@@ -36,6 +37,7 @@ Route::resource('readers',ReadersController::class);
 Route::resource('permissions',PermissionController::class);
 Route::resource('roles',RoleController::class);
 Route::resource('users',UserController::class);
+Route::resource('notice',NoticeController::class);
 
 
 
@@ -61,6 +63,8 @@ Route::get('gallery-status-change',[GalleryController::class,'gallery_status_cha
 Route::post('add-new-image-gallery',[GalleryController::class,'add_new_image_gallery'])->name('add-new-image-gallery');
 
 Route::get('ads-status-change',[AdController::class,'ads_status_change'])->name('ads-status-change');
+
+Route::get('notice-status-change',[NoticeController::class,'notice_status_change'])->name('notice-status-change');
 
 
 

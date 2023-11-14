@@ -4,7 +4,7 @@
         <div class="container">
 
             <div class="section-title mb-0">
-                <h4 class="m-0 text-uppercase font-weight-bold">Latest news</h4>
+                <h4 class="m-0 text-uppercase font-weight-bold">News</h4>
             </div>
             <div class="bg-white border border-top-0 p-4 mb-3">
                 <div class="row">

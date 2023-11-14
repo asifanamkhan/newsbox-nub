@@ -55,6 +55,19 @@ class FrontendController extends Controller
         return view('front-end.pages.about-us.index');
     }
 
+    public function news_search(Request $request){
+        ;
+        $news = \Illuminate\Support\Facades\DB::table('news')
+            ->where('news.description', 'like', "%$request->search%")
+            ->orWhere('news.title', 'like', "%$request->search%")
+            ->leftjoin('news_categories', 'news.category_id', '=', 'news_categories.id')
+            ->orderBy('news.id', 'DESC')
+            ->select(['news.*','news_categories.name as news_cat_name'])
+            ->get();
+
+        return view('front-end.pages.news.category-wise-details', compact('news'));
+    }
+
     
     
 

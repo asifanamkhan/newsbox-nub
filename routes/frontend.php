@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\NoticeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\FrontendController;
@@ -30,3 +31,9 @@ Route::get('events-details/{id}',[EventController::class,'events_details'])->nam
 
 Route::get('achievements',[AchievementController::class,'achievements'])->name('achievements');
 Route::get('achievements-details/{id}',[AchievementController::class,'achievements_details'])->name('achievements-details');
+
+Route::get('notice',[NoticeController::class,'notice'])->name('notice');
+Route::get('notice-details/{id}',[NoticeController::class,'notice_details'])->name('notice-details');
+
+Route::post('news-search',[FrontendController::class,'news_search'])->name('news-search');
+

@@ -55,7 +55,7 @@
                                     @php
                                         $featured_slide_title = substr($slide->news_title,0, 25);
                                     @endphp
-                                    <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="">Lorem
+                                    <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="">
                                         {{$featured_slide_title}} ...</a>
                                 </div>
                             </div>
